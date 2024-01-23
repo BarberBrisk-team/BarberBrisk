@@ -1,4 +1,4 @@
-package com.example.barberbrisk;
+package com.example.barberbrisk.viewModel;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -6,7 +6,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class confirmation_code extends AppCompatActivity {
+import com.example.barberbrisk.R;
+
+public class verify extends AppCompatActivity {
     TextView timer;
 
 

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BarberBrisk</string>
+    <string name="are_you_a_barber">Are you a Barber?</string>
+    <string name="submit">Submit</string>
+    <string name="phonenumber">PhoneNumber</string>
+    <string name="full_name">Full Name</string>
+    <string name="signu">SignUפ</string>
 </resources>
