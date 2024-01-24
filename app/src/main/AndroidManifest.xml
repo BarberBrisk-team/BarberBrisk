@@ -16,6 +16,16 @@
             android:name=".viewModel.verify"
             android:exported="true" />
         <activity
+            android:name=".viewModel.choose_appointment_time"
+            android:exported="false" />
+        <activity
+            android:name=".viewModel.appointment_order"
+            android:exported="true" />
+        <activity
+            android:name=".viewModel.LogInPage"
+            android:exported="true" />
+
+        <activity
             android:name=".viewModel.signup"
             android:exported="true" />
         <activity
