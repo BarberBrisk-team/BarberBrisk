@@ -1,4 +1,4 @@
-package com.example.barberbrisk;
+package com.example.barberbrisk.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import com.example.barberbrisk.R;
 
 import java.sql.Array;
 import java.util.ArrayList;

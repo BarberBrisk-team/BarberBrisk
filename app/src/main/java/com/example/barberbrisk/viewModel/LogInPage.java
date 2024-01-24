@@ -1,8 +1,10 @@
-package com.example.barberbrisk;
+package com.example.barberbrisk.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.barberbrisk.R;
 
 public class LogInPage extends AppCompatActivity {
 
