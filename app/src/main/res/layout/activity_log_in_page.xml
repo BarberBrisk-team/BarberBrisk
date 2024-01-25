@@ -7,34 +7,58 @@
     tools:context=".viewModel.LogInPage">
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter phone number"
-        android:textSize="24sp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginBottom="660dp"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:hint="Enter your phone number here"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1"
-        android:autofillHints="" />
-
-    <Button
-        android:id="@+id/button1"
+        android:id="@+id/editTextTextEmailAddress2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send verification code"
-        android:textSize="18sp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="584dp"
+        android:ems="10"
+        android:hint="insret Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText1" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="502dp"
+        android:ems="10"
+        android:hint="insret password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log-in"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="355dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
