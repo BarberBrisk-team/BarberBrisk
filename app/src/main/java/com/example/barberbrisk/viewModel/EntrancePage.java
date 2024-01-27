@@ -1,8 +1,10 @@
-package com.example.barberbrisk;
+package com.example.barberbrisk.viewModel;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.barberbrisk.R;
 
 public class EntrancePage extends AppCompatActivity{
 
