@@ -1,11 +1,26 @@
 package com.example.barberbrisk;
 
+import android.os.Debug;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.io.File;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataBase {
+
     /**
      * This method is used to add a new barber to the database.
      * @param FirstName is the first name of the barber.
@@ -13,8 +28,33 @@ public class DataBase {
      * @param PhoneNumber is the phone number of the barber.
      * @param ImageFile is a face shot of the barber.
      */
-    public static void NewBarber(String FirstName, String LastName, int PhoneNumber, File ImageFile) {
+    public static void NewBarber(String FirstName, String LastName, String PhoneNumber, File ImageFile) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Create a new user with a first, middle, and last name
+        Map<String, Object> user = new HashMap<>();
+        user.put("FirstName", FirstName);
+        user.put("LastName", LastName);
+        user.put("PhoneNumber", PhoneNumber);
+        user.put("Rate", 5);
+        //should come here a function that upload image and connect it to the DB
+        user.put("ProfileImage", "gs://barberbrisk-c7aad.appspot.com/BarberProfileImages/Barber_0503617555.jpg");
 
+
+// Add a new document with a generated ID
+        db.collection("Barbers")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("BarberTest", "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("BarberTest", "Error adding document", e);
+                    }
+                });
     }
 
     /**
@@ -34,7 +74,7 @@ public class DataBase {
      * @param time is the time of the appointment.
      */
     public static void BarberNewAppointments(int BarberPhoneNumber, Date date, Time time) {
-
+        //Todo: @elon ezra
     }
 
     /**
@@ -57,7 +97,7 @@ public class DataBase {
      * @param BarberPhoneNumber is the phone number of the barber who can do this hairstyle.
      */
     public static void NewHairStyle(String HairStyleName, double Price, File ImageFile, int BarberPhoneNumber) {
-
+        //Todo: @elon ezra
     }
 
     /**
@@ -76,7 +116,7 @@ public class DataBase {
      * @param BarberPhone is the phone number of the barber.
      */
     private static void UpdateRating(double NewRating, int BarberPhone) {
-
+        //Todo: @elon ezra
     }
 
     /**
@@ -90,6 +130,8 @@ public class DataBase {
      * This method is used to get a list of all customers in the database.
      */
     public static <Costumer> void ListOfCostumer(){
+        //Todo: @elon ezra
+
 
     }
 }
