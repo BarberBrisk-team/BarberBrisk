@@ -8,6 +8,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.jetbrains.annotations.TestOnly;
+
 import java.io.File;
 
 public class TestActivity extends AppCompatActivity {
@@ -23,7 +25,8 @@ public class TestActivity extends AppCompatActivity {
             return insets;
         });
 
-        DataBase.NewBarber("Sami", "Uri","0503617555", new File(""));
+        DataBase.NewBarber("Dana", "Shapira","0503617555", new File(""));
 
     }
+
 }

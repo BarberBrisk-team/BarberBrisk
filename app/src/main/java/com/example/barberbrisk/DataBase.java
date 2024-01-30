@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataBase {
-
+    static FirebaseFirestore db;
     /**
      * This method is used to add a new barber to the database.
      * @param FirstName is the first name of the barber.
@@ -29,7 +29,7 @@ public class DataBase {
      * @param ImageFile is a face shot of the barber.
      */
     public static void NewBarber(String FirstName, String LastName, String PhoneNumber, File ImageFile) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
         // Create a new user with a first, middle, and last name
         Map<String, Object> user = new HashMap<>();
         user.put("FirstName", FirstName);
@@ -73,8 +73,11 @@ public class DataBase {
      * @param date is the date of the appointment.
      * @param time is the time of the appointment.
      */
-    public static void BarberNewAppointments(int BarberPhoneNumber, Date date, Time time) {
+    public static void BarberNewAppointments(int BarberPhoneNumber, Date date, Time time)
+    {
         //Todo: @elon ezra
+
+
     }
 
     /**

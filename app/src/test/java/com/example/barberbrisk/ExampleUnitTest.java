@@ -1,8 +1,12 @@
 package com.example.barberbrisk;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
 
 import static org.junit.Assert.*;
+
+import com.google.api.SystemParameterRule;
 
 import java.io.File;
 
@@ -17,8 +21,19 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
+
+    @Rule
+//    public final SystemParameterRule systemOutRule = new SystemOutRule().enableLog();
+
+    private void print(String output) {
+        System.out.println(output);
+    }
+
     @Test
-    public void tester()
-    {
+    public void givenSystemOutRule_whenInvokePrintln_thenLogSuccess() {
+        DataBase.NewBarber("Dana", "Shapira","0503617555", new File(""));
+
+        print("Hello World!");
+//        assertEquals("Hello World!", systemOutRule.getLog().trim());
     }
 }
