@@ -23,7 +23,7 @@ public class TestActivity extends AppCompatActivity {
             return insets;
         });
 
-        DataBase.NewBarber("Sami", "Uri","0503617555", new File(""));
+        com.example.barberbrisk.objects.DataBase.NewBarber("Sami", "Uri","0503617555", new File(""));
 
     }
 }

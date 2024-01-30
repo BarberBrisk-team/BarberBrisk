@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 
+import com.example.barberbrisk.objects.DataBase;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -21,4 +23,5 @@ public class ExampleUnitTest {
     public void tester()
     {
     }
+
 }
