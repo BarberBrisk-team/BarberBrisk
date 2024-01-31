@@ -7,20 +7,26 @@ public class User implements Parcelable {
     private String name;
     private String email;
     private String phone;
+    private String password;
 
 
     protected User(Parcel in) {
         name = in.readString();
         email = in.readString();
         phone = in.readString();
+        password = in.readString();
     }
     public User(){
 
     }
-    public User(String name, String email, String phone) {
+    public User(String name, String email, String phone, String password) {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.password = password;
+    }
+
+    public User(String name, String email, String phone) {
     }
 
     public void setName(String name) {
@@ -35,6 +41,8 @@ public class User implements Parcelable {
         this.phone = phone;
     }
 
+    public void setPassword(String password){this.password = password;}
+
     public String getName() {
         return name;
     }
@@ -46,6 +54,8 @@ public class User implements Parcelable {
     public String getPhone() {
         return phone;
     }
+
+    public String getPassword(){return password;}
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -71,4 +81,3 @@ public class User implements Parcelable {
         }
     };
 }
-

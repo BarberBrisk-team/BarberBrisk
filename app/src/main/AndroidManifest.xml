@@ -29,7 +29,7 @@
             android:name=".viewModel.signup"
             android:exported="true" />
         <activity
-            android:name=".viewModel.MainActivity"
+            android:name=".viewModel.EntrancePage"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.barberbrisk;
+package com.example.barberbrisk.DB;
 
 import android.os.Debug;
 import android.util.Log;
@@ -28,7 +28,7 @@ public class DataBase {
      * @param PhoneNumber is the phone number of the barber.
      * @param ImageFile is a face shot of the barber.
      */
-    public static void NewBarber(String FirstName, String LastName, String PhoneNumber, File ImageFile) {
+    public static void NewBarber(String FirstName, String LastName, String PhoneNumber,  File ImageFile) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         // Create a new user with a first, middle, and last name
         Map<String, Object> user = new HashMap<>();
