@@ -29,7 +29,7 @@ public class DataBase {
      * @param ImageFile is a face shot of the barber.
      */
     public static void NewBarber(String FirstName, String LastName, String PhoneNumber, File ImageFile) {
-        db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         // Create a new user with a first, middle, and last name
         Map<String, Object> user = new HashMap<>();
         user.put("FirstName", FirstName);
@@ -47,6 +47,7 @@ public class DataBase {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d("BarberTest", "DocumentSnapshot added with ID: " + documentReference.getId());
+//                        System.out.println("DocumentSnapshot added with ID: ");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -76,7 +77,29 @@ public class DataBase {
     public static void BarberNewAppointments(int BarberPhoneNumber, Date date, Time time)
     {
         //Todo: @elon ezra
+        db = FirebaseFirestore.getInstance();
+        // Create a new user with a first, middle, and last name
+        Map<String, Object> data_appointment = new HashMap<>();
+        Map<String, Object> data_barberToAppointment = new HashMap<>();
 
+
+
+// Add a new document with a generated ID
+        db.collection("Barbers")
+                .add(data_appointment)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("BarberTest", "DocumentSnapshot added with ID: " + documentReference.getId());
+//                        System.out.println("DocumentSnapshot added with ID: ");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("BarberTest", "Error adding document", e);
+                    }
+                });
 
     }
 
