@@ -67,7 +67,7 @@ public class DataBase {
      * @param LastName is the last name of the customer.
      * @param PhoneNumber is the phone number of the customer.
      */
-    public static void NewCustomer(String FirstName, String LastName, int PhoneNumber) {
+    public static void NewCustomer(String FirstName, String LastName, String PhoneNumber) {
         // Create a new user with a first name, last name and phone number
         Map<String, Object> user = new HashMap<>();
         user.put("FirstName", FirstName);
@@ -96,7 +96,7 @@ public class DataBase {
      * @param date is the date of the appointment.
      * @param time is the time of the appointment.
      */
-    public static void BarberNewAppointments(int BarberPhoneNumber, Date date, Time time) {
+    public static void BarberNewAppointments(String BarberPhoneNumber, Date date, Time time) {
         //Todo: @elon ezra
     }
 
@@ -108,7 +108,7 @@ public class DataBase {
      * @param time is the time of the appointment.
      * @param HairStyleName is the name of the hairstyle the customer wants.
      */
-    public static void CustomerArrangeAppointment(int CustomerPhoneNumber, int BarberPhoneNumber, Date date, Time time, String HairStyleName) {
+    public static void CustomerArrangeAppointment(String CustomerPhoneNumber, String BarberPhoneNumber, Date date, Time time, String HairStyleName) {
         // Create a new document with a generated ID
         Map<String, Object> appointment = new HashMap<>();
         appointment.put("CustomerPhoneNumber", CustomerPhoneNumber);
@@ -141,7 +141,7 @@ public class DataBase {
          * @param ImageFile is an image of the new hairstyle.
          * @param BarberPhoneNumber is the phone number of the barber who can do this hairstyle.
          */
-    public static void NewHairStyle(String HairStyleName, double Price, File ImageFile, int BarberPhoneNumber) {
+    public static void NewHairStyle(String HairStyleName, double Price, File ImageFile, String BarberPhoneNumber) {
         //Todo: @elon ezra
     }
 
@@ -151,7 +151,7 @@ public class DataBase {
      * @param BarberPhoneNumber is the phone number of the barber.
      * @param CustomerPhoneNumber is the phone number of the customer.
      */
-    public static void CustomerRating(double Rating, int BarberPhoneNumber, int CustomerPhoneNumber) {
+    public static void CustomerRating(double Rating, String BarberPhoneNumber, String CustomerPhoneNumber) {
         // Create a new document with a generated ID
         Map<String, Object> appointment = new HashMap<>();
         appointment.put("Rating", Rating);
@@ -179,30 +179,30 @@ public class DataBase {
      * @param NewRating is the new rating of the barber.
      * @param BarberPhone is the phone number of the barber.
      */
-    private static void UpdateRating(double NewRating, int BarberPhone) {
+    private static void UpdateRating(double NewRating, String BarberPhone) {
         //Todo: @elon ezra
     }
 
     /**
      * This method is used to get a list of all barbers in the database.
      */
-    public static ArrayList<Barber> ListOfBarbers(){
-        ArrayList<Barber> barbers = new ArrayList<>();
-        db.collection("Barbers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Barber barber = new Barber(document); // replace with actual constructor
-                        barbers.add(barber);
-                    }
-                } else {
-                    Log.d("Firestore", "Error getting documents: ", task.getException());
-                }
-            }
-        });
-        return barbers;
-    }
+//    public static ArrayList<Barber> ListOfBarbers(){
+//        ArrayList<Barber> barbers = new ArrayList<>();
+//        db.collection("Barbers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        Barber barber = new Barber(document); // replace with actual constructor
+//                        barbers.add(barber);
+//                    }
+//                } else {
+//                    Log.d("Firestore", "Error getting documents: ", task.getException());
+//                }
+//            }
+//        });
+//        return barbers;
+//    }
 
 
     /**
