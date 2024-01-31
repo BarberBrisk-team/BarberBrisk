@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "638068821285",
+    "project_id": "barberbrisk-c7aad",
+    "storage_bucket": "barberbrisk-c7aad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638068821285:android:dc7fa44f2da0762de05ecc",
+        "android_client_info": {
+          "package_name": "com.example.barberbrisk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYkI3jiQr-I9Dkk0nQa1S8ud7lnFP5apg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

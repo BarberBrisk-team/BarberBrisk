@@ -25,6 +25,6 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.barberbrisk", appContext.getPackageName());
 
-        DataBase.ListOfBarbers();
+//        DataBase.ListOfBarbers();
     }
 }
