@@ -2,30 +2,22 @@ package com.example.barberbrisk.tests;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import com.example.barberbrisk.DB.DataBase;
-import com.example.barberbrisk.R;
 
-import java.io.File;
+import com.example.barberbrisk.DB.DataBase;
 
 public class TestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_test);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        DataBase.NewBarber("Sami", "Uri","0503617555", new File(""));
+//        com.example.barberbrisk.DB.DataBase.NewBarber("Sami", "Uri","0503617555", new File(""));
+//        com.example.barberbrisk.DB.DataBase.NewCustomer("Ahla", "Gever", "03123123123");
+//        com.example.barberbrisk.DB.DataBase.CustomerArrangeAppointment("03123123123", "0503617555", null, null, "Marins");
+//        com.example.barberbrisk.DB.DataBase.CustomerRating(4.5, "0503617555", "03123123123");
 
+//          DataBase.ListOfCustomer();
+          DataBase.ListOfBarbers();
     }
 }

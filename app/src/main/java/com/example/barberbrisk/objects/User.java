@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
+
+    private String uid;
     private String name;
     private String email;
     private String phone;
