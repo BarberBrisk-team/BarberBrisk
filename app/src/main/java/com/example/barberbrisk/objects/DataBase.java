@@ -190,25 +190,30 @@ public class DataBase {
     /**
      * This method is used to get a list of all barbers in the database.
      */
-    public static ArrayList<Barber> ListOfBarbers()
-    {
+    public static ArrayList<Barber> ListOfBarbers(){
+        Log.d("Running", "Hello dear");
         ArrayList<Barber> barbers = new ArrayList<>();
-//        db.collection("Barbers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                        Barber barber = new Barber(document.); // replace with actual constructor
-//                        barbers.add(barber);
-//                    }
-//                } else {
-//                    Log.d("Firestore", "Error getting documents: ", task.getException());
-//                }
-//            }
-//        });
+        db.collection("Barbers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String FirstName = (String) document.get("FirstName");
+                        String LastName = (String) document.get("LastName");
+                        String PhoneNumber = (String) document.get("PhoneNumber");
+                        File ImageFile = (File) document.get("ProfileImage");
+                        Double rate = (Double) document.get("Rate");
+                        Barber barber = new Barber(FirstName, LastName, PhoneNumber, ImageFile, rate); // replace with actual constructor
+                        barbers.add(barber);
+                        Log.d("ListOfBarbersTestDone", barber.toString(), task.getException());
+                    }
+                } else {
+                    Log.d("ListOfBarbers-Test-Fail", "Error getting documents: ", task.getException());
+                }
+            }
+        });
         return barbers;
     }
-
 
 
     /**

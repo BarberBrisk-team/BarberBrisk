@@ -32,6 +32,9 @@
             android:name=".viewModel.signup"
             android:exported="true" />
         <activity
+            android:name=".tests.TestActivity"
+            android:exported="true" />
+        <activity
             android:name=".viewModel.EntrancePage"
             android:exported="true" >
             <intent-filter>
