@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -98,6 +99,9 @@ public class DataBase {
      */
     public static void BarberNewAppointments(String BarberPhoneNumber, Date date, Time time) {
         //Todo: @elon ezra
+
+
+
     }
 
     /**
@@ -186,14 +190,15 @@ public class DataBase {
     /**
      * This method is used to get a list of all barbers in the database.
      */
-//    public static ArrayList<Barber> ListOfBarbers(){
-//        ArrayList<Barber> barbers = new ArrayList<>();
+    public static ArrayList<Barber> ListOfBarbers()
+    {
+        ArrayList<Barber> barbers = new ArrayList<>();
 //        db.collection("Barbers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<QuerySnapshot> task) {
 //                if (task.isSuccessful()) {
 //                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                        Barber barber = new Barber(document); // replace with actual constructor
+//                        Barber barber = new Barber(document.); // replace with actual constructor
 //                        barbers.add(barber);
 //                    }
 //                } else {
@@ -201,16 +206,31 @@ public class DataBase {
 //                }
 //            }
 //        });
-//        return barbers;
-//    }
+        return barbers;
+    }
+
 
 
     /**
      * This method is used to get a list of all customers in the database.
      */
-    public static <Customer> void ListOfCustomer(){
+    public static <Clients> void ListOfCustomer(){
         //Todo: @elon ezra
+        Log.d("ListOfCustomer", "function run");
 
-
+        db.collection("Clients")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("ListOfCustomer", document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d("ListOfCustomer", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 }
