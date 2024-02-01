@@ -199,12 +199,11 @@ public class DataBase {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        String FirstName = (String) document.get("FirstName");
-                        String LastName = (String) document.get("LastName");
-                        String PhoneNumber = (String) document.get("PhoneNumber");
-                        File ImageFile = (File) document.get("ProfileImage");
-                        Double rate = (Double) document.get("Rate");
-                        Barber barber = new Barber(FirstName, LastName, PhoneNumber, ImageFile, rate); // replace with actual constructor
+                        String FirstName = document.getString("FirstName");
+                        String LastName = document.getString("LastName");
+                        String PhoneNumber = document.getString("PhoneNumber");
+//                        Double rate = document.getDouble("Rate");
+                        Barber barber = new Barber(FirstName, LastName, "PhoneNumber", 0.0); // replace with actual constructor
                         barbers.add(barber);
                         Log.d("ListOfBarbersTestDone", barber.toString(), task.getException());
                     }
