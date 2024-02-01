@@ -1,16 +1,12 @@
 package com.example.barberbrisk;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.internal.builders.JUnit4Builder;
 
 import static org.junit.Assert.*;
 
-import com.google.firebase.FirebaseApp;
-
 import java.io.File;
 
-import com.example.barberbrisk.objects.DataBase;
+import com.example.barberbrisk.DB.DataBase;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

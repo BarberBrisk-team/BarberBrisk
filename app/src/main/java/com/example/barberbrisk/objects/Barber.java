@@ -11,14 +11,14 @@ public class Barber extends User {
     List<HairCut> haircuts = new ArrayList<HairCut>();
 
     //    Constructor for barber don't have a list haircuts to upload
-    public Barber(String name, String email, String phone, String password) {
-        super(name, email, phone);
+    public Barber(String FirstName, String LastName, String email, String phone, String password) {
+        super(FirstName, LastName, email, phone);
         this.rate = 5.0;
         this.password = password;
     }
 
-    public Barber(String name, String email, String phone, Double rate, List<HairCut> haircuts) {
-        super(name, email, phone);
+    public Barber(String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
+        super(FirstName, LastName, email, phone);
         this.rate = rate;
         this.haircuts = haircuts;
     }
