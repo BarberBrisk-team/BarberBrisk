@@ -203,7 +203,7 @@ public class DataBase {
                         String PhoneNumber = (String) document.get("PhoneNumber");
                         File ImageFile = (File) document.get("ProfileImage");
                         Double rate = (Double) document.get("Rate");
-                        Barber barber = new Barber(FirstName, LastName, PhoneNumber, ImageFile, rate); // replace with actual constructor
+                        Barber barber = new Barber(FirstName, LastName, PhoneNumber, rate); // replace with actual constructor
                         barbers.add(barber);
                         Log.d("ListOfBarbersTestDone", barber.toString(), task.getException());
                     }

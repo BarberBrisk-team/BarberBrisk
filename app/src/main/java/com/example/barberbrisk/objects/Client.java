@@ -4,6 +4,7 @@ import android.os.Parcel;
 
 public class Client extends User {
 
+
     protected Client(Parcel in) {
         super(in);
     }
