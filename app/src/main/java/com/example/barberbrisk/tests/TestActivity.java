@@ -1,21 +1,14 @@
 package com.example.barberbrisk.tests;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.DB.DataBase;
-import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
-import com.example.barberbrisk.objects.User;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
     ArrayList<Client> clients = new ArrayList<>();
@@ -47,17 +40,17 @@ public class TestActivity extends AppCompatActivity {
         DataBase.ListOfCustomer(clients1 -> {
             Log.d("AllBarbers", "clients1: " + clients1.size());
             Log.d("AllBarbers", "one client: " + clients1.get(0).getFirstName());
-            litner(clients1);
+            listener(clients1);
         });
 
 //        while(clients.isEmpty());
-        Log.d("AllBarbers", "" + clients.size());
+        Log.d("AllBarbers", String.valueOf(clients.size()));
     }
 
 
 
 
-    public void litner(ArrayList<Client> client)
+    public void listener(ArrayList<Client> client)
     {
         this.clients = client;
         Log.d("AllBarbers", "2 client: " + client.get(1).getFirstName());

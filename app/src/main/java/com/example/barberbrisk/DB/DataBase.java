@@ -1,21 +1,12 @@
 package com.example.barberbrisk.DB;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.example.barberbrisk.objects.*;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.example.barberbrisk.objects.Barber;
+import com.example.barberbrisk.objects.Client;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-//import com.google.firebase.storage.FirebaseStorage;
-//import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.sql.Time;
@@ -25,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataBase {
+    @SuppressLint("StaticFieldLeak")
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     /**
      * This method is used to add a new barber to the database.
@@ -48,18 +40,8 @@ public class DataBase {
         // Add a new document with a generated ID
         db.collection("Barbers")
                 .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("BarberTest", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("BarberTest", "Error adding document", e);
-                    }
-                });
+                .addOnSuccessListener(documentReference -> Log.d("BarberTest", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                .addOnFailureListener(e -> Log.w("BarberTest", "Error adding document", e));
     }
 
     /**
@@ -77,18 +59,8 @@ public class DataBase {
         // Add a new document with a generated ID
         db.collection("Clients")
                 .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("CustomerTest", "Document Snapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("CustomerTest", "Error occur while adding document to Customers", e);
-                    }
-                });
+                .addOnSuccessListener(documentReference -> Log.d("CustomerTest", "Document Snapshot added with ID: " + documentReference.getId()))
+                .addOnFailureListener(e -> Log.w("CustomerTest", "Error occur while adding document to Customers", e));
     }
 
     /**
@@ -123,18 +95,8 @@ public class DataBase {
 
         db.collection("Customer_Appointments")
                 .add(appointment)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Customer_Appointments_Test", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Customer_Appointments_Test", "Error adding document", e);
-                    }
-                });
+                .addOnSuccessListener(documentReference -> Log.d("Customer_Appointments_Test", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                .addOnFailureListener(e -> Log.w("Customer_Appointments_Test", "Error adding document", e));
     }
 
 
@@ -164,18 +126,8 @@ public class DataBase {
 
         db.collection("Customer_Rating")
                 .add(appointment)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Customer_Rating_Test", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Customer_Rating_Test", "Error adding document", e);
-                    }
-                });
+                .addOnSuccessListener(documentReference -> Log.d("Customer_Rating_Test", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                .addOnFailureListener(e -> Log.w("Customer_Rating_Test", "Error adding document", e));
     }
 
     /**
@@ -188,71 +140,80 @@ public class DataBase {
     }
 
     /**
-     * This method is used to get a list of all barbers in the database.
+     * This interface is used as a callback mechanism to handle the asynchronous retrieval of data from the database.
+     * It provides a method that will be invoked when the data (in this case, a list of Barber objects) is successfully fetched.
      */
-    public static ArrayList<Barber> ListOfBarbers(){
-        Log.d("ListOfBarbers", "Hello dear");
-        ArrayList<Barber> barbers = new ArrayList<>();
-        db.collection("Barbers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        String FirstName = document.getString("FirstName");
-                        String LastName = document.getString("LastName");
-                        String PhoneNumber = document.getString("PhoneNumber");
-//                        Double rate = document.getDouble("Rate");
-                        Barber barber = new Barber(FirstName, LastName, "PhoneNumber", 0.0); // replace with actual constructor
-                        barbers.add(barber);
-                        Log.d("ListOfBarbers", barber.toString(), task.getException());
-                    }
-                } else {
-                    Log.d("ListOfBarbers-Test-Fail", "Error getting documents: ", task.getException());
-                }
-            }
-        });
-        return barbers;
+    public interface OnDataFetchedListenerBarbers{
+
+        /**
+         * This method is called when the data fetching process is completed.
+         * It receives an ArrayList of Barber objects as a parameter, which represents the data fetched from the database.
+         *
+         * @param barbers An ArrayList of Barber objects representing the data fetched from the database.
+         */
+        void onDataFetchedBarbers(ArrayList<Barber> barbers);
     }
 
-    public interface FirestoreCallback {
-        void onCallback(ArrayList<User> clients);
+
+    /**
+     * This method is used to asynchronously fetch a list of all barbers from the database.
+     * It uses the Firestore API to get the data and adds each barber to an ArrayList.
+     * Once all the data has been fetched, it triggers a callback with the list of barbers.
+     *
+     * @param callback An instance of OnDataFetchedListenerBarbers. Its onDataFetchedBarbers method will be called with the list of barbers when the data has been completely fetched.
+     */
+    public static void ListOfBarbers(OnDataFetchedListenerBarbers callback){
+        Log.d("Running", "Hello dear");
+        ArrayList<Barber> barbers = new ArrayList<>();
+        db.collection("Barbers").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    String FirstName = document.getString("FirstName");
+                    String LastName = document.getString("LastName");
+                    String PhoneNumber = document.getString("PhoneNumber");
+//                        Double rate = document.getDouble("Rate");
+                    Barber barber = new Barber(FirstName, LastName, "PhoneNumber", 0.0);
+                    barbers.add(barber);
+                }
+                callback.onDataFetchedBarbers(barbers); // Trigger the callback
+            } else {
+                Log.d("ListOfBarbers-Test-Fail", "Error getting documents: ", task.getException());
+            }
+        });
     }
+
 
     /**
      * This method is used to get a list of all customers in the database.
      */
-    public interface OnDataFetchedListener {
-        void onDataFetched(ArrayList<Client> clients);
-        void onDataFetched(Client client);
+    public interface OnDataFetchedListenerClients {
+        void onDataFetchedClients(ArrayList<Client> clients);
     }
 
-    public static void ListOfCustomer(OnDataFetchedListener listener) {
+    public static void ListOfCustomer(OnDataFetchedListenerClients listener) {
         ArrayList<Client> clients = new ArrayList<>();
 
         db.collection("Clients")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String FirstName = document.getString("FirstName");
-                                String LastName = document.getString("LastName");
-                                String PhoneNumber = document.getString("PhoneNumber");
-                                String uid = document.getId();
-                                clients.add(new Client(uid, FirstName, LastName,"", PhoneNumber));
-                            }
-                            listener.onDataFetched(clients);
-                        } else {
-                            Log.d("ListOfCustomer", "Error getting documents: ", task.getException());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String FirstName = document.getString("FirstName");
+                            String LastName = document.getString("LastName");
+                            String PhoneNumber = document.getString("PhoneNumber");
+                            String uid = document.getId();
+                            clients.add(new Client(uid, FirstName, LastName,"", PhoneNumber));
                         }
+                        listener.onDataFetchedClients(clients);
+                    } else {
+                        Log.d("ListOfCustomer", "Error getting documents: ", task.getException());
                     }
                 });
     }
 
 
 
-//    public static void fetch_a_Cliet(String uid,OnDataFetchedListener listener)
+//    public static void fetch_a_Client(String uid,OnDataFetchedListener listener)
 //    {
 //        db.collection("Clients").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 //            @Override
@@ -271,3 +232,4 @@ public class DataBase {
 
 
 }
+

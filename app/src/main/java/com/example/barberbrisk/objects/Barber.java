@@ -4,14 +4,13 @@ import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
-import java.io.File;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Barber extends User {
     private String password;
     private Double rate;
-    List<HairCut> haircuts = new ArrayList<HairCut>();
+    List<HairCut> haircuts = new ArrayList<>();
 
     //    Constructor for barber don't have a list haircuts to upload
     public Barber(String FirstName, String LastName, String email, String phone, String password) {
@@ -26,15 +25,6 @@ public class Barber extends User {
         this.haircuts = haircuts;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "Barber{" +
-                "password='" + password + '\'' +
-                ", rate=" + rate +
-                ", haircuts=" + haircuts +
-                '}';
-    }
 
     public Barber(String firstName, String lastName, String phoneNumber, Double rate) {
         super(firstName, lastName, phoneNumber);
@@ -56,7 +46,7 @@ public class Barber extends User {
     public List<HairCut> getHaircuts() {
         return haircuts;
     }
-/*
+
     // Constructor for Parcelable
     protected Barber(Parcel in) {
         super(in);
@@ -79,6 +69,18 @@ public class Barber extends User {
         public Barber[] newArray(int size) {
             return new Barber[size];
         }
-    };*/
+    };
+    @NonNull
+    @Override
+    public String toString() {
+        String FirstName = super.getFirstName();
+        String LastName = super.getLastName();
+        return "Barber{" + "First Name='" +
+                FirstName + '\'' + "Last Name='" + LastName + '\'' +
+                "password='" + password + '\'' +
+                ", rate=" + rate +
+//                ", haircuts=" + haircuts +
+                '}';
+    }
 }
 
