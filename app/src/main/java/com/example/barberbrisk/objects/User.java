@@ -4,10 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
+    private String uid;
     private String name;
     private String email;
     private String phone;
     private String password;
+
+
 
 
     protected User(Parcel in) {
@@ -19,7 +22,8 @@ public class User implements Parcelable {
     public User(){
 
     }
-    public User(String name, String email, String phone, String password) {
+    public User(String uid, String name, String email, String phone, String password) {
+        this.uid = uid;
         this.name = name;
         this.email = email;
         this.phone = phone;

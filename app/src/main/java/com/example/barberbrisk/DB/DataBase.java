@@ -1,4 +1,4 @@
-package com.example.barberbrisk.objects;
+package com.example.barberbrisk.DB;
 
 import android.os.Debug;
 import android.util.Log;
@@ -209,7 +209,10 @@ public class DataBase {
      * This method is used to get a list of all customers in the database.
      */
     public static <Customer> void ListOfCustomer(){
+
         //Todo: @elon ezra
+
+
 
 
     }

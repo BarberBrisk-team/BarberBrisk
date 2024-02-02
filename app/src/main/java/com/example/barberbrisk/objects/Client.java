@@ -4,8 +4,12 @@ import android.os.Parcel;
 
 public class Client extends User {
 
-    protected Client(Parcel in) {
+    public Client(Parcel in) {
         super(in);
+    }
+
+    public Client(String uid, String name, String email, String phone, String password) {
+
     }
 
     @Override

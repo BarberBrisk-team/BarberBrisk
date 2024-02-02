@@ -16,6 +16,7 @@ public class Barber extends User {
         this.rate = 5.0;
         this.password = password;
     }
+    //constructor for barber that have a list haircuts to upload
 
     public Barber(String name, String email, String phone, Double rate, List<HairCut> haircuts) {
         super(name, email, phone);
