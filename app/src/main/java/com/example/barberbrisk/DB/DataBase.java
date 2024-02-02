@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -220,20 +221,12 @@ public class DataBase {
     /**
      * This method is used to get a list of all customers in the database.
      */
-//    public static void ListOfCustomer(){
-//        //Todo: @elon ezra
-//
-//
-//    }
-    public static void ListOfCustomer(OnSuccessListener<QuerySnapshot> os) {
-        db.collection("Clients").get().addOnSuccessListener(os);
-    }
     public interface OnDataFetchedListener {
         void onDataFetched(ArrayList<Client> clients);
+        void onDataFetched(Client client);
     }
 
-
-    public static void fetchClients(OnDataFetchedListener listener) {
+    public static void ListOfCustomer(OnDataFetchedListener listener) {
         ArrayList<Client> clients = new ArrayList<>();
 
         db.collection("Clients")
@@ -256,6 +249,25 @@ public class DataBase {
                     }
                 });
     }
+
+
+
+//    public static void fetch_a_Cliet(String uid,OnDataFetchedListener listener)
+//    {
+//        db.collection("Clients").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if(task.isSuccessful())
+//                {
+//                    for (:
+//                         ) {
+//
+//                    }
+//                }
+//            }
+//        });
+//
+//    }
 
 
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.DB.DataBase;
+import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.objects.User;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
-    List<User> clients = new ArrayList<>();
+    ArrayList<Client> clients = new ArrayList<>();
     public interface EventListener {
         void onTrigger();
     }
@@ -35,16 +36,31 @@ public class TestActivity extends AppCompatActivity {
 //        com.example.barberbrisk.DB.DataBase.CustomerRating(4.5, "0503617555", "03123123123");
 
 //          DataBase.ListOfCustomer();
-          ArrayList<Barber> barbers = DataBase.ListOfBarbers();
-        for (Barber bar : barbers) {
-            Log.d("AllBarbers", bar.toString());
-        }
+//        ArrayList<Barber> barbers = DataBase.ListOfBarbers();
+//        Log.d("AllBarbers", ""+barbers.size());
+//        for (Barber bar : barbers) {
+//            Log.d("AllBarbers", bar.toString());
+//        }
+
+
+
+        DataBase.ListOfCustomer(clients1 -> {
+            Log.d("AllBarbers", "clients1: " + clients1.size());
+            Log.d("AllBarbers", "one client: " + clients1.get(0).getFirstName());
+            litner(clients1);
+        });
+
+//        while(clients.isEmpty());
+        Log.d("AllBarbers", "" + clients.size());
     }
 
 
-    public void litner()
+
+
+    public void litner(ArrayList<Client> client)
     {
-        Log.d("TestActivity1", "the data is " + clients.size());
+        this.clients = client;
+        Log.d("AllBarbers", "2 client: " + client.get(1).getFirstName());
     }
 
 }
