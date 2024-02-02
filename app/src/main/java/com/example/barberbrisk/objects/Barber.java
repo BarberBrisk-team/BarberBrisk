@@ -2,6 +2,9 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
+import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -21,6 +24,21 @@ public class Barber extends User {
         super(FirstName, LastName, email, phone);
         this.rate = rate;
         this.haircuts = haircuts;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Barber{" +
+                "password='" + password + '\'' +
+                ", rate=" + rate +
+                ", haircuts=" + haircuts +
+                '}';
+    }
+
+    public Barber(String firstName, String lastName, String phoneNumber, Double rate) {
+        super(firstName, lastName, phoneNumber);
+        this.rate = rate;
     }
 
     public void setRate(Double rate) {

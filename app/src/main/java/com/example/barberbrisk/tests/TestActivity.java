@@ -3,7 +3,6 @@ package com.example.barberbrisk.tests;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,20 +34,11 @@ public class TestActivity extends AppCompatActivity {
 //        com.example.barberbrisk.DB.DataBase.CustomerArrangeAppointment("03123123123", "0503617555", null, null, "Marins");
 //        com.example.barberbrisk.DB.DataBase.CustomerRating(4.5, "0503617555", "03123123123");
 
-        Log.d("TestActivity1", "client.toString()");
-
-
-//        DataBase.ListOfCustomer(queryDocumentSnapshots -> {
-//            for (DocumentSnapshot doc: queryDocumentSnapshots ) {
-//                clients.add(new User(doc.getId(),"","",""));
-//            }
-//        });
-//
-//        Log.d("TestActivity1", "the data is " + clients.size());
-
-
-        DataBase.fetchClients(clients1 -> { clients = clients1; Log.d("TestActivity1", "the data is " + clients.size());});
-
+//          DataBase.ListOfCustomer();
+          ArrayList<Barber> barbers = DataBase.ListOfBarbers();
+        for (Barber bar : barbers) {
+            Log.d("AllBarbers", bar.toString());
+        }
     }
 
 

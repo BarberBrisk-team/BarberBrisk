@@ -200,10 +200,8 @@ public class DataBase {
                         String FirstName = document.getString("FirstName");
                         String LastName = document.getString("LastName");
                         String PhoneNumber = document.getString("PhoneNumber");
-//                        File ImageFile = (File) document.get("ProfileImage");
-                        Double rate =  document.getDouble("Rate");
-                        Barber barber = new Barber(FirstName,LastName,"",PhoneNumber,"");
-//                        Barber barber = new Barber(FirstName, LastName, PhoneNumber); // replace with actual constructor
+//                        Double rate = document.getDouble("Rate");
+                        Barber barber = new Barber(FirstName, LastName, "PhoneNumber", 0.0); // replace with actual constructor
                         barbers.add(barber);
                         Log.d("ListOfBarbers", barber.toString(), task.getException());
                     }
