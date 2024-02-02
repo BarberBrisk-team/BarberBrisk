@@ -16,9 +16,6 @@
             android:name=".viewModel.verify"
             android:exported="true" />
         <activity
-            android:name=".TestActivity"
-            android:exported="true">
-        <activity
             android:name=".viewModel.choose_appointment_time"
             android:exported="false" />
         <activity

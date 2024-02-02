@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.barberbrisk.R;
-import com.example.barberbrisk.objects.User;
 
 
 public class LogInPage extends AppCompatActivity {

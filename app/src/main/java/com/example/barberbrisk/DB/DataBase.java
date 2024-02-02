@@ -1,17 +1,15 @@
 package com.example.barberbrisk.DB;
 
-import android.os.Debug;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.barberbrisk.objects.Barber;
+import com.example.barberbrisk.objects.*;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -192,21 +190,22 @@ public class DataBase {
      * This method is used to get a list of all barbers in the database.
      */
     public static ArrayList<Barber> ListOfBarbers(){
-        Log.d("Running", "Hello dear");
+        Log.d("ListOfBarbers", "Hello dear");
         ArrayList<Barber> barbers = new ArrayList<>();
         db.collection("Barbers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        String FirstName = (String) document.get("FirstName");
-                        String LastName = (String) document.get("LastName");
-                        String PhoneNumber = (String) document.get("PhoneNumber");
-                        File ImageFile = (File) document.get("ProfileImage");
-                        Double rate = (Double) document.get("Rate");
-                        Barber barber = new Barber(FirstName, LastName, PhoneNumber, ImageFile, rate); // replace with actual constructor
+                        String FirstName = document.getString("FirstName");
+                        String LastName = document.getString("LastName");
+                        String PhoneNumber = document.getString("PhoneNumber");
+//                        File ImageFile = (File) document.get("ProfileImage");
+                        Double rate =  document.getDouble("Rate");
+                        Barber barber = new Barber(FirstName,LastName,"",PhoneNumber,"");
+//                        Barber barber = new Barber(FirstName, LastName, PhoneNumber); // replace with actual constructor
                         barbers.add(barber);
-                        Log.d("ListOfBarbersTestDone", barber.toString(), task.getException());
+                        Log.d("ListOfBarbers", barber.toString(), task.getException());
                     }
                 } else {
                     Log.d("ListOfBarbers-Test-Fail", "Error getting documents: ", task.getException());
@@ -216,13 +215,28 @@ public class DataBase {
         return barbers;
     }
 
+    public interface FirestoreCallback {
+        void onCallback(ArrayList<User> clients);
+    }
 
     /**
      * This method is used to get a list of all customers in the database.
      */
-    public static <Clients> void ListOfCustomer(){
-        //Todo: @elon ezra
-        Log.d("ListOfCustomer", "function run");
+//    public static void ListOfCustomer(){
+//        //Todo: @elon ezra
+//
+//
+//    }
+    public static void ListOfCustomer(OnSuccessListener<QuerySnapshot> os) {
+        db.collection("Clients").get().addOnSuccessListener(os);
+    }
+    public interface OnDataFetchedListener {
+        void onDataFetched(ArrayList<Client> clients);
+    }
+
+
+    public static void fetchClients(OnDataFetchedListener listener) {
+        ArrayList<Client> clients = new ArrayList<>();
 
         db.collection("Clients")
                 .get()
@@ -231,12 +245,19 @@ public class DataBase {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("ListOfCustomer", document.getId() + " => " + document.getData());
+                                String FirstName = document.getString("FirstName");
+                                String LastName = document.getString("LastName");
+                                String PhoneNumber = document.getString("PhoneNumber");
+                                String uid = document.getId();
+                                clients.add(new Client(uid, FirstName, LastName,"", PhoneNumber));
                             }
+                            listener.onDataFetched(clients);
                         } else {
                             Log.d("ListOfCustomer", "Error getting documents: ", task.getException());
                         }
                     }
                 });
     }
+
+
 }

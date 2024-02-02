@@ -38,7 +38,7 @@ public class Barber extends User {
     public List<HairCut> getHaircuts() {
         return haircuts;
     }
-
+/*
     // Constructor for Parcelable
     protected Barber(Parcel in) {
         super(in);
@@ -61,6 +61,6 @@ public class Barber extends User {
         public Barber[] newArray(int size) {
             return new Barber[size];
         }
-    };
+    };*/
 }
 
