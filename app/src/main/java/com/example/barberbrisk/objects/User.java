@@ -14,6 +14,7 @@ public class User implements Parcelable {
 
 
     protected User(Parcel in) {
+        uid = in.readString();
         name = in.readString();
         email = in.readString();
         phone = in.readString();
@@ -32,6 +33,8 @@ public class User implements Parcelable {
 
     public User(String name, String email, String phone) {
     }
+
+
 
     public void setName(String name) {
         this.name = name;

@@ -31,7 +31,7 @@ public class FirebaseDB {
     }
     //put new barber in DB
     public void putNewBar(String uid, String email, String password, String name, String phone){
-        Barber barber = new Barber(name,email,phone,password);
+        Barber barber = new Barber(uid ,name,email,phone,password);
         mDB.collection("Barbers").document(uid).set(barber);
     }
     //put new client in DB

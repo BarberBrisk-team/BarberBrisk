@@ -9,7 +9,7 @@ public class Client extends User {
     }
 
     public Client(String uid, String name, String email, String phone, String password) {
-
+        super(uid, name, email, phone, password);
     }
 
     @Override

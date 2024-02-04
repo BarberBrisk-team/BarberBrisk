@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Barber extends User {
-    private String password;
+
     private Double rate;
     List<HairCut> haircuts = new ArrayList<HairCut>();
 
     //    Constructor for barber don't have a list haircuts to upload
-    public Barber(String name, String email, String phone, String password) {
-        super(name, email, phone);
+    public Barber(String uid, String name, String email, String phone, String password) {
+        super(uid, name, email, phone, password);
         this.rate = 5.0;
-        this.password = password;
+
     }
     //constructor for barber that have a list haircuts to upload
 
