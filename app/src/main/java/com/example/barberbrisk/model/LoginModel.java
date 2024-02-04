@@ -15,7 +15,7 @@ public class LoginModel {
 
     private final FirebaseAuth auth;
     private final FirebaseFirestore db;
-
+    private String Uid;
     /**
      * Constructor for the LoginModel class.
      * It initializes FirebaseAuth and FirebaseFirestore instances.
@@ -23,6 +23,7 @@ public class LoginModel {
     public LoginModel() {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        Uid = "";
     }
 
     /**
@@ -40,6 +41,7 @@ public class LoginModel {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         String uid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                        this.Uid = uid;
                         Log.d("AuthTesting", "UID: " + uid);
                         db.collection("Barbers").document(uid).get()
                                 .addOnSuccessListener(documentSnapshot -> {
@@ -82,5 +84,8 @@ public class LoginModel {
          * @param errorMessage A string containing the error message.
          */
         void onFailure(String errorMessage);
+    }
+    public String getUid(){
+        return this.Uid;
     }
 }
