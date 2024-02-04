@@ -28,6 +28,10 @@ public class Barber extends User {
         this.haircuts = haircuts;
     }
 
+    public Barber() {
+
+    }
+
 
     public void setRate(Double rate) {
         this.rate = rate;
