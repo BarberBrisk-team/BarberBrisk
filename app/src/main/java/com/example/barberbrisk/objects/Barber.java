@@ -13,8 +13,8 @@ public class Barber extends User {
     List<HairCut> haircuts = new ArrayList<>();
 
     //    Constructor for barber don't have a list haircuts to upload
-    public Barber(String FirstName, String LastName, String email, String phone, String password) {
-        super(FirstName, LastName, email, phone);
+    public Barber(String uid, String FirstName, String LastName, String email, String phone, String password) {
+        super(uid,FirstName, LastName, email, phone);
         this.rate = 5.0;
         this.password = password;
     }
@@ -25,11 +25,6 @@ public class Barber extends User {
         this.haircuts = haircuts;
     }
 
-
-    public Barber(String firstName, String lastName, String phoneNumber, Double rate) {
-        super(firstName, lastName, phoneNumber);
-        this.rate = rate;
-    }
 
     public void setRate(Double rate) {
         this.rate = rate;

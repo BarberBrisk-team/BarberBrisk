@@ -6,15 +6,14 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.DB.DataBase;
+import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 
 import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
     ArrayList<Client> clients = new ArrayList<>();
-    public interface EventListener {
-        void onTrigger();
-    }
+    ArrayList<Barber> barbers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +35,18 @@ public class TestActivity extends AppCompatActivity {
 //        }
 
 
+        DataBase.ListOfBarbers(barbers1 -> {
+            Log.d("AllBarbers", "First barber: " + barbers1.get(0).getFirstName());
+        });
 
         DataBase.ListOfCustomer(clients1 -> {
-            Log.d("AllBarbers", "clients1: " + clients1.size());
-            Log.d("AllBarbers", "one client: " + clients1.get(0).getFirstName());
+            Log.d("AllClients", "clients1: " + clients1.size());
+            Log.d("AllClients", "one client: " + clients1.get(0).getFirstName());
             listener(clients1);
         });
 
 //        while(clients.isEmpty());
-        Log.d("AllBarbers", String.valueOf(clients.size()));
+        Log.d("AllClients", String.valueOf(clients.size()));
     }
 
 
@@ -53,7 +55,7 @@ public class TestActivity extends AppCompatActivity {
     public void listener(ArrayList<Client> client)
     {
         this.clients = client;
-        Log.d("AllBarbers", "2 client: " + client.get(1).getFirstName());
+        Log.d("AllClients", "2 client: " + client.get(1).getFirstName());
     }
 
 }
