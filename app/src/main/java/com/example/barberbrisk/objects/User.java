@@ -5,44 +5,33 @@ import android.os.Parcelable;
 public class User implements Parcelable {
 
     private String uid;
-    private String FirstName;
-    private String LastName;
+    private String Name;
+
     private String email;
     private String phone;
     private String password;
 
 
+    public User(){
 
+    }
     protected User(Parcel in) {
-        FirstName = in.readString();
-        LastName = in.readString();
+        Name = in.readString();
         email = in.readString();
         phone = in.readString();
         password = in.readString();
     }
-    public User(){
 
-    }
-    public User(String FirstName, String LastName, String email, String phone, String password) {
-        this.FirstName = FirstName;
-        this.LastName = LastName;
+    public User(String uid,String Name, String email, String phone, String password) {
+        this.uid = uid;
+        this.Name = Name;
         this.email = email;
         this.phone = phone;
         this.password = password;
     }
 
-//    public User(String name, String email, String phone) {
-//    }
-    public User(String FirstName, String LastName, String PhoneNumber){
-        this.FirstName = FirstName;
-        this.LastName = LastName;
-        this.phone = PhoneNumber;
-    }
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
-    }
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public void setName(String FirstName) {
+        this.Name = FirstName;
     }
 
     public void setEmail(String email) {
@@ -56,11 +45,8 @@ public class User implements Parcelable {
     public void setPassword(String password){this.password = password;}
     public void setUid(String Uid){this.uid = Uid;}
 
-    public String getFirstName() {
-        return FirstName;
-    }
-    public String getLastName() {
-        return LastName;
+    public String getName() {
+        return Name;
     }
 
     public String getEmail() {
@@ -76,8 +62,7 @@ public class User implements Parcelable {
     public String getUid(){return uid;}
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(FirstName);
-        dest.writeString(LastName);
+        dest.writeString(Name);
         dest.writeString(email);
         dest.writeString(phone);
     }

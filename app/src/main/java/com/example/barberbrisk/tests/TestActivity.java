@@ -23,7 +23,8 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //
-  DataBase.GenerateBarberAppointments("333333");
+        DataBase.NewBarberDB(new Barber("44444333", "Barber", "avi@aff.com", "0544444444", "123456"));
+//  DataBase.GenerateBarberAppointments("333333");
 //        while(clients.isEmpty());
         Log.d("AllClients", String.valueOf(clients.size()));
     }
@@ -31,9 +32,5 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-    public void listener(ArrayList<Client> client)
-    {
-        this.clients = client;
-//        Log.d("AllClients", "2 client: " + client.get(1).getFirstName());
-    }
+
 }
