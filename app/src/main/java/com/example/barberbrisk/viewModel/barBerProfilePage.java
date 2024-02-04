@@ -38,12 +38,9 @@ public class barBerProfilePage extends AppCompatActivity {
         b3.setText(myBarber.getPhone());
     }
     public void arrowBackButton(View v){
-<<<<<<< HEAD
         Intent i = new Intent(barBerProfilePage.this, barberHomePage.class);
         startActivity(i);
-=======
         // Intent i = new Intent(this, MainActivity.class);
 //        startActivity(i);
->>>>>>> c2861408767947d1882b1486da57b9afa1ef6fbe
     }
 }
