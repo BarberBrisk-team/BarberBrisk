@@ -49,7 +49,7 @@ public class TestActivity extends AppCompatActivity {
     public void listener(ArrayList<Client> client)
     {
         this.clients = client;
-        Log.d("AllClients", "2 client: " + client.get(1).getFirstName());
+//        Log.d("AllClients", "2 client: " + client.get(1).getFirstName());
     }
 
 }
