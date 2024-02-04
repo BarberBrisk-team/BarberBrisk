@@ -23,58 +23,11 @@ import java.util.Map;
 public class DataBase {
     @SuppressLint("StaticFieldLeak")
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
-    /**
-     * This method is used to add a new barber to the database.
-     * @param FirstName is the first name of the barber.
-     * @param LastName is the last name of the barber.
-     * @param PhoneNumber is the phone number of the barber.
-     */
-    public static void NewBarberDB(String Uid, String FirstName, String LastName, String PhoneNumber, String Email) {
-
-        // Create a new user with a first, middle, and last name
-//        Map<String, Object> user = new HashMap<>();
-//        user.put("FirstName", FirstName);
-//        user.put("LastName", LastName);
-//        user.put("PhoneNumber", PhoneNumber);
-//        user.put("Rate", 5);
-//        //should come here a function that upload image and connect it to the DB
-//        user.put("ProfileImage", "gs://barberbrisk-c7aad.appspot.com/BarberProfileImages/Barber_0503617555.jpg");
-//<<<<<<< HEAD
-////        Barber barber = new Barber(Uid, FirstName, LastName, PhoneNumber, Email,"");
-////        db.collection("Barbers").document(Uid).set(barber);
-////        // Add a new document with a generated ID
-//=======
-////        Barber barber = new Barber(Uid, FirstName, LastName, PhoneNumber, Email," ");
-//        db.collection("Barbers").document(Uid).set(barber);
-        // Add a new document with a generated ID
-
-//        db.collection("Barbers")
-//                .add(user)
-//                .addOnSuccessListener(documentReference -> Log.d("BarberTest", "DocumentSnapshot added with ID: " + documentReference.getId()))
-//                .addOnFailureListener(e -> Log.w("BarberTest", "Error adding document", e));
-    }
     public static void NewBarberDB(Barber barber) {
         db.collection("Barbers").document(barber.getUid()).set(barber);
     }
-    /**
-     * This method is used to add a new customer to the database.
-     * @param FirstName is the first name of the customer.
-     * @param LastName is the last name of the customer.
-     * @param PhoneNumber is the phone number of the customer.
-     */
-    public static void NewClientDB(String FirstName, String LastName, String PhoneNumber) {
-        // Create a new user with a first name, last name and phone number
-        Map<String, Object> user = new HashMap<>();
-        user.put("FirstName", FirstName);
-        user.put("LastName", LastName);
-        user.put("PhoneNumber", PhoneNumber);
-        // Add a new document with a generated ID
-        db.collection("Clients")
-                .add(user)
-                .addOnSuccessListener(documentReference -> Log.d("CustomerTest", "Document Snapshot added with ID: " + documentReference.getId()))
-                .addOnFailureListener(e -> Log.w("CustomerTest", "Error occur while adding document to Customers", e));
-    }
-    public static void NewClientDB(){return;} // to fill with an object
+
+    public static void NewClientDB(Client client){return;} // to fill with an object
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void GenerateBarberAppointments(String BarberID) {
@@ -101,29 +54,7 @@ public class DataBase {
         db.collection("Apointments").document().set(appointment);
         Log.d("BarberNewAppointments","BarberNewAppointments");
     }
-//
-//    /**
-//     * This method is used for a customer to arrange an appointment with a barber.
-//     * @param CustomerPhoneNumber is the phone number of the customer.
-//     * @param BarberPhoneNumber is the phone number of the barber.
-//     * @param date is the date of the appointment.
-//     * @param time is the time of the appointment.
-//     * @param HairStyleName is the name of the hairstyle the customer wants.
-//     */
-//    public static void CustomerArrangeAppointment(String CustomerPhoneNumber, String BarberPhoneNumber, Date date, Time time, String HairStyleName) {
-//        // Create a new document with a generated ID
-//        Map<String, Object> appointment = new HashMap<>();
-//        appointment.put("CustomerPhoneNumber", CustomerPhoneNumber);
-//        appointment.put("BarberPhoneNumber", BarberPhoneNumber);
-//        appointment.put("date", date);
-//        appointment.put("time", time);
-//        appointment.put("HairStyleName", HairStyleName);
-//
-//        db.collection("Customer_Appointments")
-//                .add(appointment)
-//                .addOnSuccessListener(documentReference -> Log.d("Customer_Appointments_Test", "DocumentSnapshot added with ID: " + documentReference.getId()))
-//                .addOnFailureListener(e -> Log.w("Customer_Appointments_Test", "Error adding document", e));
-//    }
+
     public static void CustomerArrangeAppointment(){} // fill with object of customer, appoit... Barber
 
         /**
@@ -136,8 +67,6 @@ public class DataBase {
     public static void NewHairStyle(String HairStyleName, double Price, File ImageFile, String BarberPhoneNumber) {
         //Todo: @elon ezra
     }
-
-
 
     /**
      * This method is used for a customer to rate a barber.
@@ -197,10 +126,6 @@ public class DataBase {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Barber barber = document.toObject(Barber.class);
-//                    String FirstName = barber.getFirstName();
-//                    String LastName = barber.getLastName();
-                    String PhoneNumber = barber.getPhone();
-                    Double rate = barber.getRate();
                     barbers.add(barber);
                 }
                 callback.onDataFetchedBarbers(barbers); // Trigger the callback
