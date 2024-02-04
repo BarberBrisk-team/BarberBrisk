@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
+import com.google.firebase.FirebaseApp;
 //import com.example.barberbrisk.model.entranceModel;
 
 public class EntrancePage extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class EntrancePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.enterance_page);
         Button signInButton = findViewById(R.id.Sign_in_button);
+        FirebaseApp.initializeApp(this);
 
         // Set a click listener on the "Sign in" button
         signInButton.setOnClickListener(new View.OnClickListener() {
