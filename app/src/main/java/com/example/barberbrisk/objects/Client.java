@@ -1,27 +1,15 @@
 package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
+public class Client extends User {
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Client extends User{
-
-    private String password;
-
-    //    Constructor for barber don't have a list haircuts to upload
-    public Client(String uid, String FirstName, String LastName, String email, String phone, String password) {
-        super(uid,FirstName, LastName, email, phone);
-        this.password = password;
+    public Client(Parcel in) {
+        super(in);
     }
 
-
-    // Constructor for Parcelable
-    protected Client(Parcel in) {
-        super(in);
+    public Client(String uid, String name, String email, String phone, String password) {
+        super(uid, name, email, phone, password);
     }
 
     @Override
@@ -40,16 +28,4 @@ public class Client extends User{
             return new Client[size];
         }
     };
-    @NonNull
-    @Override
-    public String toString() {
-        String FirstName = super.getFirstName();
-        String LastName = super.getLastName();
-        return "Client{" + "First Name='" +
-                FirstName + '\'' + "Last Name='" + LastName + '\'' +
-                "password='" + password + '\'' +
-
-//                ", haircuts=" + haircuts +
-                '}';
-    }
 }
