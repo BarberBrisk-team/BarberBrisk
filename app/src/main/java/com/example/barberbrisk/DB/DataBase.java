@@ -72,9 +72,18 @@ public class DataBase {
     }
     public static void NewClientDB(){return;} // to fill with an object
 
-    public static void BarberNewAppointments(Appointment appointment) {
-        db.collection("Apointments").document().set(appointment);
-        Log.d("BarberNewAppointments","BarberNewAppointments");
+    public static void GenerateBarberAppointments(String BarberID) {
+
+        int duration_date = 0;
+        Timestamp current = Timestamp.now();
+        for (int i = 0; i < duration_date; i++)
+        {
+//            Appointment appointment = new Appointment(BarberID, current,true);
+//            db.collection("Apointments").document().set(appointment);
+//            current = current + 86400000;
+            Log.d("BarberNewAppointments","BarberNewAppointments");
+        }
+
     }
 
 

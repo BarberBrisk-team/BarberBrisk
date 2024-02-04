@@ -36,7 +36,7 @@ public class TestActivity extends AppCompatActivity {
 //            Log.d("AllBarbers", bar.toString());
 //        }
 
-        DataBase.BarberNewAppointments(new Appointment("Q3rL9zpUMdTIAAMrBgp7Hp8Ab3r1",new Timestamp(2024,3,1,9,0,0,0),true));
+//        DataBase.BarberNewAppointments(new Appointment("Q3rL9zpUMdTIAAMrBgp7Hp8Ab3r1",new Timestamp(2024,3,1,9,0,0,0),true));
 
 //        while(clients.isEmpty());
         Log.d("AllClients", String.valueOf(clients.size()));
