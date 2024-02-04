@@ -3,7 +3,6 @@ package com.example.barberbrisk.model;
 import android.util.Log;
 
 import com.example.barberbrisk.DB.FirebaseDB;
-import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.viewModel.signup;
 
 public class SignUpModel {

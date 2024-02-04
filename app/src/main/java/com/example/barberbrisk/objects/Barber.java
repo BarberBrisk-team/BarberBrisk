@@ -2,8 +2,6 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class Barber extends User {
     private String password;
 
     //    Constructor for barber don't have a list haircuts to upload
-    public Barber(String uid, String name,  String email, String phone, String password) {
+    public Barber(String uid, String name, String email, String phone, String password) {
         super(uid,name, email, phone , password);
         this.rate = 5.0;
 

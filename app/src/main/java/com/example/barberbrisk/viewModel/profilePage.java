@@ -8,10 +8,12 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.barberbrisk.R;
+
 public class profilePage extends AppCompatActivity {
 
     public void arrowBackButton(View v){
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, EntrancePage.class);
         startActivity(i);
     }
 

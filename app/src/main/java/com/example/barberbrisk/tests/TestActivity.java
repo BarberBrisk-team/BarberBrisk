@@ -10,10 +10,8 @@ import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TestActivity extends AppCompatActivity {
     ArrayList<Client> clients = new ArrayList<>();
@@ -22,7 +20,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBase.NewBarberDB(new Barber("44444444","Sami", "Didi","hack@me.com","0503665987","3136665"));
+        DataBase.NewBarberDB(new Barber("44444444","Sami Didi","hack@me.com","0503665987","3136665"));
 //
 //        com.example.barberbrisk.DB.DataBase.NewCustomer("koko", "hatba", "0315544423");
 //        com.example.barberbrisk.DB.DataBase.NewCustomer("to", "yyy", "343434343");
