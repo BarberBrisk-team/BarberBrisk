@@ -1,4 +1,5 @@
 package com.example.barberbrisk.DB;
+import java.time.format.DateTimeFormatter;
 
 import static android.content.ContentValues.TAG;
 
@@ -15,11 +16,13 @@ import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.objects.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.io.File;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -81,9 +84,18 @@ public class DataBase {
     }
     public static void NewClientDB(){return;} // to fill with an object
 
-    public static void BarberNewAppointments(Appointment appointment) {
-        db.collection("Apointments").document().set(appointment);
-        Log.d("BarberNewAppointments","BarberNewAppointments");
+    public static void GenerateBarberAppointments(String BarberID) {
+
+        int duration_date = 0;
+        Timestamp current = Timestamp.now();
+        for (int i = 0; i < duration_date; i++)
+        {
+//            Appointment appointment = new Appointment(BarberID, current,true);
+//            db.collection("Apointments").document().set(appointment);
+//            current = current + 86400000;
+            Log.d("BarberNewAppointments","BarberNewAppointments");
+        }
+
     }
 
 
