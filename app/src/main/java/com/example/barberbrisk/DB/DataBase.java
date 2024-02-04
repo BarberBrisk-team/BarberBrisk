@@ -1,20 +1,11 @@
 package com.example.barberbrisk.DB;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
-import com.example.barberbrisk.objects.User;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -59,7 +50,7 @@ public class DataBase {
 //                .addOnFailureListener(e -> Log.w("BarberTest", "Error adding document", e));
     }
     public static void NewBarberDB(Barber barber) {
-//        db.collection("Barbers").get()} to fill
+        db.collection("Barbers").document(barber.getUid()).set(barber);
     }
     /**
      * This method is used to add a new customer to the database.

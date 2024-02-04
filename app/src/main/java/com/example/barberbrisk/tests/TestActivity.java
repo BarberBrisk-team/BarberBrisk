@@ -19,6 +19,7 @@ public class TestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DataBase.NewBarberDB(new Barber("UIDAhla", "Ahla Gever", "ahla@gnu.com", "051212398", "1234567"));
         super.onCreate(savedInstanceState);
         DataBase.NewBarberDB(new Barber("44444444","Sami Didi","hack@me.com","0503665987","3136665"));
 //
@@ -49,5 +50,4 @@ public class TestActivity extends AppCompatActivity {
         this.clients = client;
 //        Log.d("AllClients", "2 client: " + client.get(1).getFirstName());
     }
-
 }
