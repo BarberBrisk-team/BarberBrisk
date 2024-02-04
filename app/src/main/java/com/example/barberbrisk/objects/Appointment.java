@@ -2,7 +2,6 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.sql.Timestamp;
 
 public class Appointment implements Parcelable {

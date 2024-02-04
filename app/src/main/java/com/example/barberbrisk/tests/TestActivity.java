@@ -12,7 +12,6 @@ import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
@@ -22,9 +21,7 @@ public class TestActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        DataBase.NewBarberDB(new Barber("UIDAhla", "Ahla Gever", "ahla@gnu.com", "051212398", "1234567"));
         super.onCreate(savedInstanceState);
-        DataBase.NewBarberDB(new Barber("44444444","Sami Didi","hack@me.com","0503665987","3136665"));
 //
   DataBase.GenerateBarberAppointments("333333");
 //        while(clients.isEmpty());
