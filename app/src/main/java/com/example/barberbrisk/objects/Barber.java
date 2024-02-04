@@ -24,7 +24,11 @@ public class Barber extends User {
         this.haircuts = haircuts;
     }
 
+    public Barber() {
 
+    }
+
+//savfsg
     public void setRate(Double rate) {
         this.rate = rate;
     }

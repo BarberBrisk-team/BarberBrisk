@@ -9,38 +9,41 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
+import com.example.barberbrisk.objects.Barber;
 
 public class barBerProfilePage extends AppCompatActivity {
+    private Intent barberIntent;
+    private Barber myBarber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_ber_profile_page);
-        Log.d("test", "start Barber profile activity");
+        Log.d("barberProfile", "start Barber profile activity");
 
 //      creat a obj of the first activity and take data about the user.
-        Intent i = getIntent();
-        String tmp = "NAME";
-        String tmp2 = "EMAIL";
-        String tmp3 = "PHONE";
-        String name = i.getStringExtra(tmp);
-        String email = i.getStringExtra(tmp2);
-        String phone = i.getStringExtra(tmp3);
+        barberIntent = getIntent();
+        myBarber = barberIntent.getParcelableExtra("myObj");
 
 //        check if the data arrive exactly right
-        Log.d("name", name.toString());
-        Log.d("email", email.toString());
-        Log.d("phone", phone.toString());
+        Log.d("name", myBarber.getName().toString());
+        Log.d("email", myBarber.getEmail().toString());
+        Log.d("phone", myBarber.getPhone().toString());
 
 //        set data on the activity
         Button b1 = (Button) findViewById(R.id.buttonNameBarber);
         Button b2 = (Button) findViewById(R.id.buttonEmailBarber);
         Button b3 = (Button)findViewById(R.id.buttonPhoneBarber);
-        b1.setText(name);
-        b2.setText(email);
-        b3.setText(phone);
+        b1.setText(myBarber.getName());
+        b2.setText(myBarber.getEmail());
+        b3.setText(myBarber.getPhone());
     }
     public void arrowBackButton(View v){
+<<<<<<< HEAD
+        Intent i = new Intent(barBerProfilePage.this, barberHomePage.class);
+        startActivity(i);
+=======
         // Intent i = new Intent(this, MainActivity.class);
 //        startActivity(i);
+>>>>>>> c2861408767947d1882b1486da57b9afa1ef6fbe
     }
 }

@@ -45,6 +45,11 @@ public class LogInPage extends AppCompatActivity {
         loginButton.setOnClickListener(v -> {
             String email = emailField.getText().toString();
             String password = passwordField.getText().toString();
+//          transfer thw email of the user to anther process
+            Intent i = getIntent();
+            i.putExtra("email", email);
+            i.putExtra("password", password);
+
             Log.d("AuthTesting", "email: " + email + " password " + password);
             loginModel.loginUser(email, password, new LoginModel.OnUserLoggedInListener() {
                 /**
@@ -79,6 +84,7 @@ public class LogInPage extends AppCompatActivity {
      */
     public void goHomeBarber() {
         startActivity(new Intent(LogInPage.this, appointment_order.class));
+
     }
 
     /**
