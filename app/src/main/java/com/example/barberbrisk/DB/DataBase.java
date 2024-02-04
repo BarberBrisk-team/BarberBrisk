@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.io.File;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -53,7 +54,7 @@ public class DataBase {
 //                .addOnFailureListener(e -> Log.w("BarberTest", "Error adding document", e));
     }
     public static void NewBarberDB(Barber barber) {
-//        db.collection("Barbers").get()} to fill
+        db.collection("Barbers").document(barber.getUid()).set(barber);
     }
     /**
      * This method is used to add a new customer to the database.
