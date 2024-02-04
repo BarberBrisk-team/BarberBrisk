@@ -24,6 +24,11 @@ public class Barber extends User {
 //        this.rate = rate;
 //        this.haircuts = haircuts;
 //    }
+    public Barber(String Uid, String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
+        super(Uid, FirstName, LastName, email, phone);
+        this.rate = rate;
+        this.haircuts = haircuts;
+    }
 
 
     public void setRate(Double rate) {

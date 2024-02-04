@@ -35,9 +35,15 @@ public class DataBase {
 //        user.put("Rate", 5);
 //        //should come here a function that upload image and connect it to the DB
 //        user.put("ProfileImage", "gs://barberbrisk-c7aad.appspot.com/BarberProfileImages/Barber_0503617555.jpg");
-//        Barber barber = new Barber(Uid, FirstName, LastName, PhoneNumber, Email,"");
+//<<<<<<< HEAD
+////        Barber barber = new Barber(Uid, FirstName, LastName, PhoneNumber, Email,"");
+////        db.collection("Barbers").document(Uid).set(barber);
+////        // Add a new document with a generated ID
+//=======
+////        Barber barber = new Barber(Uid, FirstName, LastName, PhoneNumber, Email," ");
 //        db.collection("Barbers").document(Uid).set(barber);
-//        // Add a new document with a generated ID
+        // Add a new document with a generated ID
+
 //        db.collection("Barbers")
 //                .add(user)
 //                .addOnSuccessListener(documentReference -> Log.d("BarberTest", "DocumentSnapshot added with ID: " + documentReference.getId()))
