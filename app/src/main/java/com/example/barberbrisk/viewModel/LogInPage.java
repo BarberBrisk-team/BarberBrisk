@@ -23,7 +23,6 @@ public class LogInPage extends AppCompatActivity {
     private EditText passwordField;
 
     private LoginModel loginModel;
-
     /**
      * This method is called when the login activity is starting.
      * It initializes the activity, sets the content view, and sets up the login process.
@@ -95,6 +94,10 @@ public class LogInPage extends AppCompatActivity {
      */
     public void goHomeCustomer() {
         startActivity(new Intent(LogInPage.this, appointment_order.class));
+    }
+
+    public String getUid(){
+        return loginModel.getUid();
     }
 }
 

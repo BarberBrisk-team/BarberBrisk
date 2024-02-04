@@ -1,11 +1,15 @@
 package com.example.barberbrisk.DB;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
+import java.sql.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -50,7 +54,7 @@ public class DataBase {
 //                .addOnFailureListener(e -> Log.w("BarberTest", "Error adding document", e));
     }
     public static void NewBarberDB(Barber barber) {
-//        db.collection("Barbers").get()} to fill
+        db.collection("Barbers").document(barber.getUid()).set(barber);
     }
     /**
      * This method is used to add a new customer to the database.
@@ -72,34 +76,54 @@ public class DataBase {
     }
     public static void NewClientDB(){return;} // to fill with an object
 
-    public static void BarberNewAppointments(Appointment appointment) {
-        //Todo: @elon ezra
-        db.collection("Apointments").add(appointment);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void GenerateBarberAppointments(String BarberID) {
+
+        int duration_date = 3;
+        Timestamp current = new Timestamp(new Date().getTime());
+
+        for (int i = 0; i < duration_date; i++)
+        {
+            Appointment appointment = new Appointment(BarberID, current, true);
+            db.collection("Apointments").document().set(appointment);
+            current.setTime(current.getTime() + 86400000);
+            Log.d("BarberNewAppointments","BarberNewAppointments");
+        }
+
+    }
+
+
+    /**
+     * This method is used to add a new appointment to the database.
+     * @param appointment is the appointment to be added to the database.
+     */
+    public static void BarberNewAppointment(Appointment appointment) {
+        db.collection("Apointments").document().set(appointment);
         Log.d("BarberNewAppointments","BarberNewAppointments");
     }
-    public static void BarberNewAppointments(){} // to fill with an object
-    /**
-     * This method is used for a customer to arrange an appointment with a barber.
-     * @param CustomerPhoneNumber is the phone number of the customer.
-     * @param BarberPhoneNumber is the phone number of the barber.
-     * @param date is the date of the appointment.
-     * @param time is the time of the appointment.
-     * @param HairStyleName is the name of the hairstyle the customer wants.
-     */
-    public static void CustomerArrangeAppointment(String CustomerPhoneNumber, String BarberPhoneNumber, Date date, Time time, String HairStyleName) {
-        // Create a new document with a generated ID
-        Map<String, Object> appointment = new HashMap<>();
-        appointment.put("CustomerPhoneNumber", CustomerPhoneNumber);
-        appointment.put("BarberPhoneNumber", BarberPhoneNumber);
-        appointment.put("date", date);
-        appointment.put("time", time);
-        appointment.put("HairStyleName", HairStyleName);
-
-        db.collection("Customer_Appointments")
-                .add(appointment)
-                .addOnSuccessListener(documentReference -> Log.d("Customer_Appointments_Test", "DocumentSnapshot added with ID: " + documentReference.getId()))
-                .addOnFailureListener(e -> Log.w("Customer_Appointments_Test", "Error adding document", e));
-    }
+//
+//    /**
+//     * This method is used for a customer to arrange an appointment with a barber.
+//     * @param CustomerPhoneNumber is the phone number of the customer.
+//     * @param BarberPhoneNumber is the phone number of the barber.
+//     * @param date is the date of the appointment.
+//     * @param time is the time of the appointment.
+//     * @param HairStyleName is the name of the hairstyle the customer wants.
+//     */
+//    public static void CustomerArrangeAppointment(String CustomerPhoneNumber, String BarberPhoneNumber, Date date, Time time, String HairStyleName) {
+//        // Create a new document with a generated ID
+//        Map<String, Object> appointment = new HashMap<>();
+//        appointment.put("CustomerPhoneNumber", CustomerPhoneNumber);
+//        appointment.put("BarberPhoneNumber", BarberPhoneNumber);
+//        appointment.put("date", date);
+//        appointment.put("time", time);
+//        appointment.put("HairStyleName", HairStyleName);
+//
+//        db.collection("Customer_Appointments")
+//                .add(appointment)
+//                .addOnSuccessListener(documentReference -> Log.d("Customer_Appointments_Test", "DocumentSnapshot added with ID: " + documentReference.getId()))
+//                .addOnFailureListener(e -> Log.w("Customer_Appointments_Test", "Error adding document", e));
+//    }
     public static void CustomerArrangeAppointment(){} // fill with object of customer, appoit... Barber
 
         /**
@@ -112,6 +136,8 @@ public class DataBase {
     public static void NewHairStyle(String HairStyleName, double Price, File ImageFile, String BarberPhoneNumber) {
         //Todo: @elon ezra
     }
+
+
 
     /**
      * This method is used for a customer to rate a barber.
@@ -197,26 +223,6 @@ public class DataBase {
 
         //db.collection("Clients").addSnapshotListener();
     }
-
-
-
-//    public static void fetch_a_Client(String uid,OnDataFetchedListener listener)
-//    {
-//        db.collection("Clients").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if(task.isSuccessful())
-//                {
-//                    for (:
-//                         ) {
-//
-//                    }
-//                }
-//            }
-//        });
-//
-//    }
-
 
 }
 

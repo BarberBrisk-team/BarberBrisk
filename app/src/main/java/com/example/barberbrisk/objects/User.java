@@ -2,20 +2,20 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 public class User implements Parcelable {
+
     private String uid;
-    private String name;
+    private String FirstName;
+    private String LastName;
     private String email;
     private String phone;
     private String password;
 
 
 
-
     protected User(Parcel in) {
-        uid = in.readString();
-        name = in.readString();
+        FirstName = in.readString();
+        LastName = in.readString();
         email = in.readString();
         phone = in.readString();
         password = in.readString();
@@ -23,21 +23,26 @@ public class User implements Parcelable {
     public User(){
 
     }
-    public User(String uid, String name, String email, String phone, String password) {
-        this.uid = uid;
-        this.name = name;
+    public User(String FirstName, String LastName, String email, String phone, String password) {
+        this.FirstName = FirstName;
+        this.LastName = LastName;
         this.email = email;
         this.phone = phone;
         this.password = password;
     }
 
-    public User(String name, String email, String phone) {
+//    public User(String name, String email, String phone) {
+//    }
+    public User(String FirstName, String LastName, String PhoneNumber){
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.phone = PhoneNumber;
     }
-
-
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
+    }
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
     }
 
     public void setEmail(String email) {
@@ -49,9 +54,13 @@ public class User implements Parcelable {
     }
 
     public void setPassword(String password){this.password = password;}
+    public void setUid(String Uid){this.uid = Uid;}
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return FirstName;
+    }
+    public String getLastName() {
+        return LastName;
     }
 
     public String getEmail() {
@@ -64,9 +73,11 @@ public class User implements Parcelable {
 
     public String getPassword(){return password;}
 
+    public String getUid(){return uid;}
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
+        dest.writeString(FirstName);
+        dest.writeString(LastName);
         dest.writeString(email);
         dest.writeString(phone);
     }

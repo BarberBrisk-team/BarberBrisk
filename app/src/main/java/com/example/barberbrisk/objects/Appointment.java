@@ -2,43 +2,80 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
-
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Appointment implements Parcelable {
 
-    private String BarberUid;
+    private String BarbarID;
     private Timestamp TimeAndDate;
-    private boolean avilability;
+    private boolean available;
 
-    public Appointment(String BarberUid, Timestamp TimeAndDate, boolean avilability)
-    {
-        this.BarberUid = BarberUid;
-        this.TimeAndDate = TimeAndDate;
-        this.avilability = avilability;
-    }
-    public Appointment(String BarberUid, Date date, Time time, boolean avilability)
-    {
-        this.BarberUid = BarberUid;
-        this.TimeAndDate = dateAndTime_to_timestamp(date,time);
-        this.avilability = avilability;
-    }
 
-    public Timestamp dateAndTime_to_timestamp(Date date,Time time)
-    {
-        long dateTime = date.getTime() + time.getTime(); // get the time in milliseconds
-        Timestamp timestamp = new Timestamp(dateTime); // convert to Timestamp
-        System.out.println(timestamp); // print the Timestamp
-        return timestamp;
-    }
+
 
     protected Appointment(Parcel in) {
-        BarberUid = in.readString();
-        avilability = in.readByte() != 0;
+        BarbarID = in.readString();
+        TimeAndDate = new Timestamp(in.readLong());
+        available = in.readByte() != 0;
+    }
+    public Appointment(){
+
+    }
+
+    /**
+     *
+     * @param BarbarID
+     * @param TimeAndDate
+     * @param available
+     */
+    public Appointment(String BarbarID,Timestamp TimeAndDate, boolean available) {
+        this.BarbarID = BarbarID;
+        this.TimeAndDate = TimeAndDate;
+        this.available = available;
+
+    }
+
+    /**
+     *
+     * @param BarbarID
+     * @param TimeAndDate_TextFormat (yyyy-MM-dd HH:mm:ss)
+     * @param available
+     */
+//    public Appointment(String BarbarID,String TimeAndDate_TextFormat, boolean available) {
+//        this.BarbarID = BarbarID;
+//        Timestamp timestamp1 = Timestamp.valueOf(TimeAndDate_TextFormat);
+//        this.TimeAndDate = TimeAndDate;
+//        this.available = available;
+//
+//    }
+
+    public void setTimeAndDate(Timestamp TimeAndDate) {
+        this.TimeAndDate = TimeAndDate;
+    }
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+
+    public void setBarbarID(String Uid){this.BarbarID = Uid;}
+
+    public Timestamp getTimeAndDate() {
+        return TimeAndDate;
+    }
+    public boolean getAvailable() {
+        return available;
+    }
+    public String getBarbarID(){return BarbarID;}
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(TimeAndDate.getTime());
+        dest.writeByte((byte) (available ? 1 : 0));
+        dest.writeString(BarbarID);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Appointment> CREATOR = new Creator<Appointment>() {
@@ -52,15 +89,4 @@ public class Appointment implements Parcelable {
             return new Appointment[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(BarberUid);
-        dest.writeByte((byte) (avilability ? 1 : 0));
-    }
 }
