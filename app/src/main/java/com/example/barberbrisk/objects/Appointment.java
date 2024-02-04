@@ -22,6 +22,13 @@ public class Appointment implements Parcelable {
     public Appointment(){
 
     }
+
+    /**
+     *
+     * @param BarbarID
+     * @param TimeAndDate
+     * @param available
+     */
     public Appointment(String BarbarID,Timestamp TimeAndDate, boolean available) {
         this.BarbarID = BarbarID;
         this.TimeAndDate = TimeAndDate;
@@ -35,13 +42,13 @@ public class Appointment implements Parcelable {
      * @param TimeAndDate_TextFormat (yyyy-MM-dd HH:mm:ss)
      * @param available
      */
-    public Appointment(String BarbarID,String TimeAndDate_TextFormat, boolean available) {
-        this.BarbarID = BarbarID;
-        Timestamp timestamp1 = Timestamp.valueOf(TimeAndDate_TextFormat);
-        this.TimeAndDate = TimeAndDate;
-        this.available = available;
-
-    }
+//    public Appointment(String BarbarID,String TimeAndDate_TextFormat, boolean available) {
+//        this.BarbarID = BarbarID;
+//        Timestamp timestamp1 = Timestamp.valueOf(TimeAndDate_TextFormat);
+//        this.TimeAndDate = TimeAndDate;
+//        this.available = available;
+//
+//    }
 
     public void setTimeAndDate(Timestamp TimeAndDate) {
         this.TimeAndDate = TimeAndDate;

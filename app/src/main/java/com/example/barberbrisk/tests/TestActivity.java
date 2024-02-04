@@ -1,8 +1,10 @@
 package com.example.barberbrisk.tests;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.DB.DataBase;
@@ -17,26 +19,13 @@ public class TestActivity extends AppCompatActivity {
     ArrayList<Client> clients = new ArrayList<>();
     ArrayList<Barber> barbers = new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DataBase.NewBarberDB(new Barber("44444444","Sami Didi","hack@me.com","0503665987","3136665"));
 //
-//        com.example.barberbrisk.DB.DataBase.NewCustomer("koko", "hatba", "0315544423");
-//        com.example.barberbrisk.DB.DataBase.NewCustomer("to", "yyy", "343434343");
-//        com.example.barberbrisk.DB.DataBase.NewCustomer("gov", "errr", "9999999");
-//        com.example.barberbrisk.DB.DataBase.CustomerArrangeAppointment("03123123123", "0503617555", null, null, "Marins");
-//        com.example.barberbrisk.DB.DataBase.CustomerRating(4.5, "0503617555", "03123123123");
-
-//          DataBase.ListOfCustomer();
-//        ArrayList<Barber> barbers = DataBase.ListOfBarbers();
-//        Log.d("AllBarbers", ""+barbers.size());
-//        for (Barber bar : barbers) {
-//            Log.d("AllBarbers", bar.toString());
-//        }
-
-//        DataBase.BarberNewAppointments(new Appointment("Q3rL9zpUMdTIAAMrBgp7Hp8Ab3r1",new Timestamp(2024,3,1,9,0,0,0),true));
-
+  DataBase.GenerateBarberAppointments("333333");
 //        while(clients.isEmpty());
         Log.d("AllClients", String.valueOf(clients.size()));
     }
