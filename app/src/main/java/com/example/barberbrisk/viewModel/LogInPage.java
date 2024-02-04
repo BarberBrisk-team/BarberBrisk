@@ -58,7 +58,7 @@ public class LogInPage extends AppCompatActivity {
                  */
                 @Override
                 public void onUserLoggedIn(String userType) {
-                    if ("Customer".equals(userType)) {
+                    if ("Client".equals(userType)) {
                         goHomeCustomer();
                     } else if ("Barber".equals(userType)) {
                         goHomeBarber();
@@ -83,6 +83,7 @@ public class LogInPage extends AppCompatActivity {
      * TODO: Implement this method with the right page. The "appointment_order" page is not true, it should be BarberHomePage.
      */
     public void goHomeBarber() {
+        Log.d("RunningTest", "GoGomeBarber");
         startActivity(new Intent(LogInPage.this, barberHomePage.class));
 
     }

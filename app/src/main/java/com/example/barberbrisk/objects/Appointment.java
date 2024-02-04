@@ -35,12 +35,12 @@ public class Appointment implements Parcelable {
 
     }
 
-    /**
-     *
-     * @param BarbarID
-     * @param TimeAndDate_TextFormat (yyyy-MM-dd HH:mm:ss)
-     * @param available
-     */
+//    /**
+//     *
+//     * @param BarbarID
+//     * @param TimeAndDate_TextFormat (yyyy-MM-dd HH:mm:ss)
+//     * @param available
+//     */
 //    public Appointment(String BarbarID,String TimeAndDate_TextFormat, boolean available) {
 //        this.BarbarID = BarbarID;
 //        Timestamp timestamp1 = Timestamp.valueOf(TimeAndDate_TextFormat);
