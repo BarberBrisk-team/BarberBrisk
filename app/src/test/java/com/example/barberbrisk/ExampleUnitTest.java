@@ -1,11 +1,12 @@
 package com.example.barberbrisk;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+import java.io.File;
 
 import com.example.barberbrisk.DB.DataBase;
-
-import org.junit.Test;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -23,5 +24,10 @@ public class ExampleUnitTest {
 
 
 
+    @Test
+    public void givenSystemOutRule_whenInvokePrintln_thenLogSuccess() {
+//        DataBase.NewBarber("Dana", "Shapira","050617555", new File(""));
+//        assertTrue(true);
+    }
 
 }

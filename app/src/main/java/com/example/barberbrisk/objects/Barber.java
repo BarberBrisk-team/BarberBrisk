@@ -2,8 +2,6 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +11,10 @@ public class Barber extends User {
     private String password;
 
     //    Constructor for barber don't have a list haircuts to upload
-    public Barber(String uid, String FirstName, String LastName, String email, String phone, String password) {
-        super(uid,FirstName, LastName, email, phone);
+    public Barber(String uid, String name, String email, String phone, String password) {
+        super(uid,name, email, phone , password);
         this.rate = 5.0;
-        this.password = password;
+
     }
 
 //    public Barber(String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
@@ -24,6 +22,11 @@ public class Barber extends User {
 //        this.rate = rate;
 //        this.haircuts = haircuts;
 //    }
+    public Barber(String Uid, String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
+        super(Uid, FirstName, LastName, email, phone);
+        this.rate = rate;
+        this.haircuts = haircuts;
+    }
 
 
     public void setRate(Double rate) {
@@ -65,17 +68,17 @@ public class Barber extends User {
             return new Barber[size];
         }
     };
-    @NonNull
-    @Override
-    public String toString() {
-        String FirstName = super.getFirstName();
-        String LastName = super.getLastName();
-        return "Barber{" + "First Name='" +
-                FirstName + '\'' + "Last Name='" + LastName + '\'' +
-                "password='" + password + '\'' +
-                ", rate=" + rate +
-//                ", haircuts=" + haircuts +
-                '}';
-    }
+//    @NonNull
+//    @Override
+//    public String toString() {
+//        String FirstName = super.getFirstName();
+//        String LastName = super.getLastName();
+//        return "Barber{" + "First Name='" +
+//                FirstName + '\'' + "Last Name='" + LastName + '\'' +
+//                "password='" + password + '\'' +
+//                ", rate=" + rate +
+////                ", haircuts=" + haircuts +
+//                '}';
+//    }
 }
 
