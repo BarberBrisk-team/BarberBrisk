@@ -3,6 +3,7 @@ package com.example.barberbrisk.DB;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -64,15 +65,11 @@ public class DataBase {
                 .addOnFailureListener(e -> Log.w("CustomerTest", "Error occur while adding document to Customers", e));
     }
     public static void NewClientDB(){return;} // to fill with an object
-    /**
-     * This method is used to add new appointments for a barber.
-     * @param BarberPhoneNumber is the phone number of the barber.
-     * @param date is the date of the appointment.
-     * @param time is the time of the appointment.
-     */
-    public static void BarberNewAppointments(String BarberPhoneNumber, Date date, Time time) {
-        //Todo: @elon ezra
 
+    public static void BarberNewAppointments(Appointment appointment) {
+        //Todo: @elon ezra
+        db.collection("Apointments").add(appointment);
+        Log.d("BarberNewAppointments","BarberNewAppointments");
     }
     public static void BarberNewAppointments(){} // to fill with an object
     /**
@@ -189,25 +186,10 @@ public class DataBase {
         void onDataFetchedClients(ArrayList<Client> clients);
     }
 
-    public static void ListOfCustomer(OnDataFetchedListenerClients listener) {
+    public static void ListOfClient(OnDataFetchedListenerClients listener) {
         ArrayList<Client> clients = new ArrayList<>();
 
-        db.collection("Clients")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String FirstName = document.getString("FirstName");
-                            String LastName = document.getString("LastName");
-                            String PhoneNumber = document.getString("PhoneNumber");
-                            String uid = document.getId();
-                            clients.add(new Client(uid, FirstName, LastName,"", PhoneNumber));
-                        }
-                        listener.onDataFetchedClients(clients);
-                    } else {
-                        Log.d("ListOfCustomer", "Error getting documents: ", task.getException());
-                    }
-                });
+        //db.collection("Clients").addSnapshotListener();
     }
 
 

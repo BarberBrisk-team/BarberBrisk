@@ -23,10 +23,5 @@ public class ExampleUnitTest {
 
 
 
-    @Test
-    public void givenSystemOutRule_whenInvokePrintln_thenLogSuccess() {
-        DataBase.NewBarber("1", "Dana", "Shapira","050617555", "Barber1@gmail.com");
-        assertTrue(true);
-    }
 
 }

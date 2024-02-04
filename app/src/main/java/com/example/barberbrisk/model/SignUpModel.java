@@ -1,6 +1,5 @@
 package com.example.barberbrisk.model;
 
-import static com.example.barberbrisk.DB.DataBase.NewBarber;
 
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.viewModel.signup;

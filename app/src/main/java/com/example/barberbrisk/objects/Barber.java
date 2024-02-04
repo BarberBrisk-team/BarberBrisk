@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Barber extends User {
-    private String password;
     private Double rate;
     List<HairCut> haircuts = new ArrayList<>();
+    private String password;
 
     //    Constructor for barber don't have a list haircuts to upload
     public Barber(String uid, String FirstName, String LastName, String email, String phone, String password) {
@@ -19,11 +19,11 @@ public class Barber extends User {
         this.password = password;
     }
 
-    public Barber(String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
-        super(FirstName, LastName, email, phone);
-        this.rate = rate;
-        this.haircuts = haircuts;
-    }
+//    public Barber(String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
+//        super(FirstName, LastName, email, phone);
+//        this.rate = rate;
+//        this.haircuts = haircuts;
+//    }
 
 
     public void setRate(Double rate) {
