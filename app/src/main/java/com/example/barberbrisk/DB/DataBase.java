@@ -1,11 +1,20 @@
 package com.example.barberbrisk.DB;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
+import com.example.barberbrisk.objects.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -67,11 +76,20 @@ public class DataBase {
     public static void NewClientDB(){return;} // to fill with an object
 
     public static void BarberNewAppointments(Appointment appointment) {
-        //Todo: @elon ezra
-        db.collection("Apointments").add(appointment);
+        db.collection("Apointments").document().set(appointment);
         Log.d("BarberNewAppointments","BarberNewAppointments");
     }
-    public static void BarberNewAppointments(){} // to fill with an object
+
+
+    /**
+     * This method is used to add a new appointment to the database.
+     * @param appointment is the appointment to be added to the database.
+     */
+    public static void BarberNewAppointment(Appointment appointment) {
+        db.collection("Apointments").document().set(appointment);
+        Log.d("BarberNewAppointments","BarberNewAppointments");
+    }
+
     /**
      * This method is used for a customer to arrange an appointment with a barber.
      * @param CustomerPhoneNumber is the phone number of the customer.

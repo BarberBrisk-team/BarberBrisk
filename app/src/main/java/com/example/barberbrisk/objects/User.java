@@ -2,7 +2,6 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 public class User implements Parcelable {
 
     private String uid;
@@ -11,6 +10,7 @@ public class User implements Parcelable {
     private String email;
     private String phone;
     private String password;
+
 
 
     protected User(Parcel in) {

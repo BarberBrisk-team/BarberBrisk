@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.barberbrisk.R;
+
 public class barBerProfilePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class barBerProfilePage extends AppCompatActivity {
         b3.setText(phone);
     }
     public void arrowBackButton(View v){
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        // Intent i = new Intent(this, MainActivity.class);
+//        startActivity(i);
     }
 }
