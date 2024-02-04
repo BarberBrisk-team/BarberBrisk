@@ -32,7 +32,7 @@ public class Barber extends User {
 
     }
 
-
+//savfsg
     public void setRate(Double rate) {
         this.rate = rate;
     }
