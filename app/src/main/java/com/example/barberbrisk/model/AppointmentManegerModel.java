@@ -5,6 +5,8 @@ import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.ClientAppointment;
 import com.example.barberbrisk.objects.HairCut;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +44,22 @@ public class AppointmentManegerModel {
         return DataBase.getBaraberlist().get(barberID).getHairCutList();
     }
 
+    /*
+        get the date and time and check and the barber id and check if the appointment is available
+     */
+    public static boolean isAppointmentAvailable(String barberID, String ClientID, String HairstyleID,
+                                                 Date date, Time time) {
+          Map<String, Appointment> AppointmentList = filterAvilibleAppointmentsByBarberID(barberID);
+          for(String key : AppointmentList.keySet()){
+              Appointment ap = AppointmentList.get(key);
+              date.setTime(date.getTime() + time.getTime());
+              if(ap.getAvailable() == true && ap.getTimeAndDate().equals(date)){
+                  setClientAppointment(new ClientAppointment(ClientID,barberID,HairstyleID));
+                  return true;
+              }
+          }
+        return false;
+    }
     /**
      * This method is used to set an appointment for a client.
      */
