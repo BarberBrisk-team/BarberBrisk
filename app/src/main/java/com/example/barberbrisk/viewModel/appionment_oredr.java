@@ -2,6 +2,7 @@ package com.example.barberbrisk.viewModel;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 
 public class appionment_oredr extends AppCompatActivity {
     private Button dateButton;
     private Button timeButton;
+    private Intent myIntent;
 
 
     @Override
@@ -69,7 +74,15 @@ public class appionment_oredr extends AppCompatActivity {
             }
         });
 
+
     }
 
-    public void handel
+//  client Uid, barber chosen Uid, hairstyle, date, time
+    public void handelSubmit(View v){
+//        Client myObj = myIntent.getParcelableExtra("myObject");
+//        myObj.getUid();
+//        LocalDate localDate = datePicker.getValue();
+//        return java.util.Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+    }
 }

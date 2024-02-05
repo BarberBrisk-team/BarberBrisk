@@ -28,10 +28,30 @@
         app:layout_constraintTop_toBottomOf="@+id/btnShowTimePicker" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="138dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/barbersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Barber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowDataPicker" />
+
+    <Button
+        android:id="@+id/haircutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select haircut style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barbersButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
