@@ -29,6 +29,15 @@ import java.util.Map;
 public class DataBase {
     static Map<String ,Appointment> AppointmentList  = new HashMap<>();
 
+    public static Map<String, Barber> getBaraberlist() {
+        if(Baraberlist.isEmpty())
+            DownladBarberList();
+        return Baraberlist;
+    }
+
+    static Map<String ,Barber> Baraberlist  = new HashMap<>();
+
+
 
     @SuppressLint("StaticFieldLeak")
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -81,8 +90,21 @@ public class DataBase {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                 }
         );
-
     }
+   public static void DownladBarberList(){
+        db.collection("Barbers").get().addOnCompleteListener(
+                task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        QuerySnapshot doc = task.getResult();
+                        for (DocumentSnapshot documentSnapshot: doc.getDocuments()) {
+                            Baraberlist.put(documentSnapshot.getId(),documentSnapshot.toObject(Barber.class));
+                        }
+                        Log.d("DownloadListAppoinment", Baraberlist.toString());
+                    } else
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+        );
+   }
 
     /**
      * This method is used to add a new appointment to the database.
