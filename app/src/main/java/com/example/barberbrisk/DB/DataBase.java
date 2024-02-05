@@ -1,5 +1,7 @@
 package com.example.barberbrisk.DB;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.util.Log;
@@ -12,8 +14,10 @@ import com.example.barberbrisk.objects.Client;
 import java.sql.Timestamp;
 
 import com.example.barberbrisk.objects.ClientAppointment;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.File;
 import java.sql.Time;
@@ -23,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataBase {
-    Map<String ,Appointment> AppointmentList  = new HashMap<>();
+    static Map<String ,Appointment> AppointmentList  = new HashMap<>();
 
 
     @SuppressLint("StaticFieldLeak")
@@ -36,7 +40,7 @@ public class DataBase {
         db.collection("Client").document(client.getUid()).set(client);
     }
 
-    public Map<String, Appointment> getAppointmentList() {
+    public static Map<String, Appointment> getAppointmentList() {
         return AppointmentList;
     }
 
@@ -63,7 +67,22 @@ public class DataBase {
 
     }
 
+    public static void DownloadListAppoinment()
+    {
+        db.collection("Apointments").get().addOnCompleteListener(
+                task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        QuerySnapshot doc = task.getResult();
+                        for (DocumentSnapshot documentSnapshot: doc.getDocuments()) {
+                            AppointmentList.put(documentSnapshot.getId(),documentSnapshot.toObject(Appointment.class));
+                        }
+                        Log.d("DownloadListAppoinment", AppointmentList.toString());
+                    } else
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+        );
 
+    }
 
     /**
      * This method is used to add a new appointment to the database.
