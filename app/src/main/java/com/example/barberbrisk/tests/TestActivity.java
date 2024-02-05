@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
+import com.example.barberbrisk.model.AppointmentManegerModel;
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
@@ -33,8 +34,8 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("AllClients","ok?");
-                Map<String, Appointment> appointments = DataBase.getAppointmentList();
-                Log.d("AllClients", String.valueOf(appointments.size()));
+                Map<String, Appointment> appointments = AppointmentManegerModel.filterAvilibleAppointmentsByBarberID("11111");
+                Log.d("AllClients", String.valueOf(appointments.toString()));
             }
         });
 
