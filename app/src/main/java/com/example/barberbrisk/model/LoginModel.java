@@ -51,6 +51,7 @@ public class LoginModel {
                                         db.collection("Clients").document(uid).get()
                                                 .addOnSuccessListener(documentSnapshotClient -> {
                                                     if (documentSnapshotClient.exists()) {
+                                                        Log.d("AuthTesting", "Check if enter client");
                                                         listener.onUserLoggedIn("Client");
                                                     }
                                                 })
