@@ -3,6 +3,7 @@ package com.example.barberbrisk.objects;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Appointment implements Parcelable {
 
@@ -56,8 +57,11 @@ public class Appointment implements Parcelable {
 
     }
 
-    public void setTimeAndDate(Timestamp TimeAndDate) {
-        this.TimeAndDate = TimeAndDate;
+//    public void setTimeAndDate(Timestamp TimeAndDate) {
+//        this.TimeAndDate = TimeAndDate;
+//    }
+    public void setTimeAndDate(Date TimeAndDate) {
+        this.TimeAndDate = new Timestamp(TimeAndDate.getTime());
     }
     public void setAvailable(boolean available) {
         this.available = available;

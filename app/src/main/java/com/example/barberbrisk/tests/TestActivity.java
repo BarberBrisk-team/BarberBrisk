@@ -17,6 +17,7 @@ import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.objects.ClientAppointment;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class TestActivity extends AppCompatActivity {
     ArrayList<Client> clients = new ArrayList<>();
@@ -32,14 +33,21 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("AllClients","ok?");
+                Map<String, Appointment> appointments = DataBase.getAppointmentList();
+                Log.d("AllClients", String.valueOf(appointments.size()));
             }
         });
+
+        DataBase.DownloadListAppoinment();
 //
 //        DataBase.NewBarberDB(new Barber("44444333", "Barber", "avi@aff.com", "0544444444", "123456"));
 //  DataBase.GenerateBarberAppointments("333333");
 //        while(clients.isEmpty());
-        DataBase.SetClientAppointment(new ClientAppointment("9RaMN6I7Q9xoarECw8dF","WOU9qzIpUfbzzHTnb94PmOPw0Mu2","4545"));
+//        DataBase.SetClientAppointment(new ClientAppointment("9RaMN6I7Q9xoarECw8dF","WOU9qzIpUfbzzHTnb94PmOPw0Mu2","4545"));
         Log.d("AllClients", String.valueOf(clients.size()));
+
+//        Appointment appointment = new Appointment("1234", "2021-06-01 12:00:00", true);
+//        Log.d("Appointment", appointment.getTimeAndDate().toString());
     }
 
 
