@@ -2,13 +2,15 @@ package com.example.barberbrisk.model;
 
 import android.util.Log;
 
-import com.example.barberbrisk.DB.FirebaseDB;
+import com.example.barberbrisk.DB.AuthenticationDB;
+import com.example.barberbrisk.DB.DataBase;
+import com.example.barberbrisk.objects.Barber;
+import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.viewModel.signup;
 
 public class SignUpModel {
     signup activity;
-    FirebaseDB db = new FirebaseDB();
-
+    AuthenticationDB authdb = new AuthenticationDB();
     public SignUpModel(signup activity) {
         this.activity = activity;
 
@@ -20,15 +22,15 @@ public class SignUpModel {
     }
 
     public void registerNewUser(String email, String password, String name, String phone) {
-        db.registerNewUser(email, password, task -> {
+        authdb.registerNewUser(email, password, task -> {
             if (task.isSuccessful()) {
                 Log.d("RegisterUser", "User registration successful");
                 if (activity.barberCheckBox.isChecked()) {
                     if (validatePassword(activity.additionalPasswordEditText.getText().toString())) {
                         // Log statements for debugging
                         Log.d("RegisterUser", "Barber registration successful");
-//                        Barber barber = new Barber(db.getUID(), email, phone, password);
-                        db.putNewBar(db.getUID(), email, password, name, phone);
+                        Barber barber = new Barber(authdb.getUID(), email, password, name, phone);
+                        DataBase.NewBarberDB(barber);
                         activity.goHomeBarber();
                     } else {
                         // Log statements for debugging
@@ -38,7 +40,8 @@ public class SignUpModel {
                 } else {
                     // Log statements for debugging
                     Log.d("RegisterUser", "Client registration successful");
-                    db.putNewClient(db.getUID(), email, password, name, phone);
+                    Client client = new Client(authdb.getUID(), email, password, name, phone);
+                    DataBase.NewClientDB(client);
                     activity.goHomeClient();
                 }
             } else {

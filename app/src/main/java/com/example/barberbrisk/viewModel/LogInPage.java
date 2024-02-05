@@ -22,7 +22,7 @@ public class LogInPage extends AppCompatActivity {
     private EditText emailField;
     private EditText passwordField;
 
-    private LoginModel loginModel;
+    private static LoginModel loginModel;
     /**
      * This method is called when the login activity is starting.
      * It initializes the activity, sets the content view, and sets up the login process.
@@ -58,9 +58,11 @@ public class LogInPage extends AppCompatActivity {
                  */
                 @Override
                 public void onUserLoggedIn(String userType) {
-                    if ("Customer".equals(userType)) {
+                    if ("Client".equals(userType)) {
+                        Toast.makeText(LogInPage.this, "Loading Client Home page: ", Toast.LENGTH_SHORT).show();
                         goHomeCustomer();
                     } else if ("Barber".equals(userType)) {
+                        Toast.makeText(LogInPage.this, "Loading Barber Home page: ", Toast.LENGTH_SHORT).show();
                         goHomeBarber();
                     }
                 }
@@ -96,7 +98,7 @@ public class LogInPage extends AppCompatActivity {
         startActivity(new Intent(LogInPage.this, clientHomePage.class));
     }
 
-    public String getUid(){
+    public static String getUid(){
         return loginModel.getUid();
     }
 }

@@ -17,13 +17,9 @@ public class Barber extends User {
 
     }
 
-//    public Barber(String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
-//        super(FirstName, LastName, email, phone);
-//        this.rate = rate;
-//        this.haircuts = haircuts;
-//    }
-    public Barber(String Uid, String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
-        super(Uid, FirstName, LastName, email, phone);
+
+    public Barber(String Uid, String name, String email, String phone, String password, Double rate, List<HairCut> haircuts) {
+        super(Uid, name, email, phone, password);
         this.rate = rate;
         this.haircuts = haircuts;
     }
@@ -72,6 +68,11 @@ public class Barber extends User {
             return new Barber[size];
         }
     };
+
+    public List<HairCut> getHairCutList()
+    {
+        return haircuts;
+    }
 //    @NonNull
 //    @Override
 //    public String toString() {

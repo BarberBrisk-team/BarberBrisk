@@ -5,6 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="click_me"
     tools:context=".tests.TestActivity">
 
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="207dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
