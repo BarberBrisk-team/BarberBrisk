@@ -34,15 +34,14 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("AllClients","ok?");
-                    Map<String, Barber> appointments = DataBase.getBaraberlist();
-                    appointments.forEach((k,t)->{
-                        Log.d("AllClients", t.getName());
-                    });
+                ClientAppointment clientAppointment = new ClientAppointment("3tsozkk2L1HExwuNXe3A","WOU9qzIpUfbzzHTnb94PmOPw0Mu2","7777");
+                AppointmentManegerModel.setClientAppointment(clientAppointment);
+
             }
         });
 
-//          DataBase.DownladBarberList();
-//        DataBase.DownloadListAppoinment();
+          DataBase.DownladBarberList();
+        DataBase.DownloadListAppoinment();
 //
 //        DataBase.NewBarberDB(new Barber("44444333", "Barber", "avi@aff.com", "0544444444", "123456"));
 //  DataBase.GenerateBarberAppointments("333333");

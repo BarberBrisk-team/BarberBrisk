@@ -2,6 +2,8 @@ package com.example.barberbrisk.model;
 
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.objects.Appointment;
+import com.example.barberbrisk.objects.ClientAppointment;
+import com.example.barberbrisk.objects.HairCut;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.Map;
  * it will run the the queries to the appointment Lists.
  */
 public class AppointmentManegerModel {
+
+
 
     /**
      * This method is used to filter the avilible appointments by the barber ID.
@@ -30,13 +34,23 @@ public class AppointmentManegerModel {
         return avilibleAppointments;
     }
 
+
     /**
-     * This method is used to set an appointment for the client with client appointment.
-     * it will set the appointment as aviilible = false, get hairstylist id and the client id.
-     * and create new client appointment.
+     * This method is used to filter the hairstyle for the Barber hairstyle list.
      */
-    public static void setClientAppointment(String appointmentID, String clientID, String hairstylistID) {
-//        DataBase.SetClientAppointment(appointmentID, clientID, hairstylistID);
+    public static List<HairCut> filterHairstyleByBarberID(String barberID) {
+        return DataBase.getBaraberlist().get(barberID).getHairCutList();
+    }
+
+    /**
+     * This method is used to set an appointment for a client.
+     */
+    public static void setClientAppointment(ClientAppointment clientAppointment) {
+
+        Appointment ap = DataBase.getAppointmentList().get(clientAppointment.getAppointmentUid());
+        ap.setAvailable(false);
+        DataBase.UpdateBarberAppointments(clientAppointment.getAppointmentUid(),ap);
+        DataBase.SetClientAppointment(clientAppointment);
     }
 
 }
