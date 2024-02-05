@@ -22,6 +22,7 @@ public class SignUpModel {
     }
 
     public void registerNewUser(String email, String password, String name, String phone) {
+
         authdb.registerNewUser(email, password, task -> {
             if (task.isSuccessful()) {
                 Log.d("RegisterUser", "User registration successful");
@@ -35,7 +36,6 @@ public class SignUpModel {
                     } else {
                         // Log statements for debugging
                         Log.e("RegisterUser", "Invalid additional password for barber");
-                        /* todo: add error message */
                     }
                 } else {
                     // Log statements for debugging
