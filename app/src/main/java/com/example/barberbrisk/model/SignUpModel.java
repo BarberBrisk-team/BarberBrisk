@@ -1,6 +1,7 @@
 package com.example.barberbrisk.model;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.barberbrisk.DB.AuthenticationDB;
 import com.example.barberbrisk.DB.DataBase;
@@ -22,6 +23,7 @@ public class SignUpModel {
     }
 
     public void registerNewUser(String email, String password, String name, String phone) {
+
         authdb.registerNewUser(email, password, task -> {
             if (task.isSuccessful()) {
                 Log.d("RegisterUser", "User registration successful");
@@ -31,18 +33,18 @@ public class SignUpModel {
                         Log.d("RegisterUser", "Barber registration successful");
                         Barber barber = new Barber(authdb.getUID(), email, password, name, phone);
                         DataBase.NewBarberDB(barber);
-                        activity.goHomeBarber();
+                        activity.goHomeBarber(authdb.getUID());
                     } else {
                         // Log statements for debugging
                         Log.e("RegisterUser", "Invalid additional password for barber");
-                        /* todo: add error message */
+                        Toast.makeText(activity, "Invalid additional password for barber" , Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Log statements for debugging
                     Log.d("RegisterUser", "Client registration successful");
                     Client client = new Client(authdb.getUID(), email, password, name, phone);
                     DataBase.NewClientDB(client);
-                    activity.goHomeClient();
+                    activity.goHomeClient(authdb.getUID());
                 }
             } else {
                 // Log statements for debugging

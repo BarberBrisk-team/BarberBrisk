@@ -29,7 +29,7 @@ public class barberHomePage extends AppCompatActivity {
         setContentView(R.layout.activity_barber_home_page);
         myIntent = getIntent();
 //      we need to fill all the object fields by the DB
-        String BarberUid = LogInPage.getUid();
+        String BarberUid = myIntent.getStringExtra("Uid");
         DocumentReference docRef = db.collection("Barbers").document(BarberUid);
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("BarberSuccess", "Success");
@@ -50,7 +50,7 @@ public class barberHomePage extends AppCompatActivity {
 
     public void handelButtonOrder(View n){
         myIntent.putExtra("myobj",myObj);
-//        startActivity(new Intent(barberHomePage.this, .class));
+//        startActivity(new Intent(barberHomePage.this, barberHomePage.class));
     }
 
 }
