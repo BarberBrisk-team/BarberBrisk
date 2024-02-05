@@ -18,8 +18,8 @@ public class Barber extends User {
     }
 
 
-    public Barber(String Uid, String FirstName, String LastName, String email, String phone, Double rate, List<HairCut> haircuts) {
-        super(Uid, FirstName, LastName, email, phone);
+    public Barber(String Uid, String name, String email, String phone, String password, Double rate, List<HairCut> haircuts) {
+        super(Uid, name, email, phone, password);
         this.rate = rate;
         this.haircuts = haircuts;
     }

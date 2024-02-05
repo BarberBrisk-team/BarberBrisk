@@ -9,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.objects.Barber;
+import com.example.barberbrisk.objects.HairCut;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.List;
 
 public class barberHomePage extends AppCompatActivity {
     private Barber myObj;
@@ -26,11 +29,18 @@ public class barberHomePage extends AppCompatActivity {
         setContentView(R.layout.activity_barber_home_page);
         myIntent = getIntent();
 //      we need to fill all the object fields by the DB
-        String ClientUid = LogInPage.getUid();
-        DocumentReference docRef = db.collection("Barbers").document(ClientUid);
+        String BarberUid = LogInPage.getUid();
+        DocumentReference docRef = db.collection("Barbers").document(BarberUid);
         docRef.get().addOnSuccessListener(documentSnapshot -> {
-            Log.d("ClientSuccess", "Success");
-            myObj = documentSnapshot.toObject(Barber.class);
+            Log.d("BarberSuccess", "Success");
+            String email = (String) documentSnapshot.get("email");
+            String name = (String) documentSnapshot.get("name");
+            String password = (String) documentSnapshot.get("password");
+            String phone = (String) documentSnapshot.get("phone");
+            Double rate = (Double) documentSnapshot.get("rate");
+            List<HairCut> hairCutList = null;
+            myObj = new Barber(BarberUid, name, email, phone, password, rate, hairCutList);
+            Log.d("BarberSuccess", "Success2");
         });
     }
     public void handelButtonProfile(View v){

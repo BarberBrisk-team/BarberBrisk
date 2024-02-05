@@ -31,7 +31,12 @@ public class clientHomePage extends AppCompatActivity {
         DocumentReference docRef = db.collection("Clients").document(ClientUid);
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("ClientSuccess", "Success");
-            myObj = documentSnapshot.toObject(Client.class);
+            String email = (String) documentSnapshot.get("email");
+            String name = (String) documentSnapshot.get("name");
+            String password = (String) documentSnapshot.get("password");
+            String phone = (String) documentSnapshot.get("phone");
+            myObj = new Client(ClientUid, name, email, phone, password);
+            Log.d("ClientSuccess", "Success2");
         });
 
     }
