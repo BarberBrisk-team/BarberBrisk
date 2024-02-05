@@ -83,7 +83,7 @@ public class LogInPage extends AppCompatActivity {
      * TODO: Implement this method with the right page. The "appointment_order" page is not true, it should be BarberHomePage.
      */
     public void goHomeBarber() {
-        startActivity(new Intent(LogInPage.this, appointment_order.class));
+        startActivity(new Intent(LogInPage.this, barberHomePage.class));
 
     }
 
@@ -93,7 +93,7 @@ public class LogInPage extends AppCompatActivity {
      * TODO: Implement this method with the right page. The "appointment_order" page is not true, it should be ClientHomePage.
      */
     public void goHomeCustomer() {
-        startActivity(new Intent(LogInPage.this, appointment_order.class));
+        startActivity(new Intent(LogInPage.this, clientHomePage.class));
     }
 
     public String getUid(){

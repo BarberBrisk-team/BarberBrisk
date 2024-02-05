@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BarberBrisk"
         tools:targetApi="31">
         <activity
+            android:name=".viewModel.appionment_oredr"
+            android:exported="false" />
+        <activity
             android:name=".viewModel.clientHomePage"
             android:exported="false" />
         <activity

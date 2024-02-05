@@ -65,8 +65,6 @@
 
 package com.example.barberbrisk.viewModel;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -77,6 +75,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.SignUpModel;
@@ -137,10 +137,10 @@ public class signup extends AppCompatActivity {
 
 
         public void goHomeClient() {
-            startActivity(new Intent(signup.this, appointment_order.class));
+            startActivity(new Intent(signup.this, clientHomePage.class));
         }
         public void goHomeBarber() {
-            startActivity(new Intent(signup.this, LogInPage.class));
+            startActivity(new Intent(signup.this, barberHomePage.class));
         }
 
         // Example method for showing a toast message
