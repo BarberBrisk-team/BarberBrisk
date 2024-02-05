@@ -65,8 +65,6 @@
 
 package com.example.barberbrisk.viewModel;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -77,6 +75,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.SignUpModel;
@@ -116,22 +116,25 @@ public class signup extends AppCompatActivity {
             }
         });
         submitButton = findViewById(R.id.submit_button);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("on pressed","onClick: ");
-                String email, password, name, phone;
-                email = Editemail.getText().toString();
-                password = Editpassword.getText().toString();
-                name = Editname.getText().toString();
-                phone = Editphone.getText().toString();
+        submitButton.setOnClickListener(v -> {
+            Log.d("on pressed","onClick: ");
+            String email, password, name, phone;
+            email = Editemail.getText().toString();
+            password = Editpassword.getText().toString();
+            name = Editname.getText().toString();
+            phone = Editphone.getText().toString();
 
+            if (email.isEmpty() || password.isEmpty() || name.isEmpty() || phone.isEmpty()){
+                Toast.makeText(this, "One or many of your details are empty, please fill them" , Toast.LENGTH_SHORT).show();
+            }
+            else if(!model.validatePassword(additionalPasswordEditText.getText().toString())){
+                Toast.makeText(this, "Invalid additional password for barber" , Toast.LENGTH_SHORT).show();
+            }
+            else {
                 // Perform signup logic here
                 // You can check the checkbox state to determine the type of user
                 model.registerNewUser(email, password, name, phone);
             }
-
-
         });
     }
 
