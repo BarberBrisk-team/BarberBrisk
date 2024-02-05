@@ -10,6 +10,8 @@ import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 import java.sql.Timestamp;
+
+import com.example.barberbrisk.objects.ClientAppointment;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -21,14 +23,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataBase {
+    Map<String ,Appointment> AppointmentList  = new HashMap<>();
+
+
     @SuppressLint("StaticFieldLeak")
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     public static void NewBarberDB(Barber barber) {
         db.collection("Barbers").document(barber.getUid()).set(barber);
     }
+    public static void NewClientDB(Client client){
+        db.collection("Client").document(client.getUid()).set(client);
+    }
 
-    public static void NewClientDB(Client client){return;} // to fill with an object
+    public Map<String, Appointment> getAppointmentList() {
+        return AppointmentList;
+    }
 
+    public void setAppointmentList(Map<String, Appointment> appointmentList) {
+        AppointmentList = appointmentList;
+    }
+    /**
+     * This method is used to generate a number of appointments for a barber.
+     * @param BarberID is the ID of the barber for whom the appointments are to be generated.
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void GenerateBarberAppointments(String BarberID) {
 
@@ -38,12 +56,13 @@ public class DataBase {
         for (int i = 0; i < duration_date; i++)
         {
             Appointment appointment = new Appointment(BarberID, current, true);
-            db.collection("Apointments").document().set(appointment);
+            BarberNewAppointment(appointment);
             current.setTime(current.getTime() + 86400000);
             Log.d("BarberNewAppointments","BarberNewAppointments");
         }
 
     }
+
 
 
     /**
@@ -55,8 +74,10 @@ public class DataBase {
         Log.d("BarberNewAppointments","BarberNewAppointments");
     }
 
-    public static void CustomerArrangeAppointment(){} // fill with object of customer, appoit... Barber
-
+    public static void SetClientAppointment(ClientAppointment clientAppointment)
+    {
+        db.collection("ClientAppointment").document().set(clientAppointment);
+    }
         /**
          * This method is used to add a new hairstyle to the database.
          * @param HairStyleName is the name of the new hairstyle.
