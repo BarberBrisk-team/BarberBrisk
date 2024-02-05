@@ -140,10 +140,10 @@ public class signup extends AppCompatActivity {
 
 
         public void goHomeClient() {
-            startActivity(new Intent(signup.this, appointment_order.class));
+            startActivity(new Intent(signup.this, clientHomePage.class));
         }
         public void goHomeBarber() {
-            startActivity(new Intent(signup.this, LogInPage.class));
+            startActivity(new Intent(signup.this, barberHomePage.class));
         }
 
         // Example method for showing a toast message

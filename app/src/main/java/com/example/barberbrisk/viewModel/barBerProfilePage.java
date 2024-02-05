@@ -40,7 +40,5 @@ public class barBerProfilePage extends AppCompatActivity {
     public void arrowBackButton(View v){
         Intent i = new Intent(barBerProfilePage.this, barberHomePage.class);
         startActivity(i);
-        // Intent i = new Intent(this, MainActivity.class);
-//        startActivity(i);
     }
 }

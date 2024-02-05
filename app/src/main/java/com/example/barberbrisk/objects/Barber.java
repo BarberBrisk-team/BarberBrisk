@@ -68,6 +68,11 @@ public class Barber extends User {
             return new Barber[size];
         }
     };
+
+    public List<HairCut> getHairCutList()
+    {
+        return haircuts;
+    }
 //    @NonNull
 //    @Override
 //    public String toString() {

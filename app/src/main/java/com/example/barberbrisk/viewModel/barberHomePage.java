@@ -50,7 +50,7 @@ public class barberHomePage extends AppCompatActivity {
 
     public void handelButtonOrder(View n){
         myIntent.putExtra("myobj",myObj);
-        startActivity(new Intent(barberHomePage.this, appointment_order.class));
+//        startActivity(new Intent(barberHomePage.this, .class));
     }
 
 }

@@ -29,6 +29,17 @@ import java.util.Map;
 public class DataBase {
     static Map<String ,Appointment> AppointmentList  = new HashMap<>();
 
+    static Map<String ,Barber> Baraberlist  = new HashMap<>();
+
+    public static Map<String, Barber> getBaraberlist() {
+//        if(Baraberlist.isEmpty())
+//        {
+////            throw new Exception("The list is empty. Call the method DownladBarberList() first.");
+//        }
+        return Baraberlist;
+    }
+
+
 
     @SuppressLint("StaticFieldLeak")
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -39,6 +50,24 @@ public class DataBase {
     public static void NewClientDB(Client client){
         db.collection("Client").document(client.getUid()).set(client);
     }
+
+    public static void UpdateBarberDB(Barber barber) {
+        db.collection("Barbers").document(barber.getUid()).set(barber);
+    }
+   public static void DownladBarberList(){
+        db.collection("Barbers").get().addOnCompleteListener(
+                task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        QuerySnapshot doc = task.getResult();
+                        for (DocumentSnapshot documentSnapshot: doc.getDocuments()) {
+                            Baraberlist.put(documentSnapshot.getId(),documentSnapshot.toObject(Barber.class));
+                        }
+                        Log.d("DownloadListAppoinment", Baraberlist.toString());
+                    } else
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+        );
+   }
 
     public static Map<String, Appointment> getAppointmentList() {
         return AppointmentList;
@@ -81,7 +110,6 @@ public class DataBase {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                 }
         );
-
     }
 
     /**
@@ -104,6 +132,10 @@ public class DataBase {
          * @param ImageFile is an image of the new hairstyle.
          * @param BarberPhoneNumber is the phone number of the barber who can do this hairstyle.
          */
+
+        public static void UpdateBarberAppointments(String appointmentID, Appointment appointment) {
+            db.collection("Apointments").document(appointmentID).set(appointment);
+        }
     public static void NewHairStyle(String HairStyleName, double Price, File ImageFile, String BarberPhoneNumber) {
         //Todo: @elon ezra
     }
