@@ -6,47 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".viewModel.appionment_oredr">
 
-    <TextView
-        android:id="@+id/textView"
+
+    <Button
+        android:id="@+id/btnShowTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Date:"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="30dp"
+        android:text="Select Time Picker"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/datePickerButton"
-        style="?android:spinnerStyle"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:onClick="openDatePicker"
-        android:text="Feb 01 2024"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.001" />
-
-    <Button
-        android:id="@+id/timeButton"
-        android:onClick="popTimePicker"
+        android:id="@+id/btnShowDataPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Time"
-        android:textSize="30sp"
-        android:width="300dp"
-        android:height="60dp"
-        android:layout_marginTop="160dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        android:text="Select Date Picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowTimePicker" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/barbersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Barber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowDataPicker" />
+
+    <Button
+        android:id="@+id/haircutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select haircut style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barbersButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

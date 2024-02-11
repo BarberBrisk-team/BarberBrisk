@@ -7,16 +7,15 @@ import java.util.Date;
 
 public class Appointment implements Parcelable {
 
-    private String BarberID;
+    private String BarbarID;
     private Timestamp TimeAndDate;
     private boolean available;
 
 
 
 
-
     protected Appointment(Parcel in) {
-        BarberID = in.readString();
+        BarbarID = in.readString();
         TimeAndDate = new Timestamp(in.readLong());
         available = in.readByte() != 0;
     }
@@ -26,7 +25,7 @@ public class Appointment implements Parcelable {
 
     public Appointment(Appointment appointment)
     {
-        this.BarberID = appointment.BarberID;
+        this.BarbarID = appointment.BarbarID;
         this.TimeAndDate = appointment.TimeAndDate;
         this.available = appointment.available;
     }
@@ -38,7 +37,7 @@ public class Appointment implements Parcelable {
      * @param available
      */
     public Appointment(String BarbarID,Timestamp TimeAndDate, boolean available) {
-        this.BarberID = BarbarID;
+        this.BarbarID = BarbarID;
         this.TimeAndDate = TimeAndDate;
         this.available = available;
 
@@ -51,7 +50,7 @@ public class Appointment implements Parcelable {
      * @param available
      */
     public Appointment(String BarbarID,String TimeAndDate_TextFormat, boolean available) {
-        this.BarberID = BarbarID;
+        this.BarbarID = BarbarID;
         Timestamp timestamp1 = Timestamp.valueOf(TimeAndDate_TextFormat);
         this.TimeAndDate = TimeAndDate;
         this.available = available;
@@ -69,7 +68,7 @@ public class Appointment implements Parcelable {
     }
 
 
-    public void setBarbarID(String Uid){this.BarberID = Uid;}
+    public void setBarbarID(String Uid){this.BarbarID = Uid;}
 
     public Timestamp getTimeAndDate() {
         return TimeAndDate;
@@ -77,12 +76,12 @@ public class Appointment implements Parcelable {
     public boolean getAvailable() {
         return available;
     }
-    public String getBarbaraID(){return BarberID;}
+    public String getBarbarID(){return BarbarID;}
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(TimeAndDate.getTime());
         dest.writeByte((byte) (available ? 1 : 0));
-        dest.writeString(BarberID);
+        dest.writeString(BarbarID);
     }
 
     @Override

@@ -7,24 +7,24 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Barber extends User {
-
     private Double rate;
-    List<HairCut> haircuts = new ArrayList<HairCut>();
+    List<HairCut> haircuts = new ArrayList<>();
+    private String password;
 
     private HashMap<String, Appointment_combined_version> AvailableAppointments = new HashMap<>();
     private HashMap<String, Appointment_combined_version> OccupiedAppointments = new HashMap<>();
 
     //    Constructor for barber don't have a list haircuts to upload
     public Barber(String uid, String name, String email, String phone, String password) {
-        super(uid, name, email, phone, password);
+        super(uid,name, email, phone , password);
         this.rate = 5.0;
         this.AvailableAppointments = new HashMap<>();
         this.OccupiedAppointments = new HashMap<>();
     }
-    //constructor for barber that have a list haircuts to upload
 
-    public Barber(String name, String email, String phone, Double rate, List<HairCut> haircuts) {
-        super(name, email, phone);
+
+    public Barber(String Uid, String name, String email, String phone, String password, Double rate, List<HairCut> haircuts) {
+        super(Uid, name, email, phone, password);
         this.rate = rate;
         this.haircuts = haircuts;
     }

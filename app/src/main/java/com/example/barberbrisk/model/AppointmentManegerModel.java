@@ -2,6 +2,7 @@ package com.example.barberbrisk.model;
 
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.objects.Appointment;
+import com.example.barberbrisk.objects.ClientAppointment;
 import com.example.barberbrisk.objects.HairCut;
 
 import java.sql.Time;
@@ -28,7 +29,7 @@ public class AppointmentManegerModel {
         }
         Map<String, Appointment> AppointmentList = DataBase.getAppointmentList();
         AppointmentList.forEach((k,v)->{
-            if(v.getBarbaraID().equals(barberID) && v.getAvailable() == true){
+            if(v.getBarbarID().equals(barberID) && v.getAvailable() == true){
                 avilibleAppointments.put(k,v);
             }
         });

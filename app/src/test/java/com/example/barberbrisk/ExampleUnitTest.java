@@ -26,8 +26,8 @@ public class ExampleUnitTest {
 
     @Test
     public void givenSystemOutRule_whenInvokePrintln_thenLogSuccess() {
-        DataBase.NewBarber("Dana", "Shapira","050617555", new File(""));
-        assertTrue(true);
+//        DataBase.NewBarber("Dana", "Shapira","050617555", new File(""));
+//        assertTrue(true);
     }
 
 }

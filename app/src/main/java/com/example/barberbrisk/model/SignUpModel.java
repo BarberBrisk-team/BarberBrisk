@@ -1,15 +1,17 @@
 package com.example.barberbrisk.model;
 
 import android.util.Log;
+import android.widget.Toast;
 
-import com.example.barberbrisk.DB.FirebaseDB;
+import com.example.barberbrisk.DB.AuthenticationDB;
+import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.objects.Barber;
+import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.viewModel.signup;
 
 public class SignUpModel {
     signup activity;
-    FirebaseDB db = new FirebaseDB();
-
+    AuthenticationDB authdb = new AuthenticationDB();
     public SignUpModel(signup activity) {
         this.activity = activity;
 
@@ -21,26 +23,28 @@ public class SignUpModel {
     }
 
     public void registerNewUser(String email, String password, String name, String phone) {
-        db.registerNewUser(email, password, task -> {
+
+        authdb.registerNewUser(email, password, task -> {
             if (task.isSuccessful()) {
                 Log.d("RegisterUser", "User registration successful");
                 if (activity.barberCheckBox.isChecked()) {
                     if (validatePassword(activity.additionalPasswordEditText.getText().toString())) {
                         // Log statements for debugging
                         Log.d("RegisterUser", "Barber registration successful");
-//                        Barber barber = new Barber(db.getUID(), email, phone, password);
-                        db.putNewBar(db.getUID(), email, password, name, phone);
-                        activity.goHomeBarber();
+                        Barber barber = new Barber(authdb.getUID(), email, password, name, phone);
+                        DataBase.NewBarberDB(barber);
+                        activity.goHomeBarber(authdb.getUID());
                     } else {
                         // Log statements for debugging
                         Log.e("RegisterUser", "Invalid additional password for barber");
-                        /* todo: add error message */
+                        Toast.makeText(activity, "Invalid additional password for barber" , Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Log statements for debugging
                     Log.d("RegisterUser", "Client registration successful");
-                    db.putNewClient(db.getUID(), email, password, name, phone);
-                    activity.goHomeClient();
+                    Client client = new Client(authdb.getUID(), email, password, name, phone);
+                    DataBase.NewClientDB(client);
+                    activity.goHomeClient(authdb.getUID());
                 }
             } else {
                 // Log statements for debugging

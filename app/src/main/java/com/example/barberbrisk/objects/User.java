@@ -2,8 +2,8 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 public class User implements Parcelable {
+
     private String uid;
     private String name;
     private String email;
@@ -12,9 +12,7 @@ public class User implements Parcelable {
 
 
 
-
     protected User(Parcel in) {
-        uid = in.readString();
         name = in.readString();
         email = in.readString();
         phone = in.readString();
@@ -31,13 +29,16 @@ public class User implements Parcelable {
         this.password = password;
     }
 
-    public User(String name, String email, String phone) {
-    }
-
-
-
-    public void setName(String name) {
+//    public User(String name, String email, String phone) {
+//    }
+    public User(String name,String  PhoneNumber, String password){
         this.name = name;
+        this.phone = PhoneNumber;
+        this.password = password;
+
+    }
+    public void setName(String Name) {
+        this.name = Name;
     }
 
     public void setEmail(String email) {
@@ -49,9 +50,10 @@ public class User implements Parcelable {
     }
 
     public void setPassword(String password){this.password = password;}
+    public void setUid(String Uid){this.uid = Uid;}
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getEmail() {
@@ -64,6 +66,7 @@ public class User implements Parcelable {
 
     public String getPassword(){return password;}
 
+    public String getUid(){return uid;}
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
