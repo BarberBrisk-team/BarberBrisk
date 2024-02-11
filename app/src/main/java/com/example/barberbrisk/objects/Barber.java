@@ -2,13 +2,9 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 
-<<<<<<< Updated upstream
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> Stashed changes
 import java.util.List;
-import java.util.ArrayList;
 
 public class Barber extends User {
 
@@ -33,8 +29,6 @@ public class Barber extends User {
         this.haircuts = haircuts;
     }
 
-<<<<<<< Updated upstream
-=======
     public Barber() {
 
     }
@@ -76,7 +70,6 @@ public class Barber extends User {
     }
 
 
->>>>>>> Stashed changes
     public void setRate(Double rate) {
         this.rate = rate;
     }
@@ -124,8 +117,6 @@ public class Barber extends User {
             return new Barber[size];
         }
     };
-<<<<<<< Updated upstream
-=======
 
     public List<HairCut> getHairCutList() {
         return haircuts;
@@ -142,6 +133,5 @@ public class Barber extends User {
 ////                ", haircuts=" + haircuts +
 //                '}';
 //    }
->>>>>>> Stashed changes
 }
 

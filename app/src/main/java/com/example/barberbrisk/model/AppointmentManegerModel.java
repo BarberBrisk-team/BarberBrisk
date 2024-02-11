@@ -2,7 +2,6 @@ package com.example.barberbrisk.model;
 
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.objects.Appointment;
-import com.example.barberbrisk.objects.ClientAppointment;
 import com.example.barberbrisk.objects.HairCut;
 
 import java.sql.Time;
