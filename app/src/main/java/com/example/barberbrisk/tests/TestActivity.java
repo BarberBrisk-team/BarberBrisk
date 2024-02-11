@@ -17,7 +17,10 @@ import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.objects.ClientAppointment;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 public class TestActivity extends AppCompatActivity {
@@ -30,17 +33,19 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         Button button = findViewById(R.id.button5);
+        Date date = new Date(2021, 6, 1);
+        Time time = new Time(12, 0, 0);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("AllClients","ok?");
-                ClientAppointment clientAppointment = new ClientAppointment("3tsozkk2L1HExwuNXe3A","WOU9qzIpUfbzzHTnb94PmOPw0Mu2","7777");
-                AppointmentManegerModel.setClientAppointment(clientAppointment);
-
+                boolean b =  AppointmentManegerModel.isAppointmentAvailable("WOU9qzIpUfbzzHTnb94PmOPw0Mu2","3tsozkk2L1HExwuNXe3A","7777",date,time);
+                Log.d("AllClients", "could create a appointment?" + String.valueOf(b));
             }
         });
-
-          DataBase.DownladBarberList();
+        Timestamp timestamp = new Timestamp(2021, 6, 1, 12, 0, 0, 0);
+        DataBase.BarberNewAppointment(new Appointment("WOU9qzIpUfbzzHTnb94PmOPw0Mu2",timestamp,true));
+        DataBase.DownladBarberList();
         DataBase.DownloadListAppoinment();
 //
 //        DataBase.NewBarberDB(new Barber("44444333", "Barber", "avi@aff.com", "0544444444", "123456"));

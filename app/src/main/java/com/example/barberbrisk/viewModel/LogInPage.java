@@ -21,7 +21,7 @@ public class LogInPage extends AppCompatActivity {
 
     private EditText emailField;
     private EditText passwordField;
-
+    private Intent intent;
     private static LoginModel loginModel;
     /**
      * This method is called when the login activity is starting.
@@ -60,10 +60,10 @@ public class LogInPage extends AppCompatActivity {
                 public void onUserLoggedIn(String userType) {
                     if ("Client".equals(userType)) {
                         Toast.makeText(LogInPage.this, "Loading Client Home page: ", Toast.LENGTH_SHORT).show();
-                        goHomeCustomer();
+                        goHomeCustomer(loginModel.getUid());
                     } else if ("Barber".equals(userType)) {
                         Toast.makeText(LogInPage.this, "Loading Barber Home page: ", Toast.LENGTH_SHORT).show();
-                        goHomeBarber();
+                        goHomeBarber(loginModel.getUid());
                     }
                 }
 
@@ -84,9 +84,10 @@ public class LogInPage extends AppCompatActivity {
      * It starts the BarberHomePage activity.
      * TODO: Implement this method with the right page. The "appointment_order" page is not true, it should be BarberHomePage.
      */
-    public void goHomeBarber() {
-        startActivity(new Intent(LogInPage.this, barberHomePage.class));
-
+    public void goHomeBarber(String Uid) {
+        intent = new Intent(LogInPage.this, barberHomePage.class);
+        intent.putExtra("Uid", Uid);
+        startActivity(intent);
     }
 
     /**
@@ -94,12 +95,11 @@ public class LogInPage extends AppCompatActivity {
      * It starts the ClientHomePage activity.
      * TODO: Implement this method with the right page. The "appointment_order" page is not true, it should be ClientHomePage.
      */
-    public void goHomeCustomer() {
-        startActivity(new Intent(LogInPage.this, clientHomePage.class));
+    public void goHomeCustomer(String Uid) {
+        intent = new Intent(LogInPage.this, clientHomePage.class);
+        intent.putExtra("Uid", Uid);
+        startActivity(intent);
     }
 
-    public static String getUid(){
-        return loginModel.getUid();
-    }
 }
 

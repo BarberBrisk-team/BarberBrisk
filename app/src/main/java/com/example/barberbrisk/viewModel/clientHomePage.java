@@ -27,7 +27,7 @@ public class clientHomePage extends AppCompatActivity {
         setContentView(R.layout.activity_client_home_page);
         myIntent = getIntent();
         //      we need to fill all the object fields by the DB
-        String ClientUid = LogInPage.getUid();
+        String ClientUid = myIntent.getStringExtra("Uid");
         DocumentReference docRef = db.collection("Clients").document(ClientUid);
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("ClientSuccess", "Success");

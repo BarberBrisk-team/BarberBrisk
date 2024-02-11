@@ -17,10 +17,10 @@
             android:exported="false" />
         <activity
             android:name=".viewModel.clientHomePage"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".viewModel.barberHomePage"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".viewModel.verify"
             android:exported="true" />

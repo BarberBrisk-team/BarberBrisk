@@ -71,15 +71,6 @@ public class appionment_oredr extends AppCompatActivity {
             }
         });
 
-
     }
 
-//  client Uid, barber chosen Uid, hairstyle, date, time
-    public void handelSubmit(View v){
-//        Client myObj = myIntent.getParcelableExtra("myObject");
-//        myObj.getUid();
-//        LocalDate localDate = datePicker.getValue();
-//        return java.util.Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-    }
 }
