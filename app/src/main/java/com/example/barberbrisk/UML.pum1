@@ -1,0 +1,12 @@
+@startuml
+object User {
+  name = "John Doe"
+  email = "john@example.com"
+}
+
+object ShoppingCart {
+  itemCount = 2
+}
+
+User --> ShoppingCart : has
+@enduml

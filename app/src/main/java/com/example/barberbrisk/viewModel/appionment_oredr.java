@@ -19,7 +19,8 @@ import com.example.barberbrisk.R;
 public class appionment_oredr extends AppCompatActivity {
     private Button dateButton;
     private Button timeButton;
-    private Intent myIntent;
+//    private Intent myIntent
+//    private ArrayList<Barber>;
 
 
     @Override
