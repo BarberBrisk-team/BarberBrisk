@@ -24,20 +24,20 @@ public class clientProfilePage extends AppCompatActivity {
 
 //      creat a obj of the first activity and take data about the user.
         clientIntent = getIntent();
-        myClient = clientIntent.getParcelableExtra("myObj");
+        String BarberUid = clientIntent.getStringExtra("Uid");
 
 //      check if the data arrive exactly right
-        Log.d("name", myClient.getName().toString());
-        Log.d("email", myClient.getEmail().toString());
-        Log.d("phone", myClient.getPhone().toString());
+//        Log.d("name", myClient.getName().toString());
+//        Log.d("email", myClient.getEmail().toString());
+//        Log.d("phone", myClient.getPhone().toString());
 
 //        set data on the activity
         Button b1 = (Button) findViewById(R.id.buttonName);
         Button b2 = (Button) findViewById(R.id.buttonEmail);
         Button b3 = (Button)findViewById(R.id.buttonPhone);
-        b1.setText(myClient.getName());
-        b2.setText(myClient.getEmail());
-        b3.setText(myClient.getPhone());
+//        b1.setText(myClient.getName());
+//        b2.setText(myClient.getEmail());
+//        b3.setText(myClient.getPhone());
     }
 
     public void arrowBackButton(View v){

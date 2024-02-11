@@ -11,8 +11,6 @@ import androidx.annotation.RequiresApi;
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
-import java.sql.Timestamp;
-
 import com.example.barberbrisk.objects.ClientAppointment;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,7 +18,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.File;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -127,7 +125,6 @@ public class DataBase {
     }
         /**
          * This method is used to add a new hairstyle to the database.
-         * @param HairStyleName is the name of the new hairstyle.
          * @param Price is the price of the new hairstyle.
          * @param ImageFile is an image of the new hairstyle.
          * @param BarberPhoneNumber is the phone number of the barber who can do this hairstyle.

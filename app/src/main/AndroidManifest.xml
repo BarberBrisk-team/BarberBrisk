@@ -13,22 +13,19 @@
         android:theme="@style/Theme.BarberBrisk"
         tools:targetApi="31">
         <activity
+            android:name=".viewModel.clientProfilePage"
+            android:exported="true" />
+        <activity
+            android:name=".viewModel.barBerProfilePage"
+            android:exported="true" />
+        <activity
             android:name=".viewModel.appionment_oredr"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".viewModel.clientHomePage"
             android:exported="true" />
         <activity
             android:name=".viewModel.barberHomePage"
-            android:exported="true" />
-        <activity
-            android:name=".viewModel.verify"
-            android:exported="true" />
-        <activity
-            android:name=".viewModel.choose_appointment_time"
-            android:exported="false" />
-        <activity
-            android:name=".viewModel.appointment_order"
             android:exported="true" />
         <activity
             android:name=".viewModel.LogInPage"

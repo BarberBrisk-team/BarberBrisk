@@ -26,7 +26,7 @@ public class clientHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_home_page);
         myIntent = getIntent();
-        //      we need to fill all the object fields by the DB
+//        //      we need to fill all the object fields by the DB
         String ClientUid = myIntent.getStringExtra("Uid");
         DocumentReference docRef = db.collection("Clients").document(ClientUid);
         docRef.get().addOnSuccessListener(documentSnapshot -> {
@@ -41,12 +41,12 @@ public class clientHomePage extends AppCompatActivity {
 
     }
     public void handelButtonProfile(View v){
-        myIntent.putExtra("myobj",myObj);
+        myIntent.putExtra("Uid",myObj.getUid());
         startActivity(new Intent(clientHomePage.this, clientProfilePage.class));
     }
 
     public void handelButtonOrder(View n){
-        myIntent.putExtra("myobj",myObj);
+        myIntent.putExtra("Uid",myObj.getUid());
         startActivity(new Intent(clientHomePage.this, appionment_oredr.class));
     }
 }
