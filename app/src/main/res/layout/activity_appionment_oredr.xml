@@ -6,27 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".viewModel.appionment_oredr">
 
-
-    <Button
-        android:id="@+id/btnShowTimePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Time Picker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnShowDataPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Date Picker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnShowTimePicker" />
-
     <Button
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
@@ -40,18 +19,54 @@
         android:id="@+id/barbersButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:text="Select Barber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnShowDataPicker" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/barbersSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barbersButton" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="14dp"
+        android:text="Select Appointment"
+        app:layout_constraintBottom_toTopOf="@+id/haircutButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barbersSpinner" />
+
+    <Spinner
+        android:id="@+id/appointmentsSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     <Button
         android:id="@+id/haircutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select haircut style"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="366dp"
+        android:text="Select Haircut Style"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barbersButton" />
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

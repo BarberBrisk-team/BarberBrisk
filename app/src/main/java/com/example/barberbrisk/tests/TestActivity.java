@@ -15,13 +15,11 @@ import com.example.barberbrisk.model.AppointmentManegerModel;
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
-import com.example.barberbrisk.objects.ClientAppointment;
 
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
 
 public class TestActivity extends AppCompatActivity {
     ArrayList<Client> clients = new ArrayList<>();
@@ -45,7 +43,7 @@ public class TestActivity extends AppCompatActivity {
         });
         Timestamp timestamp = new Timestamp(2021, 6, 1, 12, 0, 0, 0);
         DataBase.BarberNewAppointment(new Appointment("WOU9qzIpUfbzzHTnb94PmOPw0Mu2",timestamp,true));
-        DataBase.DownladBarberList();
+        DataBase.DownloadBarberList();
         DataBase.DownloadListAppoinment();
 //
 //        DataBase.NewBarberDB(new Barber("44444333", "Barber", "avi@aff.com", "0544444444", "123456"));

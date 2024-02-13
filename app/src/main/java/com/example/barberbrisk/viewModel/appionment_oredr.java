@@ -1,79 +1,161 @@
 package com.example.barberbrisk.viewModel;
 
-
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
-import android.widget.Toast;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import com.example.barberbrisk.objects.Appointment_combined_version;
+import com.example.barberbrisk.objects.Barber;
+import com.example.barberbrisk.objects.HairCut;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class appionment_oredr extends AppCompatActivity {
-    private Button dateButton;
-    private Button timeButton;
-    private Intent myIntent;
+    private Spinner barbersSpinner;
+    private Spinner appointmentsSpinner;
+    private Button selectBarberButton;
+    private Button selectAppointmentButton;
+    private Button haircutButton;
 
+    private Barber selectedBarber;
+    private Appointment_combined_version selectedAppointment;
+    private HairCut selectedHaircutStyle;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appionment_oredr);
-//        dateButton = findViewById(R.id.btnShowDataPicker);
-//        timeButton = findViewById(R.id.btnShowTimePicker);
 
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(appionment_oredr.this);
-                builder.setTitle("Pick a Date");
-                View datePickerView = View.inflate(appionment_oredr.this, R.layout.date_picker, null);
-                builder.setView(datePickerView).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        DatePicker datePicker = datePickerView.findViewById(R.id.datePicker);
-                        Toast.makeText(appionment_oredr.this,
-                                String.valueOf(datePicker.getMonth())+"/"+
-                                String.valueOf(datePicker.getDayOfMonth())+"/"+
-                                String.valueOf(datePicker.getYear()), Toast.LENGTH_LONG).show();
+        barbersSpinner = findViewById(R.id.barbersSpinner);
+        appointmentsSpinner = findViewById(R.id.appointmentsSpinner);
+        selectBarberButton = findViewById(R.id.barbersButton);
+        selectAppointmentButton = findViewById(R.id.button6);
+        haircutButton = findViewById(R.id.haircutButton);
 
-                    }
-                }).setNeutralButton("Cancel", null);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }
-        });
-        timeButton.setOnClickListener(new View.OnClickListener() {
+        // Hide the spinners initially
+        barbersSpinner.setVisibility(View.GONE);
+        appointmentsSpinner.setVisibility(View.GONE);
+
+        selectBarberButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(appionment_oredr.this);
-                builder.setTitle("Pick a Time");
-                View timePickerView = View.inflate(appionment_oredr.this, R.layout.time_picker, null);
-                builder.setView(timePickerView).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        TimePicker timePicker = timePickerView.findViewById(R.id.timePicker);
-                        Toast.makeText(appionment_oredr.this,
-                                String.valueOf(timePicker.getCurrentHour())+":"+
-                                        String.valueOf(timePicker.getCurrentMinute())+"/"
-                                , Toast.LENGTH_LONG).show();
-                    }
-                }).setNeutralButton("Cancel", null);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+            public void onClick(View view) {
+                // Show the spinners when the button is pressed
+                barbersSpinner.setVisibility(View.VISIBLE);
+                appointmentsSpinner.setVisibility(View.VISIBLE);
+                loadBarbersIntoSpinner();
             }
         });
 
+        selectAppointmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedBarber != null) {
+                    selectedAppointment = (Appointment_combined_version) appointmentsSpinner.getSelectedItem();
+                }
+            }
+        });
+
+        haircutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedBarber != null) {
+                    // Show a dialog or navigate to another activity to choose a haircut style
+                    // For simplicity, I'll use the first haircut style
+                    selectedHaircutStyle = selectedBarber.getHaircuts().get(0);
+                }
+            }
+        });
     }
 
+    private void loadBarbersIntoSpinner() {
+        // Fetch barbers from Firebase
+        db.collection("Barbers")
+                .get()
+                .addOnSuccessListener(result -> {
+                    List<Barber> barberList = result.toObjects(Barber.class);
+                    //print to log the barbers and their appointments for testing
+
+                    ArrayAdapter<Barber> adapter = new ArrayAdapter<Barber>(this, android.R.layout.simple_spinner_item, barberList) {
+                        @Override
+                        public View getView(int position, View convertView, ViewGroup parent) {
+                            View view = super.getView(position, convertView, parent);
+                            // Show only the name in the selected item
+                            ((TextView) view.findViewById(android.R.id.text1)).setText(barberList.get(position).getName());
+                            return view;
+                        }
+
+                        @Override
+                        public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                            View view = super.getDropDownView(position, convertView, parent);
+                            // Show both name and rate in the dropdown items
+                            ((TextView) view.findViewById(android.R.id.text1)).setText(barberList.get(position).getName() + " - Rate: " + barberList.get(position).getRate());
+                            return view;
+                        }
+                    };
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    barbersSpinner.setAdapter(adapter);
+
+                    // Set a listener for when a barber is selected
+                    barbersSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                            // Load appointments for the selected barber
+                            selectedBarber = (Barber) barbersSpinner.getSelectedItem();
+                            loadAppointmentsIntoSpinner();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+                            // Handle when nothing is selected
+                        }
+                    });
+                })
+                .addOnFailureListener(exception -> {
+                    // Handle failures
+                    Log.e("FirebaseError", "Error fetching barbers from Firebase", exception);
+                });
+    }
+
+    private void loadAppointmentsIntoSpinner() {
+        if (selectedBarber != null) {
+            db.collection("Barbers")
+                    .document(selectedBarber.getUid())
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            Barber updatedBarber = documentSnapshot.toObject(Barber.class);
+
+                            // Log the updated AvailableAppointments field
+                            if (updatedBarber != null && updatedBarber.getAvailableAppointments() != null) {
+                                for (Map.Entry<String, Appointment_combined_version> entry : updatedBarber.getAvailableAppointments().entrySet()) {
+                                    String appointmentID = entry.getKey();
+                                    Appointment_combined_version appointment = entry.getValue();
+                                    Log.d("UpdatedAppointmentData", "Appointment ID: " + appointmentID + ", Data: " );
+                                }
+                            }
+                        }
+                    })
+                    .addOnFailureListener(exception -> {
+                        // Handle failures
+                        Log.e("FirebaseError", "Error fetching updated barber data from Firebase", exception);
+                    });
+        }
+    }
 }
+

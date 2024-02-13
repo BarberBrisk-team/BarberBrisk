@@ -26,6 +26,10 @@ public class Appointment_combined_version {
         this.hairCut = null; // the kind of haircut that the appointment is for
     }
 
+    public Appointment_combined_version() {
+
+    }
+
     /**
      * getter for the appointmentUid
      *
@@ -82,6 +86,7 @@ public class Appointment_combined_version {
 
     /**
      * setter for the hair Cut
+     *
      * @param hairCut
      */
     public void setHairCut(HairCut hairCut) {
@@ -90,6 +95,7 @@ public class Appointment_combined_version {
 
     /**
      * toString method for the appointment
+     *
      * @return
      */
     @NonNull
@@ -105,6 +111,7 @@ public class Appointment_combined_version {
 
     /**
      * Describe the kinds of special objects contained in this Parcelable instance's marshaled representation.
+     *
      * @param in
      */
     public Appointment_combined_version(Parcel in) {
@@ -112,7 +119,6 @@ public class Appointment_combined_version {
         available = in.readByte() != 0;
         hairCut = in.readParcelable(HairCut.class.getClassLoader());
     }
-
 
 
     public void writeToParcel(Parcel dest, int flags) {

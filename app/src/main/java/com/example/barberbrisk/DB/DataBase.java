@@ -52,7 +52,7 @@ public class DataBase {
     public static void UpdateBarberDB(Barber barber) {
         db.collection("Barbers").document(barber.getUid()).set(barber);
     }
-   public static void DownladBarberList(){
+   public static void DownloadBarberList(){
         db.collection("Barbers").get().addOnCompleteListener(
                 task -> {
                     if (task.isSuccessful() && task.getResult() != null) {

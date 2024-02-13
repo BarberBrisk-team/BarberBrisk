@@ -38,8 +38,8 @@ public class barberHomePage extends AppCompatActivity {
             String password = (String) documentSnapshot.get("password");
             String phone = (String) documentSnapshot.get("phone");
             Double rate = (Double) documentSnapshot.get("rate");
-            List<HairCut> hairCutList = null;
-            myObj = new Barber(BarberUid, name, email, phone, password, rate, hairCutList);
+            List<HairCut> haircuts = (List<HairCut>) documentSnapshot.get("haircuts");
+            myObj = new Barber(BarberUid, name, email, phone, password, rate , haircuts);
             Log.d("BarberSuccess", "Success2");
         });
     }
