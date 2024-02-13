@@ -2,7 +2,10 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 
+import java.util.HashMap;
+
 public class Client extends User {
+    HashMap<String, Appointment_combined_version> Appointments = new HashMap<>();
 
     public Client(Parcel in) {
         super(in);
@@ -10,6 +13,7 @@ public class Client extends User {
 
     public Client(String uid, String name, String email, String phone, String password) {
         super(uid, name, email, phone, password);
+        this.Appointments = new HashMap<>();
     }
 
     @Override
@@ -28,4 +32,29 @@ public class Client extends User {
             return new Client[size];
         }
     };
+
+    /**
+     * Get appointments of the client
+     * @return
+     */
+    public HashMap<String, Appointment_combined_version> getAppointments() {
+        return Appointments;
+    }
+
+    /**
+     * Set appointments of the client
+     * @param appointments
+     */
+    public void setAppointments(HashMap<String, Appointment_combined_version> appointments) {
+        Appointments = appointments;
+    }
+
+    /**
+     * Add appointment to the client
+     * @param appointment
+     */
+    public void addAppointment(Appointment_combined_version appointment) {
+        appointment.setAvailable(false);
+        Appointments.put(appointment.getAppointmentUid(), appointment);
+    }
 }

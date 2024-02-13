@@ -25,7 +25,7 @@
             android:name=".viewModel.barBerProfilePage"
             android:exported="true" />
         <activity
-            android:name=".viewModel.appionment_oredr"
+            android:name=".viewModel.appointment_order"
             android:exported="true" />
         <activity
             android:name=".viewModel.clientHomePage"

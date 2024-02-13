@@ -12,6 +12,8 @@ import com.example.barberbrisk.objects.Client;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
+
 public class clientHomePage extends AppCompatActivity {
     private Client myObj;
     private Intent myIntent;
@@ -26,9 +28,9 @@ public class clientHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_home_page);
         myIntent = getIntent();
-//        //      we need to fill all the object fields by the DB
+        // we need to fill all the object fields by the DB
         String ClientUid = myIntent.getStringExtra("Uid");
-        DocumentReference docRef = db.collection("Clients").document(ClientUid);
+        DocumentReference docRef = db.collection("Clients").document(Objects.requireNonNull(ClientUid));
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("ClientSuccess", "Success");
             String email = (String) documentSnapshot.get("email");
@@ -48,7 +50,7 @@ public class clientHomePage extends AppCompatActivity {
 
     public void handelButtonOrder(View n){
         myIntent.putExtra("Uid",myObj.getUid());
-        startActivity(new Intent(clientHomePage.this, appionment_oredr.class));
+        startActivity(new Intent(clientHomePage.this, appointment_order.class));
         myIntent.putExtra("myobj",myObj);
     }
 }

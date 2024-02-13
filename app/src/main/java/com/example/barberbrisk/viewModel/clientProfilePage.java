@@ -10,34 +10,55 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.objects.Client;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class clientProfilePage extends AppCompatActivity {
-    private Intent clientIntent;
     private Client myClient;
+    private final FirebaseFirestore db;
+
+    public clientProfilePage() {
+        db = FirebaseFirestore.getInstance();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_profile_page);
 
+<<<<<<< HEAD
 //      write a message on the screen that the activuty start
+        Log.d("בךןקמאProfile", "start profile activity");
+=======
+//      write a message on the screen that the activity start
         Log.d("test", "start profile activity");
+>>>>>>> cc1e4f27ffedecd1566eebe8212bfedf110a225b
 
-//      creat a obj of the first activity and take data about the user.
-        clientIntent = getIntent();
-        String BarberUid = clientIntent.getStringExtra("Uid");
-
-//      check if the data arrive exactly right
-//        Log.d("name", myClient.getName().toString());
-//        Log.d("email", myClient.getEmail().toString());
-//        Log.d("phone", myClient.getPhone().toString());
+//      create a obj of the first activity and take data about the user.
+        Intent clientIntent = getIntent();
+        String ClientUid = clientIntent.getStringExtra("Uid");
+        DocumentReference docRef = db.collection("Clients").document(Objects.requireNonNull(ClientUid));
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            Log.d("ClientSuccess", "Success");
+            String email = (String) documentSnapshot.get("email");
+            String name = (String) documentSnapshot.get("name");
+            String password = (String) documentSnapshot.get("password");
+            String phone = (String) documentSnapshot.get("phone");
+            Log.d("CLient details", "name: " + name + "email: " + email + " ");
+            myClient = new Client(ClientUid, name, email, phone, password);
+            Log.d("ClientSuccess", "Success2" + myClient.getName());
+        });
 
 //        set data on the activity
         Button b1 = (Button) findViewById(R.id.buttonName);
         Button b2 = (Button) findViewById(R.id.buttonEmail);
         Button b3 = (Button)findViewById(R.id.buttonPhone);
-//        b1.setText(myClient.getName());
-//        b2.setText(myClient.getEmail());
-//        b3.setText(myClient.getPhone());
+//        Button b4 = (Button)findViewById(R.id.AppointHist);
+        b1.setText(myClient.getName());
+        b2.setText(myClient.getEmail());
+        b3.setText(myClient.getPhone());
+//        b4.setText((CharSequence) myClient.getAppointments());
     }
 
     public void arrowBackButton(View v){
