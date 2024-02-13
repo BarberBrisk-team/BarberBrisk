@@ -43,14 +43,14 @@ public class clientHomePage extends AppCompatActivity {
 
     }
     public void handelButtonProfile(View v){
-        myIntent.putExtra("Uid",myObj.getUid());
-        startActivity(new Intent(clientHomePage.this, clientProfilePage.class));
-        myIntent.putExtra("myobj",myObj);
+        myIntent = new Intent(clientHomePage.this, clientProfilePage.class);
+        myIntent.putExtra("Uid", myObj.getUid());
+        startActivity(myIntent);
     }
 
     public void handelButtonOrder(View n){
-        myIntent.putExtra("Uid",myObj.getUid());
-        startActivity(new Intent(clientHomePage.this, appointment_order.class));
-        myIntent.putExtra("myobj",myObj);
+        myIntent = new Intent(clientHomePage.this, appointment_order.class);
+        myIntent.putExtra("Uid", myObj.getUid());
+        startActivity(myIntent);
     }
 }
