@@ -1,5 +1,6 @@
 package com.example.barberbrisk.objects;
 
+import java.util.Date;
 import java.util.UUID;
 
 import android.os.Parcel;
@@ -11,7 +12,7 @@ import java.sql.Timestamp;
 
 public class Appointment_combined_version {
     final private String appointmentUid = UUID.randomUUID().toString(); // unique id for each appointment
-    Timestamp TimeAndDate; // the time and date of the appointment
+    Date TimeAndDate; // the time and date of the appointment
     private boolean available; // is the appointment available
     HairCut hairCut; // the kind of haircut that the appointment is for
 
@@ -44,7 +45,7 @@ public class Appointment_combined_version {
      *
      * @return the TimeAndDate of the appointment in Timestamp
      */
-    public Timestamp getTimeAndDate() {
+    public Date getTimeAndDate() {
         return TimeAndDate;
     }
 
@@ -53,7 +54,7 @@ public class Appointment_combined_version {
      *
      * @param timeAndDate
      */
-    public void setTimeAndDate(Timestamp timeAndDate) {
+    public void setTimeAndDate(Date timeAndDate) {
         TimeAndDate = timeAndDate;
     }
 
@@ -101,11 +102,11 @@ public class Appointment_combined_version {
     @NonNull
     @Override
     public String toString() {
-        return "Appointment_asaf_version{" +
+        return "Appointment_combined_version{" +
                 "appointmentUid='" + appointmentUid + '\'' +
-                ", TimeAndDate=" + TimeAndDate +
+                ", TimeAndDate=" + TimeAndDate.toString() +
                 ", available=" + available +
-                ", hairCut=" + hairCut.toString() +
+                ", hairCut=" + (hairCut != null ? hairCut.toString() : "null") +
                 '}';
     }
 

@@ -28,6 +28,7 @@ public class clientHomePage extends AppCompatActivity {
         myIntent = getIntent();
 //        //      we need to fill all the object fields by the DB
         String ClientUid = myIntent.getStringExtra("Uid");
+        assert ClientUid != null;
         DocumentReference docRef = db.collection("Clients").document(ClientUid);
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("ClientSuccess", "Success");
@@ -48,7 +49,7 @@ public class clientHomePage extends AppCompatActivity {
 
     public void handelButtonOrder(View n){
         myIntent.putExtra("Uid",myObj.getUid());
-        startActivity(new Intent(clientHomePage.this, appionment_oredr.class));
         myIntent.putExtra("myobj",myObj);
+        startActivity(new Intent(clientHomePage.this, appionment_oredr.class));
     }
 }
