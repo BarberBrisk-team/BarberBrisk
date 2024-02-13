@@ -20,7 +20,7 @@ public class clientProfilePage extends AppCompatActivity {
         setContentView(R.layout.activity_client_profile_page);
 
 //      write a message on the screen that the activuty start
-        Log.d("test", "start profile activity");
+        Log.d("בךןקמאProfile", "start profile activity");
 
 //      creat a obj of the first activity and take data about the user.
         clientIntent = getIntent();
