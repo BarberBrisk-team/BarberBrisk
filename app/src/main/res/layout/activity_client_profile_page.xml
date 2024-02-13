@@ -5,7 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pic4"
-    tools:context=".profilePage">
+    tools:context=".viewModel.clientProfilePage">
+
+    <Button
+        android:id="@+id/AppointHist"
+        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+        android:layout_width="215dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="88dp"
+        android:background="#FFFFFF"
+        android:clickable="false"
+        android:text="Appointments History"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/AppointHist"
+        tools:ignore="NotSibling" />
 
     <Button
         android:id="@+id/buttonName"
@@ -20,10 +36,10 @@
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/buttonEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
+        app:layout_constraintVertical_bias="0.756" />
 
     <Button
         android:id="@+id/buttonEmail"
@@ -34,10 +50,10 @@
         android:text="Email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.813" />
+        app:layout_constraintVertical_bias="0.643" />
 
     <Button
         android:id="@+id/buttonPhone"
@@ -48,7 +64,7 @@
         android:clickable="false"
         android:text="Phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonEmail" />
 

@@ -15,11 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 
-
-public class appionment_oredr extends AppCompatActivity {
+public class appointment_order extends AppCompatActivity {
     private Button dateButton;
     private Button timeButton;
     private Intent myIntent;
@@ -35,14 +32,14 @@ public class appionment_oredr extends AppCompatActivity {
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(appionment_oredr.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(appointment_order.this);
                 builder.setTitle("Pick a Date");
-                View datePickerView = View.inflate(appionment_oredr.this, R.layout.date_picker, null);
+                View datePickerView = View.inflate(appointment_order.this, R.layout.date_picker, null);
                 builder.setView(datePickerView).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         DatePicker datePicker = datePickerView.findViewById(R.id.datePicker);
-                        Toast.makeText(appionment_oredr.this,
+                        Toast.makeText(appointment_order.this,
                                 String.valueOf(datePicker.getMonth())+"/"+
                                 String.valueOf(datePicker.getDayOfMonth())+"/"+
                                 String.valueOf(datePicker.getYear()), Toast.LENGTH_LONG).show();
@@ -56,14 +53,14 @@ public class appionment_oredr extends AppCompatActivity {
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(appionment_oredr.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(appointment_order.this);
                 builder.setTitle("Pick a Time");
-                View timePickerView = View.inflate(appionment_oredr.this, R.layout.time_picker, null);
+                View timePickerView = View.inflate(appointment_order.this, R.layout.time_picker, null);
                 builder.setView(timePickerView).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         TimePicker timePicker = timePickerView.findViewById(R.id.timePicker);
-                        Toast.makeText(appionment_oredr.this,
+                        Toast.makeText(appointment_order.this,
                                 String.valueOf(timePicker.getCurrentHour())+":"+
                                         String.valueOf(timePicker.getCurrentMinute())+"/"
                                 , Toast.LENGTH_LONG).show();
