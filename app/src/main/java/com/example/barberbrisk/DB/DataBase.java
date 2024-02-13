@@ -123,11 +123,8 @@ public class DataBase {
     {
         db.collection("ClientAppointment").document().set(clientAppointment);
     }
-        /**
-         * This method is used to add a new hairstyle to the database.
-         * @param Price is the price of the new hairstyle.
-         * @param ImageFile is an image of the new hairstyle.
-         * @param BarberPhoneNumber is the phone number of the barber who can do this hairstyle.
+        /*
+
          */
 
         public static void UpdateBarberAppointments(String appointmentID, Appointment appointment) {
