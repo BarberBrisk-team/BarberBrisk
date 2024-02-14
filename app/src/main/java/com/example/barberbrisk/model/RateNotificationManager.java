@@ -17,6 +17,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.tests.TestActivity;
+import com.example.barberbrisk.viewModel.RattingPage;
 
 public class RateNotificationManager {
 
@@ -34,13 +35,19 @@ public class RateNotificationManager {
         }
     }
 
-    private PendingIntent getPendingIntent(Context context) {
+    private PendingIntent getPendingIntent(Context context, String barberID, String clientID, String appointmentID) {
         // Create an Intent that starts the activity
-        Intent intent = new Intent(context, TestActivity.class);
+        Intent intent = new Intent(context, RattingPage.class);
+
+        intent.putExtra("barberID", barberID);
+        intent.putExtra("clientID", clientID);
+        intent.putExtra("appointmentID", appointmentID);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         // Wrap the Intent with a PendingIntent
-        return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
+
+        return PendingIntent.getActivity(context, 0, intent, flags);
     }
 
     private NotificationCompat.Builder getNotificationBuilder(Context context, PendingIntent pendingIntent) {
@@ -61,10 +68,9 @@ public class RateNotificationManager {
 }
 
 public void sendRateNotification(Context context, String barberID, String clientID, String appointmentID) {
-    Log.d("RateNotificationManager", "sendRateNotification: ");
     createNotificationChannel(context);
 
-    PendingIntent pendingIntent = getPendingIntent(context);
+    PendingIntent pendingIntent = getPendingIntent(context, barberID, clientID, appointmentID);
     NotificationCompat.Builder builder = getNotificationBuilder(context, pendingIntent);
 
     // Create a notification manager object
