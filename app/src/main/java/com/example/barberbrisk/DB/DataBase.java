@@ -43,14 +43,18 @@ public class DataBase {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public static void NewBarberDB(Barber barber) {
-        db.collection("Barbers").document(barber.getUid()).set(barber);
+        UpdateBarberDB(barber);
     }
     public static void NewClientDB(Client client){
-        db.collection("Client").document(client.getUid()).set(client);
+        UpdateClientDB(client);
     }
 
     public static void UpdateBarberDB(Barber barber) {
         db.collection("Barbers").document(barber.getUid()).set(barber);
+    }
+
+    public static void UpdateClientDB(Client client) {
+        db.collection("Client").document(client.getUid()).set(client);
     }
    public static void DownloadBarberList(){
         db.collection("Barbers").get().addOnCompleteListener(
