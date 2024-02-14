@@ -25,9 +25,9 @@ public class appointment_order extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appionment_oredr);
-//        dateButton = findViewById(R.id.btnShowDataPicker);
-//        timeButton = findViewById(R.id.btnShowTimePicker);
+        setContentView(R.layout.activity_appionment_order);
+        dateButton = findViewById(R.id.btnShowDataPicker);
+        timeButton = findViewById(R.id.btnShowTimePicker);
 
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override

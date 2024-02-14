@@ -34,6 +34,7 @@ public class clientProfilePage extends AppCompatActivity {
 //      create a obj of the first activity and take data about the user.
         Intent clientIntent = getIntent();
         String ClientUid = clientIntent.getStringExtra("Uid");
+
         DocumentReference docRef = db.collection("Clients").document(Objects.requireNonNull(ClientUid));
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("ClientSuccess", "Success");
@@ -41,20 +42,21 @@ public class clientProfilePage extends AppCompatActivity {
             String name = (String) documentSnapshot.get("name");
             String password = (String) documentSnapshot.get("password");
             String phone = (String) documentSnapshot.get("phone");
-            Log.d("CLient details", "name: " + name + "email: " + email + " ");
+            Log.d("Client details", "name: " + name + "email: " + email + " ");
             myClient = new Client(ClientUid, name, email, phone, password);
             Log.d("ClientSuccess", "Success2" + myClient.getName());
-        });
+
 
 //        set data on the activity
-        Button b1 = (Button) findViewById(R.id.buttonName);
-        Button b2 = (Button) findViewById(R.id.buttonEmail);
-        Button b3 = (Button)findViewById(R.id.buttonPhone);
-//        Button b4 = (Button)findViewById(R.id.AppointHist);
+        Button b1 = findViewById(R.id.buttonName);
+        Button b2 = findViewById(R.id.buttonEmail);
+        Button b3 = findViewById(R.id.buttonPhone);
+//        Button b4 = (Button)findViewById(R.id.buttonAppointHist);
         b1.setText(myClient.getName());
         b2.setText(myClient.getEmail());
         b3.setText(myClient.getPhone());
-//        b4.setText((CharSequence) myClient.getAppointments());
+//        b4.setText(myClient.getAppointments().toString());
+        });
     }
 
     public void arrowBackButton(View v){
