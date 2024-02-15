@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -18,6 +19,13 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.tests.TestActivity;
 import com.example.barberbrisk.viewModel.RattingPage;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class RateNotificationManager {
 
@@ -69,7 +77,6 @@ public class RateNotificationManager {
 
 public void sendRateNotification(Context context, String barberID, String clientID, String appointmentID) {
     createNotificationChannel(context);
-
     PendingIntent pendingIntent = getPendingIntent(context, barberID, clientID, appointmentID);
     NotificationCompat.Builder builder = getNotificationBuilder(context, pendingIntent);
 
@@ -83,4 +90,28 @@ public void sendRateNotification(Context context, String barberID, String client
     }
     manager.notify(1, builder.build());
 }
+
+    /***
+     * This method is used to schedule a notification for the user to rate the barber.
+     * use it like this: scheduleNotification(context, "barberID", "clientID", "appointmentID", "2023-12-31 23:59");
+     * @param context
+     * @param barberID
+     * @param clientID
+     * @param appointmentID
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void scheduleNotification(Context context, String barberID, String clientID, String appointmentID) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        //Todo: get the date and time from the appointment
+        String dateTimeStr = "2023-12-31 23:59";
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
+        LocalDateTime now = LocalDateTime.now();
+
+        long delay = Duration.between(now, dateTime).toMillis();
+
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.schedule(() -> {
+            sendRateNotification(context, barberID, clientID, appointmentID);
+        }, delay, TimeUnit.MILLISECONDS);
+    }
 }

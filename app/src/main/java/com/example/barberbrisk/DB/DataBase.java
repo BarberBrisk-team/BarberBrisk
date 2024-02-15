@@ -137,15 +137,15 @@ public class DataBase {
     /**
      * This method is used for a customer to rate a barber.
      * @param Rating is the rating given by the customer.
-     * @param BarberPhoneNumber is the phone number of the barber.
-     * @param CustomerPhoneNumber is the phone number of the customer.
+     * @param BarberID is the phone number of the barber.
+     * @param ClientID is the phone number of the customer.
      */
-    public static void CustomerRating(double Rating, String BarberPhoneNumber, String CustomerPhoneNumber) {
+    public static void setCustomerRatingDB(double Rating, String BarberID, String ClientID) {
         // Create a new document with a generated ID
         Map<String, Object> appointment = new HashMap<>();
         appointment.put("Rating", Rating);
-        appointment.put("BarberPhoneNumber", BarberPhoneNumber);
-        appointment.put("CustomerPhoneNumber", CustomerPhoneNumber);
+        appointment.put("BarberID", BarberID);
+        appointment.put("ClientID", ClientID);
 
         db.collection("Customer_Rating")
                 .add(appointment)

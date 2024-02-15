@@ -27,7 +27,7 @@ public class RattingPage extends AppCompatActivity {
         TextView textView = findViewById(R.id.BarberName);
         Button sendRatingButton = findViewById(R.id.send_ratting);
         RatingBar ratingBar = findViewById(R.id.ratingBar);
-        final float[] rating = {ratingBar.getRating()};
+        final float[] rating = {ratingBar.getRating()};//the only way to get the rating from the rating bar function
 
         Intent intent = getIntent();
         String barberID = intent.getStringExtra("barberID");
@@ -42,9 +42,6 @@ public class RattingPage extends AppCompatActivity {
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float r, boolean fromUser) {
-                // The rating parameter contains the new rating
-                // Save the rating here
-
                 Log.d("Rating", "Rating changed to: " + r);
                 rating[0] = ratingBar.getRating();
             }
@@ -56,6 +53,8 @@ public class RattingPage extends AppCompatActivity {
             public void onClick(View v) {
 
                 Log.d("Rating", "Rating sent: " + rating[0]);
+                DataBase.setCustomerRatingDB(rating[0], barberID, clientID);
+                finish();
             }
         });
     }
