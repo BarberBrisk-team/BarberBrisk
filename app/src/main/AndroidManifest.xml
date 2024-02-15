@@ -19,7 +19,7 @@
             android:name=".viewModel.barBerProfilePage"
             android:exported="true" />
         <activity
-            android:name=".viewModel.appionment_oredr"
+            android:name=".viewModel.ApportionmentOrder"
             android:exported="true" />
         <activity
             android:name=".viewModel.clientHomePage"
