@@ -99,8 +99,8 @@ private void sendRateNotification(Context context, String barberID, String clien
     /***
      * This method is used to schedule a notification for the user to rate the barber.
      * use it like this:
-     * Appointment ap = new Appointment("dUILdwEj8tgGuP0y4W4GYP9XkvU2", "2024-02-15 18:47:00", true);
-     *  rateNotificationManager.scheduleNotification(getApplicationContext(), "dUILdwEj8tgGuP0y4W4GYP9XkvU2", "SnBHUa3stOglf5QaR8hQZfnjrRU2",ap );
+     * Appointment ap = new Appointment("dUILdwEj8tgGuP0y4W4GYP9XkvU2", "2024-02-15 19:36:00", true);
+     * rateNotificationManager.scheduleNotification(getApplicationContext(), "dUILdwEj8tgGuP0y4W4GYP9XkvU2", "SnBHUa3stOglf5QaR8hQZfnjrRU2",ap );
      * @param context
      * @param barberID
      * @param clientID
@@ -108,7 +108,7 @@ private void sendRateNotification(Context context, String barberID, String clien
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void scheduleNotification(Context context, String barberID, String clientID, Appointment appointment) {
-
+        int duration_after_appointment = 1; // in minutes
 
        Log.d("RateNotificationManager", "Scheduling notification for " + appointment.getTimeAndDate().toString());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -117,6 +117,12 @@ private void sendRateNotification(Context context, String barberID, String clien
         dateTimeStr = dateTimeStr.substring(0, 16);
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
         LocalDateTime now = LocalDateTime.now();
+        if (dateTime.isBefore(now)) {
+            Log.e("RateNotificationManager", "Given time is in the past. Cannot schedule notification.");
+            return;
+        }
+
+        dateTime = dateTime.plusMinutes(duration_after_appointment);
 
         long delay = Duration.between(now, dateTime).toMillis();
 

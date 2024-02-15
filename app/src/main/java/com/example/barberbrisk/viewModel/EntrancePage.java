@@ -1,6 +1,7 @@
 package com.example.barberbrisk.viewModel;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.RateNotificationManager;
+import com.example.barberbrisk.objects.Appointment;
 import com.google.firebase.FirebaseApp;
 //import com.example.barberbrisk.model.entranceModel;
 
@@ -24,6 +26,7 @@ public class EntrancePage extends AppCompatActivity {
         Button signInButton = findViewById(R.id.Sign_in_button);
         FirebaseApp.initializeApp(this);
         DataBase.DownladBarberList();
+        DataBase.DownloadListAppoinment();
         // Set a click listener on the "Sign in" button
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +48,6 @@ public class EntrancePage extends AppCompatActivity {
             public void onClick(View view) {
                 // Create an Intent to start the SignUp activity
                 Intent intent = new Intent(EntrancePage.this, signup.class);
-
-//                //Todo: remove those lines
-//                RateNotificationManager rateNotificationManager = new RateNotificationManager();
-//                rateNotificationManager.sendRateNotification(getApplicationContext(),"dUILdwEj8tgGuP0y4W4GYP9XkvU2", "clientID", "appointmentID");
-//                //Todo: remove until here
-
 
                 // Start the SignUp activity
                  startActivity(intent);
