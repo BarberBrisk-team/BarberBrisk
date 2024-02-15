@@ -1,8 +1,15 @@
 package com.example.barberbrisk.objects;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.RequiresApi;
+
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Appointment implements Parcelable {
@@ -49,10 +56,10 @@ public class Appointment implements Parcelable {
      * @param TimeAndDate_TextFormat (yyyy-MM-dd HH:mm:ss)
      * @param available
      */
-    public Appointment(String BarbarID,String TimeAndDate_TextFormat, boolean available) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Appointment(String BarbarID, String TimeAndDate_TextFormat, boolean available) {
         this.BarbarID = BarbarID;
-        Timestamp timestamp1 = Timestamp.valueOf(TimeAndDate_TextFormat);
-        this.TimeAndDate = TimeAndDate;
+        this.TimeAndDate =  Timestamp.valueOf(TimeAndDate_TextFormat);;
         this.available = available;
 
     }

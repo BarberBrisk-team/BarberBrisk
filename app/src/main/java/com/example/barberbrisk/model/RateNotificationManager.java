@@ -16,12 +16,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
+import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.tests.TestActivity;
 import com.example.barberbrisk.viewModel.RattingPage;
 
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -43,13 +48,12 @@ public class RateNotificationManager {
         }
     }
 
-    private PendingIntent getPendingIntent(Context context, String barberID, String clientID, String appointmentID) {
+    private PendingIntent getPendingIntent(Context context, String barberID, String clientID) {
         // Create an Intent that starts the activity
         Intent intent = new Intent(context, RattingPage.class);
 
         intent.putExtra("barberID", barberID);
         intent.putExtra("clientID", clientID);
-        intent.putExtra("appointmentID", appointmentID);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         // Wrap the Intent with a PendingIntent
@@ -63,7 +67,7 @@ public class RateNotificationManager {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "My Notification");
 
     // Set the notification content
-    builder.setContentTitle("Want to rate your barber?");
+    builder.setContentTitle("How was your haircut?");
     builder.setContentText("click here to rate your barber");
     builder.setPriority(NotificationCompat.PRIORITY_HIGH);
     builder.setSmallIcon(com.google.android.gms.base.R.drawable.common_google_signin_btn_text_light);
@@ -75,9 +79,10 @@ public class RateNotificationManager {
     return builder;
 }
 
-public void sendRateNotification(Context context, String barberID, String clientID, String appointmentID) {
+private void sendRateNotification(Context context, String barberID, String clientID) {
+    Log.d("RateNotificationManager", "Sending notification");
     createNotificationChannel(context);
-    PendingIntent pendingIntent = getPendingIntent(context, barberID, clientID, appointmentID);
+    PendingIntent pendingIntent = getPendingIntent(context, barberID, clientID);
     NotificationCompat.Builder builder = getNotificationBuilder(context, pendingIntent);
 
     // Create a notification manager object
@@ -93,17 +98,23 @@ public void sendRateNotification(Context context, String barberID, String client
 
     /***
      * This method is used to schedule a notification for the user to rate the barber.
-     * use it like this: scheduleNotification(context, "barberID", "clientID", "appointmentID", "2023-12-31 23:59");
+     * use it like this:
+     * Appointment ap = new Appointment("dUILdwEj8tgGuP0y4W4GYP9XkvU2", "2024-02-15 18:47:00", true);
+     *  rateNotificationManager.scheduleNotification(getApplicationContext(), "dUILdwEj8tgGuP0y4W4GYP9XkvU2", "SnBHUa3stOglf5QaR8hQZfnjrRU2",ap );
      * @param context
      * @param barberID
      * @param clientID
-     * @param appointmentID
+     * @param appointment
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void scheduleNotification(Context context, String barberID, String clientID, String appointmentID) {
+    public void scheduleNotification(Context context, String barberID, String clientID, Appointment appointment) {
+
+
+       Log.d("RateNotificationManager", "Scheduling notification for " + appointment.getTimeAndDate().toString());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         //Todo: get the date and time from the appointment
-        String dateTimeStr = "2023-12-31 23:59";
+        String dateTimeStr =appointment.getTimeAndDate().toString(); //"2024-02-15 19:24";//appointment.getTimeAndDate().toString();
+        dateTimeStr = dateTimeStr.substring(0, 16);
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
         LocalDateTime now = LocalDateTime.now();
 
@@ -111,7 +122,7 @@ public void sendRateNotification(Context context, String barberID, String client
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.schedule(() -> {
-            sendRateNotification(context, barberID, clientID, appointmentID);
+            sendRateNotification(context, barberID, clientID);
         }, delay, TimeUnit.MILLISECONDS);
     }
 }

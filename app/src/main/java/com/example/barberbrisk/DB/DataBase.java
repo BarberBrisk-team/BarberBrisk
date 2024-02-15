@@ -103,7 +103,7 @@ public class DataBase {
                         for (DocumentSnapshot documentSnapshot: doc.getDocuments()) {
                             AppointmentList.put(documentSnapshot.getId(),documentSnapshot.toObject(Appointment.class));
                         }
-                        Log.d("DownloadListAppoinment", AppointmentList.toString());
+                        Log.d("DownloadListAppoinment", "download "+AppointmentList.size() + " appointments");
                     } else
                         Log.d(TAG, "Error getting documents: ", task.getException());
                 }
