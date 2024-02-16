@@ -25,11 +25,13 @@ import com.example.barberbrisk.objects.Appointment_combined_version;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.objects.HairCut;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,8 +47,7 @@ public class ApportionmentOrder extends AppCompatActivity {
     private Appointment_combined_version selectedAppointment;
     public HairCut selectedHaircutStyle;
     private AppointmentModel model;
-
-    Client client;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +68,25 @@ public class ApportionmentOrder extends AppCompatActivity {
         //get the uid that was pass from the last activity and use it to get the client object
         Intent myIntent = getIntent();
         String ClientUid = myIntent.getStringExtra("Uid");
-        if (ClientUid != null) {
-            model.loadClient(ClientUid); // Load the client object from Firebase
-        } else {
-            Log.e("ClientUid", "ClientUid is null");
-        }
-
-
-        // Initialize the spinners and buttons
+//        assert ClientUid != null;
+//        DocumentReference docRef = db.collection("Clients").document(ClientUid);
+////
+//        // Create a client object from the docRef
+//        docRef.get().addOnSuccessListener(documentSnapshot -> {
+//            Log.d("ClientSuccess", "Success");
+//            String email = (String) documentSnapshot.get("email");
+//            String name = (String) documentSnapshot.get("name");
+//            String password = (String) documentSnapshot.get("password");
+//            String phone = (String) documentSnapshot.get("phone");
+//            HashMap<String, Appointment_combined_version> appointments = (HashMap<String, Appointment_combined_version>) documentSnapshot.get("appointments");
+//            client = new Client(ClientUid, name, email, phone, password);
+//            //if appointments is not null, set the appointments of the client
+//            if (appointments != null) {
+//                client.setAppointments(appointments);
+//            }
+//            Log.d("ClientSuccess", "Success2");
+//        });
+        model.loadClient(ClientUid);
 
 
         selectBarberButton.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +101,8 @@ public class ApportionmentOrder extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (selectedBarber != null) {
-                    appointmentsSpinner.setVisibility(View.VISIBLE);
+                    loadAppointmentsIntoSpinner();
+//                    appointmentsSpinner.setVisibility(View.VISIBLE);
                     selectedAppointment = (Appointment_combined_version) appointmentsSpinner.getSelectedItem();
                 }
             }
@@ -98,11 +111,12 @@ public class ApportionmentOrder extends AppCompatActivity {
         haircutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectedBarber != null) {
+                if (selectedBarber != null && selectedBarber.getAvailableAppointments() != null && !selectedBarber.getAvailableAppointments().isEmpty()) {
+                    loadHaircutsIntoSpinner();
                     // Get the selected haircut from the adapter instead of directly from the spinner
-                    haircutsSpinner.setVisibility(View.VISIBLE); // Show the haircuts spinner
-                    int selectedHaircutPosition = haircutsSpinner.getSelectedItemPosition(); // Get the position of the selected haircut
-                    if (selectedHaircutPosition != AdapterView.INVALID_POSITION) { // Check if a haircut is selected
+                    haircutsSpinner.setVisibility(View.VISIBLE);
+                    int selectedHaircutPosition = haircutsSpinner.getSelectedItemPosition();
+                    if (selectedHaircutPosition != AdapterView.INVALID_POSITION) {
                         selectedHaircutStyle = (HairCut) haircutsSpinner.getAdapter().getItem(selectedHaircutPosition);
                     }
                 }
@@ -111,9 +125,11 @@ public class ApportionmentOrder extends AppCompatActivity {
 
         //handle the submit button
         Button submitButton = findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(view -> {
-            if (selectedBarber != null && selectedAppointment != null && selectedHaircutStyle != null) {
-                // Create an appointment object and save it to the client's appointments
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedBarber != null && selectedAppointment != null && selectedHaircutStyle != null) {
+                    // Create an appointment object and save it to the client's appointments
 //                    Appointment_combined_version appointment = selectedAppointment;
 //                    appointment.setHairCut(selectedHaircutStyle);
 //                    appointment.setAvailable(false);
@@ -123,16 +139,16 @@ public class ApportionmentOrder extends AppCompatActivity {
 //                    // Save the updated client object to Firebase
 //                    UpdateClientDB(client);
 //                    UpdateBarberDB(selectedBarber);
-//                    // Navigate to the client's home page
-                model.UpdateDB(selectedAppointment);
-                goBackHome(view);
+                    model.UpdateDB(selectedAppointment);
+                    goBackHome(view);
+                }
             }
         });
     }
 
     private void loadBarbersIntoSpinner() {
         // Fetch barbers from Firebase
-        model.db.collection("Barbers")
+        db.collection("Barbers")
                 .get()
                 .addOnSuccessListener(result -> {
                     List<Barber> barberList = result.toObjects(Barber.class);
@@ -146,7 +162,6 @@ public class ApportionmentOrder extends AppCompatActivity {
                             return view;
                         }
 
-                        @SuppressLint("SetTextI18n")
                         @Override
                         public View getDropDownView(int position, View convertView, ViewGroup parent) {
                             View view = super.getDropDownView(position, convertView, parent);
@@ -163,10 +178,11 @@ public class ApportionmentOrder extends AppCompatActivity {
                     barbersSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                            // Load appointments and haircuts for the selected barber
                             selectedBarber = (Barber) barbersSpinner.getSelectedItem();
-                            loadAppointmentsIntoSpinner();
-                            loadHaircutsIntoSpinner();
+                            appointmentsSpinner.setVisibility(View.GONE);
+                            haircutsSpinner.setVisibility(View.GONE);
+
+
                         }
 
                         @Override
@@ -178,6 +194,7 @@ public class ApportionmentOrder extends AppCompatActivity {
                 .addOnFailureListener(exception -> {
                     // Handle failures
                     Log.e("FirebaseError", "Error fetching barbers from Firebase", exception);
+                    Toast.makeText(this, "Error fetching barbers from Firebase", Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -187,6 +204,7 @@ public class ApportionmentOrder extends AppCompatActivity {
 
             if (availableAppointments != null && !availableAppointments.isEmpty()) {
                 List<Appointment_combined_version> appointments = new ArrayList<>(availableAppointments.values());
+                appointmentsSpinner.setVisibility(View.VISIBLE);
 
                 ArrayAdapter<Appointment_combined_version> adapter = new ArrayAdapter<Appointment_combined_version>(this, android.R.layout.simple_spinner_item, appointments) {
                     @NonNull
@@ -224,11 +242,13 @@ public class ApportionmentOrder extends AppCompatActivity {
                     public void onNothingSelected(AdapterView<?> adapterView) {
                         // Handle when nothing is selected
                         Log.e("NoAppointmentSelected", "No appointment selected.");
+                        Toast.makeText(ApportionmentOrder.this, "No appointment selected.", Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
                 // Handle the case where there are no appointments for the selected barber
                 Toast.makeText(this, "No appointments found for the selected barber.", Toast.LENGTH_SHORT).show();
+                appointmentsSpinner.setVisibility(View.GONE);
                 Log.e("NoAppointments", "No appointments found for the selected barber.");
             }
         }
@@ -250,7 +270,6 @@ public class ApportionmentOrder extends AppCompatActivity {
                 haircutsSpinner.setAdapter(adapter);
             } else {
                 // Handle the case where there are no haircuts for the selected barber
-                Toast.makeText(this, "No haircuts found for the selected barber.", Toast.LENGTH_SHORT).show();
                 Log.e("NoHaircuts", "No haircuts found for the selected barber.");
             }
         }
@@ -258,7 +277,7 @@ public class ApportionmentOrder extends AppCompatActivity {
 
     public void goBackHome(View view) {
         Intent intent = new Intent(ApportionmentOrder.this, clientHomePage.class);
-        intent.putExtra("Uid", client.getUid());
+        intent.putExtra("Uid", model.client.getUid());
         startActivity(intent);
     }
 }

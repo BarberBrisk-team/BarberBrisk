@@ -1,6 +1,7 @@
 package com.example.barberbrisk.model;
 
 import static com.example.barberbrisk.DB.DataBase.UpdateBarberDB;
+import static com.example.barberbrisk.DB.DataBase.UpdateClientDB;
 
 import android.util.Log;
 
@@ -15,7 +16,7 @@ import java.util.HashMap;
 public class AppointmentModel {
     private ApportionmentOrder activity;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private Client client;
+    public Client client;
 
 
     public AppointmentModel(ApportionmentOrder activity) {
@@ -44,17 +45,18 @@ public class AppointmentModel {
     }
 
     public void UpdateDB(Appointment_combined_version appointment) {
-        appointment.setAvailable(false); // set the appointment to unavailable
         appointment.setHairCut(activity.selectedHaircutStyle); // set the haircut of the appointment
         client.addAppointment(appointment); // add the appointment to the client
-        db.collection("Clients").document(client.getUid()).update("appointments", client.getAppointments()); // update the client's appointments in the database
-        activity.selectedBarber.removeAvailableAppointment(appointment); // remove the appointment from the barber's available appointments
-        activity.selectedBarber.addOccupiedAppointment(appointment); // add the appointment to the barber's occupied appointments
+        activity.selectedBarber.removeAvailableAppointment(appointment);
+        activity.selectedBarber.addOccupiedAppointment(appointment);
+        db.collection("Clients").document(client.getUid()).
+                update("appointments", client.getAppointments()); // update the client's appointments in the database
         db.collection("Barbers").document(activity.selectedBarber.getUid()).
                 update("availableAppointments", activity.selectedBarber.getAvailableAppointments()); // update the barber's available appointments in the database
         db.collection("Barbers").document(activity.selectedBarber.getUid()).
                 update("occupiedAppointments", activity.selectedBarber.getOccupiedAppointments()); // update the barber's occupied appointments in the database
-
+        //update the appointment in the database
+        db.collection("Appointments").document(appointment.getAppointmentUid()).set(appointment);
     }
 
 }

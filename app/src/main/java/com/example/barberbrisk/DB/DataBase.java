@@ -54,7 +54,7 @@ public class DataBase {
     }
 
     public static void UpdateClientDB(Client client) {
-        db.collection("Client").document(client.getUid()).set(client);
+        db.collection("Clients").document(client.getUid()).set(client);
     }
    public static void DownloadBarberList(){
         db.collection("Barbers").get().addOnCompleteListener(
