@@ -64,9 +64,9 @@ public class Appointment implements Parcelable {
 
     }
 
-//    public void setTimeAndDate(Timestamp TimeAndDate) {
-//        this.TimeAndDate = TimeAndDate;
-//    }
+    public void setTimeAndDate(Timestamp TimeAndDate) {
+        this.TimeAndDate = TimeAndDate;
+    }
     public void setTimeAndDate(Date TimeAndDate) {
         this.TimeAndDate = new Timestamp(TimeAndDate.getTime());
     }

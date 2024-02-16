@@ -62,8 +62,6 @@ public class signup extends AppCompatActivity {
                 Toast.makeText(this, "One or many of your details are empty, please fill them", Toast.LENGTH_SHORT).show();
             }
             else {
-                // Perform signup logic here
-                // You can check the checkbox state to determine the type of user
                 model.registerNewUser(email, password, name, phone);
             }
         });

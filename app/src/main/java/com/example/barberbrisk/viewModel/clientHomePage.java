@@ -49,7 +49,7 @@ public class clientHomePage extends AppCompatActivity {
     }
 
     public void handelButtonOrder(View n){
-        myIntent = new Intent(clientHomePage.this, appointment_order.class);
+        myIntent = new Intent(clientHomePage.this, ApportionmentOrder.class);
         myIntent.putExtra("Uid", myObj.getUid());
         startActivity(myIntent);
     }

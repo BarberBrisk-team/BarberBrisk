@@ -12,6 +12,7 @@ import com.example.barberbrisk.viewModel.signup;
 public class SignUpModel {
     signup activity;
     AuthenticationDB authdb = new AuthenticationDB();
+
     public SignUpModel(signup activity) {
         this.activity = activity;
 
@@ -31,13 +32,13 @@ public class SignUpModel {
                     if (validatePassword(activity.additionalPasswordEditText.getText().toString())) {
                         // Log statements for debugging
                         Log.d("RegisterUser", "Barber registration successful");
-                        Barber barber = new Barber(authdb.getUID(), email, password, name, phone);
+                        Barber barber = new Barber(authdb.getUID(), name, email, phone, password);
                         DataBase.NewBarberDB(barber);
                         activity.goHomeBarber(authdb.getUID());
                     } else {
                         // Log statements for debugging
                         Log.e("RegisterUser", "Invalid additional password for barber");
-                        Toast.makeText(activity, "Invalid additional password for barber" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Invalid additional password for barber", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Log statements for debugging
