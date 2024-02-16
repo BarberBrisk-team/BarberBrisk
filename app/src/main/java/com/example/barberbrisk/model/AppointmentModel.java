@@ -1,8 +1,5 @@
 package com.example.barberbrisk.model;
 
-import static com.example.barberbrisk.DB.DataBase.UpdateBarberDB;
-import static com.example.barberbrisk.DB.DataBase.UpdateClientDB;
-
 import android.util.Log;
 
 import com.example.barberbrisk.objects.Appointment_combined_version;
@@ -44,7 +41,7 @@ public class AppointmentModel {
 
     }
 
-    public void UpdateDB(Appointment_combined_version appointment) {
+    public void UpdateDbAndObjects(Appointment_combined_version appointment) {
         appointment.setHairCut(activity.selectedHaircutStyle); // set the haircut of the appointment
         client.addAppointment(appointment); // add the appointment to the client
         activity.selectedBarber.removeAvailableAppointment(appointment);

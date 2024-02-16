@@ -1,8 +1,5 @@
 package com.example.barberbrisk.viewModel;
 
-import static com.example.barberbrisk.DB.DataBase.UpdateBarberDB;
-import static com.example.barberbrisk.DB.DataBase.UpdateClientDB;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,15 +20,12 @@ import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.AppointmentModel;
 import com.example.barberbrisk.objects.Appointment_combined_version;
 import com.example.barberbrisk.objects.Barber;
-import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.objects.HairCut;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -139,7 +133,7 @@ public class ApportionmentOrder extends AppCompatActivity {
 //                    // Save the updated client object to Firebase
 //                    UpdateClientDB(client);
 //                    UpdateBarberDB(selectedBarber);
-                    model.UpdateDB(selectedAppointment);
+                    model.UpdateDbAndObjects(selectedAppointment);
                     goBackHome(view);
                 }
             }
