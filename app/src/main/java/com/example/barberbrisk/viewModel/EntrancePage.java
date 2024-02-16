@@ -1,7 +1,6 @@
 package com.example.barberbrisk.viewModel;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
-import com.example.barberbrisk.model.RateNotificationManager;
-import com.example.barberbrisk.objects.Appointment;
 import com.google.firebase.FirebaseApp;
 //import com.example.barberbrisk.model.entranceModel;
 
@@ -25,7 +22,7 @@ public class EntrancePage extends AppCompatActivity {
         setContentView(R.layout.enterance_page);
         Button signInButton = findViewById(R.id.Sign_in_button);
         FirebaseApp.initializeApp(this);
-        DataBase.DownladBarberList();
+        DataBase.DownloadBarberList();
         DataBase.DownloadListAppoinment();
         // Set a click listener on the "Sign in" button
         signInButton.setOnClickListener(new View.OnClickListener() {

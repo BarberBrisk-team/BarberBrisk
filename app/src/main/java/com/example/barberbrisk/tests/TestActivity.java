@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.AppointmentManegerModel;
-import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 
@@ -30,21 +29,21 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        Button button = findViewById(R.id.button5);
-        Date date = new Date(2021, 6, 1);
-        Time time = new Time(12, 0, 0);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("AllClients","ok?");
-                boolean b =  AppointmentManegerModel.isAppointmentAvailable("WOU9qzIpUfbzzHTnb94PmOPw0Mu2","3tsozkk2L1HExwuNXe3A","7777",date,time);
-                Log.d("AllClients", "could create a appointment?" + String.valueOf(b));
-            }
-        });
-        Timestamp timestamp = new Timestamp(2021, 6, 1, 12, 0, 0, 0);
-        DataBase.BarberNewAppointment(new Appointment("WOU9qzIpUfbzzHTnb94PmOPw0Mu2",timestamp,true));
-        DataBase.DownloadBarberList();
-        DataBase.DownloadListAppoinment();
+//        Button button = findViewById(R.id.button5);
+//        Date date = new Date(2021, 6, 1);
+//        Time time = new Time(12, 0, 0);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("AllClients","ok?");
+//                boolean b =  AppointmentManegerModel.isAppointmentAvailable("WOU9qzIpUfbzzHTnb94PmOPw0Mu2","3tsozkk2L1HExwuNXe3A","7777",date,time);
+//                Log.d("AllClients", "could create a appointment?" + String.valueOf(b));
+//            }
+//        });
+//        Timestamp timestamp = new Timestamp(2021, 6, 1, 12, 0, 0, 0);
+//        DataBase.BarberNewAppointment(new Appointment("WOU9qzIpUfbzzHTnb94PmOPw0Mu2",timestamp,true));
+//        DataBase.DownloadBarberList();
+//        DataBase.DownloadListAppoinment();
 //
 //        DataBase.NewBarberDB(new Barber("44444333", "Barber", "avi@aff.com", "0544444444", "123456"));
 //  DataBase.GenerateBarberAppointments("333333");

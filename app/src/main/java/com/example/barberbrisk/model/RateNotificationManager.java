@@ -11,22 +11,15 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.barberbrisk.DB.DataBase;
-import com.example.barberbrisk.R;
 import com.example.barberbrisk.objects.Appointment;
-import com.example.barberbrisk.tests.TestActivity;
 import com.example.barberbrisk.viewModel.RattingPage;
 
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

@@ -1,108 +1,148 @@
 package com.example.barberbrisk.objects;
 
-import android.os.Build;
+import java.util.Date;
+import java.util.UUID;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.RequiresApi;
+import androidx.annotation.NonNull;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
-public class Appointment implements Parcelable {
-
-    private String BarbarID;
-    private Timestamp TimeAndDate;
-    private boolean available;
-
-
-
-
-    protected Appointment(Parcel in) {
-        BarbarID = in.readString();
-        TimeAndDate = new Timestamp(in.readLong());
-        available = in.readByte() != 0;
-    }
-    public Appointment(){
-
-    }
-
-    public Appointment(Appointment appointment)
-    {
-        this.BarbarID = appointment.BarbarID;
-        this.TimeAndDate = appointment.TimeAndDate;
-        this.available = appointment.available;
-    }
+public class Appointment {
+    final private String appointmentUid = UUID.randomUUID().toString(); // unique id for each appointment
+    Date TimeAndDate; // the time and date of the appointment
+    private boolean available; // is the appointment available
+    HairCut hairCut; // the kind of haircut that the appointment is for
 
     /**
+     * Constructor for the appointment
      *
-     * @param BarbarID
-     * @param TimeAndDate
-     * @param available
+     * @return the appointment
      */
-    public Appointment(String BarbarID,Timestamp TimeAndDate, boolean available) {
-        this.BarbarID = BarbarID;
-        this.TimeAndDate = TimeAndDate;
-        this.available = available;
+    public Appointment(Timestamp timeAndDate, boolean available) {
+        TimeAndDate = timeAndDate; // the time and date of the appointment
+        this.available = available; // is the appointment available
+        this.hairCut = null; // the kind of haircut that the appointment is for
+    }
+
+    public Appointment() {
 
     }
 
     /**
+     * getter for the appointmentUid
      *
-     * @param BarbarID
-     * @param TimeAndDate_TextFormat (yyyy-MM-dd HH:mm:ss)
+     * @return string of the appointmentUid
+     */
+    public String getAppointmentUid() {
+        return appointmentUid;
+    }
+
+    /**
+     * getter for the TimeAndDate
+     *
+     * @return the TimeAndDate of the appointment in Timestamp
+     */
+    public Date getTimeAndDate() {
+        return TimeAndDate;
+    }
+
+    /**
+     * setter for the TimeAndDate
+     *
+     * @param timeAndDate
+     */
+    public void setTimeAndDate(Date timeAndDate) {
+        TimeAndDate = timeAndDate;
+    }
+
+    /**
+     * getter for the available
+     *
+     * @return
+     */
+    public boolean isAvailable() {
+        return available;
+    }
+
+    /**
+     * setter for the available
+     *
      * @param available
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Appointment(String BarbarID, String TimeAndDate_TextFormat, boolean available) {
-        this.BarbarID = BarbarID;
-        this.TimeAndDate =  Timestamp.valueOf(TimeAndDate_TextFormat);;
-        this.available = available;
-
-    }
-
-    public void setTimeAndDate(Timestamp TimeAndDate) {
-        this.TimeAndDate = TimeAndDate;
-    }
-    public void setTimeAndDate(Date TimeAndDate) {
-        this.TimeAndDate = new Timestamp(TimeAndDate.getTime());
-    }
     public void setAvailable(boolean available) {
         this.available = available;
     }
 
-
-    public void setBarbarID(String Uid){this.BarbarID = Uid;}
-
-    public Timestamp getTimeAndDate() {
-        return TimeAndDate;
+    /**
+     * getter for the hair Cut
+     *
+     * @return hairCut
+     */
+    public HairCut getHairCut() {
+        return hairCut;
     }
-    public boolean getAvailable() {
-        return available;
+
+    /**
+     * setter for the hair Cut
+     *
+     * @param hairCut
+     */
+    public void setHairCut(HairCut hairCut) {
+        this.hairCut = hairCut;
     }
-    public String getBarbarID(){return BarbarID;}
+
+    /**
+     * toString method for the appointment
+     *
+     * @return
+     */
+    @NonNull
     @Override
+    public String toString() {
+        return "Appointment_combined_version{" +
+                "appointmentUid='" + appointmentUid + '\'' +
+                ", TimeAndDate=" + TimeAndDate.toString() +
+                ", available=" + available +
+                ", hairCut=" + (hairCut != null ? hairCut.toString() : "null") +
+                '}';
+    }
+
+    /**
+     * Describe the kinds of special objects contained in this Parcelable instance's marshaled representation.
+     *
+     * @param in
+     */
+    public Appointment(Parcel in) {
+        TimeAndDate = new Timestamp(in.readLong());
+        available = in.readByte() != 0;
+        hairCut = in.readParcelable(HairCut.class.getClassLoader());
+    }
+
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(TimeAndDate.getTime());
         dest.writeByte((byte) (available ? 1 : 0));
-        dest.writeString(BarbarID);
+        dest.writeParcelable(hairCut, flags);
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Appointment> CREATOR = new Creator<Appointment>() {
-        @Override
+    /**
+     * Describe the kinds of special objects contained in this Parcelable instance's marshaled representation.
+     *
+     * @return a bitmask indicating the set of special object types marshaled by this Parcelable object instance.
+     */
+    public static final Parcelable.Creator<Appointment> CREATOR = new Parcelable.Creator<Appointment>() {
         public Appointment createFromParcel(Parcel in) {
             return new Appointment(in);
         }
 
-        @Override
+        /**
+         * Create a new array of the Parcelable class.
+         * @param size Size of the array.
+         * @return
+         */
         public Appointment[] newArray(int size) {
             return new Appointment[size];
         }

@@ -18,8 +18,8 @@ public class Barber extends User {
     
 
 
-    private HashMap<String, Appointment_combined_version> availableAppointments = new HashMap<>();
-    private HashMap<String, Appointment_combined_version> occupiedAppointments = new HashMap<>();
+    private HashMap<String, Appointment> availableAppointments = new HashMap<>();
+    private HashMap<String, Appointment> occupiedAppointments = new HashMap<>();
 
     //    Constructor for barber don't have a list haircuts to upload
     public Barber(String uid, String name, String email, String phone, String password) {
@@ -27,9 +27,10 @@ public class Barber extends User {
         this.rate = 5.0;
         this.availableAppointments = new HashMap<>();
         //add some appointments
-        addAvailableAppointment(new Appointment_combined_version( Timestamp.valueOf("2024-05-01 10:00:00"), true));
-        addAvailableAppointment(new Appointment_combined_version( Timestamp.valueOf("2024-05-01 11:00:00"), true));
-        addAvailableAppointment(new Appointment_combined_version( Timestamp.valueOf("2024-05-01 12:00:00"), true));
+        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 10:00:00"), true));
+        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 11:00:00"), true));
+        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 12:00:00"), true));
+        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-02-16 12:00:00"), true));
         this.occupiedAppointments = new HashMap<>();
         //add default list of haircuts
         this.haircuts = new ArrayList<HairCut>();
@@ -57,13 +58,13 @@ public class Barber extends User {
 
     }
 
-    public void addAvailableAppointment(Appointment_combined_version appointment) {
+    public void addAvailableAppointment(Appointment appointment) {
         if (appointment.isAvailable()) {
             availableAppointments.put(appointment.getAppointmentUid(), appointment);
         }
     }
 
-    public void removeAvailableAppointment(Appointment_combined_version appointment) {
+    public void removeAvailableAppointment(Appointment appointment) {
         availableAppointments.remove(appointment.getAppointmentUid());
     }
 
@@ -71,13 +72,13 @@ public class Barber extends User {
         availableAppointments.remove(appointmentUid);
     }
 
-    public void addOccupiedAppointment(Appointment_combined_version appointment) {
+    public void addOccupiedAppointment(Appointment appointment) {
         if (!appointment.isAvailable()) {
             occupiedAppointments.put(appointment.getAppointmentUid(), appointment);
         }
     }
 
-    public void removeOccupiedAppointment(Appointment_combined_version appointment) {
+    public void removeOccupiedAppointment(Appointment appointment) {
         occupiedAppointments.remove(appointment.getAppointmentUid());
     }
 
@@ -85,11 +86,11 @@ public class Barber extends User {
         occupiedAppointments.remove(appointmentUid);
     }
 
-    public HashMap<String, Appointment_combined_version> getAvailableAppointments() {
+    public HashMap<String, Appointment> getAvailableAppointments() {
         return availableAppointments;
     }
 
-    public HashMap<String, Appointment_combined_version> getOccupiedAppointments() {
+    public HashMap<String, Appointment> getOccupiedAppointments() {
         return occupiedAppointments;
     }
 

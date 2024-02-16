@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.AppointmentModel;
-import com.example.barberbrisk.objects.Appointment_combined_version;
+import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.HairCut;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,7 +38,7 @@ public class ApportionmentOrder extends AppCompatActivity {
     private Button haircutButton;
 
     public Barber selectedBarber;
-    private Appointment_combined_version selectedAppointment;
+    private Appointment selectedAppointment;
     public HairCut selectedHaircutStyle;
     private AppointmentModel model;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -46,7 +46,7 @@ public class ApportionmentOrder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appionment_oredr);
+        setContentView(R.layout.activity_appionment_order);
         this.model = new AppointmentModel(this);
         // Initialize the spinners and buttons
         barbersSpinner = findViewById(R.id.barbersSpinner);
@@ -97,7 +97,7 @@ public class ApportionmentOrder extends AppCompatActivity {
                 if (selectedBarber != null) {
                     loadAppointmentsIntoSpinner();
 //                    appointmentsSpinner.setVisibility(View.VISIBLE);
-                    selectedAppointment = (Appointment_combined_version) appointmentsSpinner.getSelectedItem();
+                    selectedAppointment = (Appointment) appointmentsSpinner.getSelectedItem();
                 }
             }
         });
@@ -194,13 +194,13 @@ public class ApportionmentOrder extends AppCompatActivity {
 
     private void loadAppointmentsIntoSpinner() {
         if (selectedBarber != null) {
-            Map<String, Appointment_combined_version> availableAppointments = selectedBarber.getAvailableAppointments();
+            Map<String, Appointment> availableAppointments = selectedBarber.getAvailableAppointments();
 
             if (availableAppointments != null && !availableAppointments.isEmpty()) {
-                List<Appointment_combined_version> appointments = new ArrayList<>(availableAppointments.values());
+                List<Appointment> appointments = new ArrayList<>(availableAppointments.values());
                 appointmentsSpinner.setVisibility(View.VISIBLE);
 
-                ArrayAdapter<Appointment_combined_version> adapter = new ArrayAdapter<Appointment_combined_version>(this, android.R.layout.simple_spinner_item, appointments) {
+                ArrayAdapter<Appointment> adapter = new ArrayAdapter<Appointment>(this, android.R.layout.simple_spinner_item, appointments) {
                     @NonNull
                     @Override
                     public View getView(int position, View convertView, ViewGroup parent) {
@@ -229,7 +229,7 @@ public class ApportionmentOrder extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                         // Handle when an appointment is selected
-                        selectedAppointment = (Appointment_combined_version) appointmentsSpinner.getSelectedItem();
+                        selectedAppointment = (Appointment) appointmentsSpinner.getSelectedItem();
                     }
 
                     @Override

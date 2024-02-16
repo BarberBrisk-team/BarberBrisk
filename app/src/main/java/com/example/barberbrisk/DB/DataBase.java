@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataBase {
-    static Map<String ,Appointment> AppointmentList  = new HashMap<>();
+    static Map<String , Appointment> AppointmentList  = new HashMap<>();
 
     static Map<String ,Barber> Baraberlist  = new HashMap<>();
 
@@ -78,25 +78,7 @@ public class DataBase {
     public void setAppointmentList(Map<String, Appointment> appointmentList) {
         AppointmentList = appointmentList;
     }
-    /**
-     * This method is used to generate a number of appointments for a barber.
-     * @param BarberID is the ID of the barber for whom the appointments are to be generated.
-     */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void GenerateBarberAppointments(String BarberID) {
 
-        int duration_date = 3;
-        Timestamp current = new Timestamp(new Date().getTime());
-
-        for (int i = 0; i < duration_date; i++)
-        {
-            Appointment appointment = new Appointment(BarberID, current, true);
-            BarberNewAppointment(appointment);
-            current.setTime(current.getTime() + 86400000);
-            Log.d("BarberNewAppointments","BarberNewAppointments");
-        }
-
-    }
 
     public static void DownloadListAppoinment()
     {

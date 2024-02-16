@@ -22,19 +22,19 @@ public class AppointmentManegerModel {
     /**
      * This method is used to filter the avilible appointments by the barber ID.
      */
-    public static Map<String,Appointment> filterAvilibleAppointmentsByBarberID(String barberID) {
-        Map<String ,Appointment> avilibleAppointments = new HashMap<>();
-        if(DataBase.getAppointmentList() == null){
-            DataBase.DownloadListAppoinment();
-        }
-        Map<String, Appointment> AppointmentList = DataBase.getAppointmentList();
-        AppointmentList.forEach((k,v)->{
-            if(v.getBarbarID().equals(barberID) && v.getAvailable() == true){
-                avilibleAppointments.put(k,v);
-            }
-        });
-        return avilibleAppointments;
-    }
+//    public static Map<String, Appointment> filterAvilibleAppointmentsByBarberID(String barberID) {
+//        Map<String ,Appointment> avilibleAppointments = new HashMap<>();
+//        if(DataBase.getAppointmentList() == null){
+//            DataBase.DownloadListAppoinment();
+//        }
+//        Map<String, Appointment> AppointmentList = DataBase.getAppointmentList();
+//        AppointmentList.forEach((k,v)->{
+//            if(v.getBarbarID().equals(barberID) && v.getAvailable() == true){
+//                avilibleAppointments.put(k,v);
+//            }
+//        });
+//        return avilibleAppointments;
+//    }
 
 
     /**
@@ -47,19 +47,19 @@ public class AppointmentManegerModel {
     /*
         get the date and time and check and the barber id and check if the appointment is available
      */
-    public static boolean isAppointmentAvailable(String barberID, String ClientID, String HairstyleID,
-                                                 Date date, Time time) {
-          Map<String, Appointment> AppointmentList = filterAvilibleAppointmentsByBarberID(barberID);
-          for(String key : AppointmentList.keySet()){
-              Appointment ap = AppointmentList.get(key);
-              date.setTime(date.getTime() + time.getTime());
-              if(ap.getAvailable() == true && ap.getTimeAndDate().equals(date)){
-                  setClientAppointment(new ClientAppointment(ClientID,barberID,HairstyleID));
-                  return true;
-              }
-          }
-        return false;
-    }
+//    public static boolean isAppointmentAvailable(String barberID, String ClientID, String HairstyleID,
+//                                                 Date date, Time time) {
+//          Map<String, Appointment> AppointmentList = filterAvilibleAppointmentsByBarberID(barberID);
+//          for(String key : AppointmentList.keySet()){
+//              Appointment ap = AppointmentList.get(key);
+//              date.setTime(date.getTime() + time.getTime());
+//              if(ap.getAvailable() == true && ap.getTimeAndDate().equals(date)){
+//                  setClientAppointment(new ClientAppointment(ClientID,barberID,HairstyleID));
+//                  return true;
+//              }
+//          }
+//        return false;
+//    }
     /**
      * This method is used to set an appointment for a client.
      */

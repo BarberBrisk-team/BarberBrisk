@@ -5,7 +5,7 @@ import android.os.Parcel;
 import java.util.HashMap;
 
 public class Client extends User {
-    HashMap<String, Appointment_combined_version> appointments = new HashMap<>();
+    HashMap<String, Appointment> appointments = new HashMap<>();
 
     public Client(Parcel in) {
         super(in);
@@ -38,7 +38,7 @@ public class Client extends User {
      * Get appointments of the client
      * @return
      */
-    public HashMap<String, Appointment_combined_version> getAppointments() {
+    public HashMap<String, Appointment> getAppointments() {
         return appointments;
     }
 
@@ -46,7 +46,7 @@ public class Client extends User {
      * Set appointments of the client
      * @param appointments
      */
-    public void setAppointments(HashMap<String, Appointment_combined_version> appointments) {
+    public void setAppointments(HashMap<String, Appointment> appointments) {
         this.appointments = appointments;
     }
 
@@ -54,7 +54,7 @@ public class Client extends User {
      * Add appointment to the client
      * @param appointment
      */
-    public void addAppointment(Appointment_combined_version appointment) {
+    public void addAppointment(Appointment appointment) {
         appointment.setAvailable(false);
         appointments.put(appointment.getAppointmentUid(), appointment);
     }
