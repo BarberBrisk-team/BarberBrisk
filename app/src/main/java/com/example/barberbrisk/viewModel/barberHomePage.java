@@ -14,6 +14,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+import java.util.Objects;
 
 public class barberHomePage extends AppCompatActivity {
     private Barber myObj;
@@ -30,27 +31,35 @@ public class barberHomePage extends AppCompatActivity {
         myIntent = getIntent();
 //      we need to fill all the object fields by the DB
         String BarberUid = myIntent.getStringExtra("Uid");
-        DocumentReference docRef = db.collection("Barbers").document(BarberUid);
-        docRef.get().addOnSuccessListener(documentSnapshot -> {
-            Log.d("BarberSuccess", "Success");
-            String email = (String) documentSnapshot.get("email");
-            String name = (String) documentSnapshot.get("name");
-            String password = (String) documentSnapshot.get("password");
-            String phone = (String) documentSnapshot.get("phone");
-            Double rate = (Double) documentSnapshot.get("rate");
-            List<HairCut> haircuts = (List<HairCut>) documentSnapshot.get("haircuts");
-            myObj = new Barber(BarberUid, name, email, phone, password, rate , haircuts);
-            Log.d("BarberSuccess", "Success2");
-        });
+        if(BarberUid != null){
+            DocumentReference docRef = db.collection("Barbers").document(Objects.requireNonNull(BarberUid));
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                Log.d("BarberSuccess", "Success");
+                String email = (String) documentSnapshot.get("email");
+                String name = (String) documentSnapshot.get("name");
+                String password = (String) documentSnapshot.get("password");
+                String phone = (String) documentSnapshot.get("phone");
+                Double rate = (Double) documentSnapshot.get("rate");
+                List<HairCut> haircuts = null;
+//                List<HairCut> haircuts = (List<HairCut>) documentSnapshot.get("haircuts");
+                myObj = new Barber(BarberUid, name, email, phone, password, rate , haircuts);
+                Log.d("BarberSuccess", "Success2");
+            });
+        }
     }
     public void handelButtonProfile(View v){
-        myIntent.putExtra("myobj",myObj);
-        startActivity(new Intent(barberHomePage.this, barBerProfilePage.class));
+        myIntent = new Intent(barberHomePage.this, barBerProfilePage.class);
+        if(this.myObj != null){
+            myIntent.putExtra("BarberObject", this.myObj);
+            startActivity(myIntent);
+        }
     }
 
-    public void handelButtonOrder(View n){
-        myIntent.putExtra("myobj",myObj);
-//        startActivity(new Intent(barberHomePage.this, barberHomePage.class));
+    public void handelButtonAddAppointment(View v){
+        myIntent = new Intent(barberHomePage.this, addAppointmentBarber.class);
+        if(this.myObj != null){
+            myIntent.putExtra("BarberObject", this.myObj);
+            startActivity(myIntent);
+        }
     }
-
 }
