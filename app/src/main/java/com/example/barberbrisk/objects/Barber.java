@@ -2,71 +2,96 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import java.util.List;
+//add default list of haircuts
+
 
 public class Barber extends User {
-    private Double rate;
-    List<HairCut> haircuts = new ArrayList<>();
-    private String password;
 
-    private HashMap<String, Appointment_combined_version> AvailableAppointments = new HashMap<>();
-    private HashMap<String, Appointment_combined_version> OccupiedAppointments = new HashMap<>();
+    private Double rate;
+    List<HairCut> haircuts = new ArrayList<HairCut>();
+    
+
+
+    private HashMap<String, Appointment> availableAppointments = new HashMap<>();
+    private HashMap<String, Appointment> occupiedAppointments = new HashMap<>();
 
     //    Constructor for barber don't have a list haircuts to upload
     public Barber(String uid, String name, String email, String phone, String password) {
-        super(uid,name, email, phone , password);
+        super(uid, name, email, phone, password);
         this.rate = 5.0;
-        this.AvailableAppointments = new HashMap<>();
-        this.OccupiedAppointments = new HashMap<>();
+        this.availableAppointments = new HashMap<>();
+        //add some appointments
+        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 10:00:00"), true));
+        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 11:00:00"), true));
+        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 12:00:00"), true));
+        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-02-16 12:00:00"), true));
+        this.occupiedAppointments = new HashMap<>();
+        //add default list of haircuts
+        this.haircuts = new ArrayList<HairCut>();
+        haircuts.add(new HairCut(10.0, HairCut.HaircutStyle.BUZZ_CUT));
+        haircuts.add(new HairCut(15.0, HairCut.HaircutStyle.PIXIE_CUT));
+        haircuts.add(new HairCut(20.0, HairCut.HaircutStyle.MOHAWK));
     }
+    //constructor for barber that have a list haircuts to upload
 
-
-    public Barber(String Uid, String name, String email, String phone, String password, Double rate, List<HairCut> haircuts) {
-        super(Uid, name, email, phone, password);
+    public Barber(String uid, String name, String email, String phone, Double rate, List<HairCut> haircuts ) {
+        super(name, email, phone);
         this.rate = rate;
         this.haircuts = haircuts;
     }
+
 
     public Barber() {
 
     }
 
-    public void addAvailableAppointment(Appointment_combined_version appointment) {
+    public Barber(String barberUid, String name, String email, String phone, String password, Double rate, List<HairCut> haircuts ) {
+        super(barberUid, name, email, phone, password);
+        this.rate = rate;
+        this.haircuts = haircuts;
+
+    }
+
+    public void addAvailableAppointment(Appointment appointment) {
         if (appointment.isAvailable()) {
-            AvailableAppointments.put(appointment.getAppointmentUid(), appointment);
+            availableAppointments.put(appointment.getAppointmentUid(), appointment);
         }
     }
 
-    public void removeAvailableAppointment(Appointment_combined_version appointment) {
-        AvailableAppointments.remove(appointment.getAppointmentUid());
+    public void removeAvailableAppointment(Appointment appointment) {
+        availableAppointments.remove(appointment.getAppointmentUid());
     }
 
     public void removeAvailableAppointment(String appointmentUid) {
-        AvailableAppointments.remove(appointmentUid);
+        availableAppointments.remove(appointmentUid);
     }
 
-    public void addOccupiedAppointment(Appointment_combined_version appointment) {
+    public void addOccupiedAppointment(Appointment appointment) {
         if (!appointment.isAvailable()) {
-            OccupiedAppointments.put(appointment.getAppointmentUid(), appointment);
+            occupiedAppointments.put(appointment.getAppointmentUid(), appointment);
         }
     }
 
-    public void removeOccupiedAppointment(Appointment_combined_version appointment) {
-        OccupiedAppointments.remove(appointment.getAppointmentUid());
+    public void removeOccupiedAppointment(Appointment appointment) {
+        occupiedAppointments.remove(appointment.getAppointmentUid());
     }
 
     public void removeOccupiedAppointment(String appointmentUid) {
-        OccupiedAppointments.remove(appointmentUid);
+        occupiedAppointments.remove(appointmentUid);
     }
 
-    public HashMap<String, Appointment_combined_version> getAvailableAppointments() {
-        return AvailableAppointments;
+    public HashMap<String, Appointment> getAvailableAppointments() {
+        return availableAppointments;
     }
 
-    public HashMap<String, Appointment_combined_version> getOccupiedAppointments() {
-        return OccupiedAppointments;
+    public HashMap<String, Appointment> getOccupiedAppointments() {
+        return occupiedAppointments;
     }
 
 
@@ -118,6 +143,7 @@ public class Barber extends User {
         }
     };
 
+
     public List<HairCut> getHairCutList() {
         return haircuts;
     }
@@ -133,5 +159,6 @@ public class Barber extends User {
 ////                ", haircuts=" + haircuts +
 //                '}';
 //    }
+
 }
 

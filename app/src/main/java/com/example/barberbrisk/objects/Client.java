@@ -5,7 +5,7 @@ import android.os.Parcel;
 import java.util.HashMap;
 
 public class Client extends User {
-    HashMap<String, Appointment_combined_version> Appointments = new HashMap<>();
+    HashMap<String, Appointment> appointments = new HashMap<>();
 
     public Client(Parcel in) {
         super(in);
@@ -13,8 +13,9 @@ public class Client extends User {
 
     public Client(String uid, String name, String email, String phone, String password) {
         super(uid, name, email, phone, password);
-        this.Appointments = new HashMap<>();
+        this.appointments = new HashMap<>();
     }
+
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -37,24 +38,24 @@ public class Client extends User {
      * Get appointments of the client
      * @return
      */
-    public HashMap<String, Appointment_combined_version> getAppointments() {
-        return Appointments;
+    public HashMap<String, Appointment> getAppointments() {
+        return appointments;
     }
 
     /**
      * Set appointments of the client
      * @param appointments
      */
-    public void setAppointments(HashMap<String, Appointment_combined_version> appointments) {
-        Appointments = appointments;
+    public void setAppointments(HashMap<String, Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     /**
      * Add appointment to the client
      * @param appointment
      */
-    public void addAppointment(Appointment_combined_version appointment) {
+    public void addAppointment(Appointment appointment) {
         appointment.setAvailable(false);
-        Appointments.put(appointment.getAppointmentUid(), appointment);
+        appointments.put(appointment.getAppointmentUid(), appointment);
     }
 }

@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataBase {
-    static Map<String ,Appointment> AppointmentList  = new HashMap<>();
+    static Map<String , Appointment> AppointmentList  = new HashMap<>();
 
     static Map<String ,Barber> Baraberlist  = new HashMap<>();
 
@@ -43,16 +43,20 @@ public class DataBase {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public static void NewBarberDB(Barber barber) {
-        db.collection("Barbers").document(barber.getUid()).set(barber);
+        UpdateBarberDB(barber);
     }
     public static void NewClientDB(Client client){
-        db.collection("Client").document(client.getUid()).set(client);
+        UpdateClientDB(client);
     }
 
     public static void UpdateBarberDB(Barber barber) {
         db.collection("Barbers").document(barber.getUid()).set(barber);
     }
-   public static void DownladBarberList(){
+
+    public static void UpdateClientDB(Client client) {
+        db.collection("Clients").document(client.getUid()).set(client);
+    }
+   public static void DownloadBarberList(){
         db.collection("Barbers").get().addOnCompleteListener(
                 task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
@@ -74,25 +78,7 @@ public class DataBase {
     public void setAppointmentList(Map<String, Appointment> appointmentList) {
         AppointmentList = appointmentList;
     }
-    /**
-     * This method is used to generate a number of appointments for a barber.
-     * @param BarberID is the ID of the barber for whom the appointments are to be generated.
-     */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void GenerateBarberAppointments(String BarberID) {
 
-        int duration_date = 3;
-        Timestamp current = new Timestamp(new Date().getTime());
-
-        for (int i = 0; i < duration_date; i++)
-        {
-            Appointment appointment = new Appointment(BarberID, current, true);
-            BarberNewAppointment(appointment);
-            current.setTime(current.getTime() + 86400000);
-            Log.d("BarberNewAppointments","BarberNewAppointments");
-        }
-
-    }
 
     public static void DownloadListAppoinment()
     {
@@ -103,7 +89,7 @@ public class DataBase {
                         for (DocumentSnapshot documentSnapshot: doc.getDocuments()) {
                             AppointmentList.put(documentSnapshot.getId(),documentSnapshot.toObject(Appointment.class));
                         }
-                        Log.d("DownloadListAppoinment", AppointmentList.toString());
+                        Log.d("DownloadListAppoinment", "download "+AppointmentList.size() + " appointments");
                     } else
                         Log.d(TAG, "Error getting documents: ", task.getException());
                 }
@@ -137,15 +123,15 @@ public class DataBase {
     /**
      * This method is used for a customer to rate a barber.
      * @param Rating is the rating given by the customer.
-     * @param BarberPhoneNumber is the phone number of the barber.
-     * @param CustomerPhoneNumber is the phone number of the customer.
+     * @param BarberID is the phone number of the barber.
+     * @param ClientID is the phone number of the customer.
      */
-    public static void CustomerRating(double Rating, String BarberPhoneNumber, String CustomerPhoneNumber) {
+    public static void setCustomerRatingDB(double Rating, String BarberID, String ClientID) {
         // Create a new document with a generated ID
         Map<String, Object> appointment = new HashMap<>();
         appointment.put("Rating", Rating);
-        appointment.put("BarberPhoneNumber", BarberPhoneNumber);
-        appointment.put("CustomerPhoneNumber", CustomerPhoneNumber);
+        appointment.put("BarberID", BarberID);
+        appointment.put("ClientID", ClientID);
 
         db.collection("Customer_Rating")
                 .add(appointment)
