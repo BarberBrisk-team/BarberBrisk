@@ -10,9 +10,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.AddApoBarberModel;
+
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.text.ParseException;
@@ -38,36 +41,26 @@ public class AddAppointmentBarber extends AppCompatActivity {
         if (barberUid != null) {
             model.getBarber(barberUid); // get the barber from the DB
         }
-        buttonSelectDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePicker(view);
-            } // show the date picker
-        });
+        // show the date picker
+        buttonSelectDate.setOnClickListener(this::showDatePicker);
 
-        buttonSelectTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showTimePicker(view);
-            }
-        });
+        buttonSelectTime.setOnClickListener(this::showTimePicker);
 
         Button submitButton = findViewById(R.id.submitButtonAppointmentBarber);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Date selectedDateTime = createSelectedDateTime();
-                if (selectedDateTime != null) {
-                    model.addAppointment(selectedDateTime); // add the appointment to the barber and update the DB
-                    Toast.makeText(AddAppointmentBarber.this, "Appointment added successfully", Toast.LENGTH_SHORT).show();
-                    // Go back to the previous activity
-                    finish();
-                }
+        submitButton.setOnClickListener(view -> {
+            Date selectedDateTime = createSelectedDateTime();
+            if (selectedDateTime != null) {
+                model.addAppointment(selectedDateTime); // add the appointment to the barber and update the DB
+                Toast.makeText(AddAppointmentBarber.this, "Appointment added successfully", Toast.LENGTH_SHORT).show();
+                // Go back to the previous activity
+                finish();
             }
         });
     }
+
     /**
      * Show the date picker
+     *
      * @param view
      */
 
@@ -95,6 +88,7 @@ public class AddAppointmentBarber extends AppCompatActivity {
 
     /**
      * Show the time picker
+     *
      * @param view
      */
     public void showTimePicker(View view) {
@@ -119,6 +113,7 @@ public class AddAppointmentBarber extends AppCompatActivity {
 
     /**
      * Create a timestamp from the selected date and time
+     *
      * @return
      */
     private Timestamp createSelectedDateTime() {
