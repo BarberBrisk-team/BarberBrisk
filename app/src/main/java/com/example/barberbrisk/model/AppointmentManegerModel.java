@@ -5,11 +5,8 @@ import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.ClientAppointment;
 import com.example.barberbrisk.objects.HairCut;
 
-import java.sql.Time;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 /**
  * This class is used to manage the appointments.
@@ -41,7 +38,7 @@ public class AppointmentManegerModel {
      * This method is used to filter the hairstyle for the Barber hairstyle list.
      */
     public static List<HairCut> filterHairstyleByBarberID(String barberID) {
-        return DataBase.getBaraberlist().get(barberID).getHairCutList();
+        return Objects.requireNonNull(DataBase.getBaraberlist().get(barberID)).getHaircuts();
     }
 
     /*

@@ -18,9 +18,13 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.viewModel.RattingPage;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -103,25 +107,42 @@ private void sendRateNotification(Context context, String barberID, String clien
     public void scheduleNotification(Context context, String barberID, String clientID, Appointment appointment) {
         int duration_after_appointment = 1; // in minutes
 
-       Log.d("RateNotificationManager", "Scheduling notification for " + appointment.getTimeAndDate().toString());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        //Todo: get the date and time from the appointment
-        String dateTimeStr =appointment.getTimeAndDate().toString(); //"2024-02-15 19:24";//appointment.getTimeAndDate().toString();
-        dateTimeStr = dateTimeStr.substring(0, 16);
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
-        LocalDateTime now = LocalDateTime.now();
-        if (dateTime.isBefore(now)) {
-            Log.e("RateNotificationManager", "Given time is in the past. Cannot schedule notification.");
-            return;
+//       Log.d("RateNotificationManager", "Scheduling notification for " + appointment.getTimeAndDate());
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        //Todo: get the date and time from the appointment
+//        String dateTimeStr =appointment.getTimeAndDate().toString();
+//        Log.d("RateNotificationManager", "Scheduling notification for " + dateTimeStr);
+//        dateTimeStr = dateTimeStr.substring(0, 16);
+//        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
+//        LocalDateTime now = LocalDateTime.now();
+        String oldFormat = "EEE MMM dd HH:mm:ss zzz yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(oldFormat);
+
+        String oldDateString = appointment.getTimeAndDate().toString();
+        try {
+            Date date = sdf.parse(oldDateString);
+            Instant dateTime = date.toInstant();
+//            Instant dateTime = Instant.parse(appointment.getTimeAndDate().toString());
+            Instant now = Instant.now();
+
+
+            if (dateTime.isBefore(now)) {
+                Log.e("RateNotificationManager", "Given time is in the past. Cannot schedule notification.");
+                return;
+            }
+
+//        dateTime = dateTime.plusMinutes(duration_after_appointment);
+
+            long delay = Duration.between(now, dateTime).toMillis();
+            long diffInMilli = ChronoUnit.MILLIS.between(now, dateTime);
+
+            ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+            scheduler.schedule(() -> {
+                sendRateNotification(context, barberID, clientID);
+            }, diffInMilli, TimeUnit.MILLISECONDS);
         }
-
-        dateTime = dateTime.plusMinutes(duration_after_appointment);
-
-        long delay = Duration.between(now, dateTime).toMillis();
-
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.schedule(() -> {
-            sendRateNotification(context, barberID, clientID);
-        }, delay, TimeUnit.MILLISECONDS);
+        catch (Exception e){
+            Log.e("RateNotificationManager", "Error in parsing date");
+        }
     }
 }

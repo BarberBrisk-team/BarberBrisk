@@ -9,91 +9,128 @@
 
     <ImageView
         android:id="@+id/gentleman_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="415dp"
+        android:layout_height="276dp"
         android:src="@drawable/gentlemen_home_logo"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/under_logo"
-        android:layout_width="480dp"
-        android:layout_height="408dp"
+        android:layout_width="482dp"
+        android:layout_height="476dp"
         android:src="@drawable/under_logo_home_page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gentleman_image" />
 
-    <Button
-        android:id="@+id/buttonBarberRate"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+    <TextView
+        android:id="@+id/buttonBarberRating"
         android:layout_width="215dp"
         android:layout_height="52dp"
-        android:layout_marginTop="80dp"
-        android:clickable="false"
-        android:text="Rate Barber"
+        android:layout_marginTop="16dp"
+        android:text="Barber Rating"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonPhoneBarber"
-        tools:ignore="NotSibling" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="buttonHairCutsBarber"/>
 
-    <Button
-        android:id="@+id/buttonNameBarber"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+    <TextView
+        android:id="@+id/buttonAvailableAppointments"
         android:layout_width="215dp"
         android:layout_height="52dp"
-        android:layout_marginTop="268dp"
-        android:layout_marginBottom="8dp"
-        android:allowUndo="false"
-        android:autoText="false"
-        android:clickable="false"
+        android:layout_marginTop="16dp"
+        android:text="Rate Barber"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_corners"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBarberRating" />
+
+    <TextView
+        android:id="@+id/buttonOccupiedAppointments"
+        android:layout_width="215dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
         android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEmailBarber"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAvailableAppointments" />
 
-    <Button
-        android:id="@+id/buttonEmailBarber"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+    <TextView
+        android:id="@+id/buttonHairCutsBarber"
         android:layout_width="215dp"
         android:layout_height="52dp"
-        android:clickable="false"
-        android:text="Email"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPhoneBarber" />
 
-    <Button
+    <TextView
+        android:id="@+id/buttonNameBarber"
+        android:layout_width="215dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_corners"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/buttonPhoneBarber"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
         android:layout_width="215dp"
         android:layout_height="52dp"
-        android:layout_marginTop="32dp"
-        android:clickable="false"
+        android:layout_marginTop="16dp"
         android:text="Phone"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEmailBarber" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonNameBarber" />
 
-    <ImageButton
-        android:id="@+id/arrowBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="back view"
-        android:onClick="arrowBackButton"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/buttonEmailBarber"
+        android:layout_width="207dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="536dp"
+        android:background="@drawable/rounded_corners"
+        android:text="Button"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/arrow_back" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPhoneBarber" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
