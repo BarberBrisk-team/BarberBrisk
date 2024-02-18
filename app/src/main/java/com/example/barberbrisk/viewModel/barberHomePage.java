@@ -49,17 +49,13 @@ public class barberHomePage extends AppCompatActivity {
     }
     public void handelButtonProfile(View v){
         myIntent = new Intent(barberHomePage.this, barBerProfilePage.class);
-        if(this.myObj != null){
-            myIntent.putExtra("BarberObject", this.myObj);
-            startActivity(myIntent);
-        }
+        myIntent.putExtra("Uid", myObj.getUid());
+        startActivity(myIntent);
     }
 
     public void handelButtonAddAppointment(View v){
         myIntent = new Intent(barberHomePage.this, addAppointmentBarber.class);
-        if(this.myObj != null){
-            myIntent.putExtra("BarberObject", this.myObj);
-            startActivity(myIntent);
-        }
+        myIntent.putExtra("Uid", myObj.getUid());
+        startActivity(myIntent);
     }
 }

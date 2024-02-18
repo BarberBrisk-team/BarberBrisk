@@ -2,11 +2,8 @@ package com.example.barberbrisk.objects;
 
 import android.os.Parcel;
 
-
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.List;
 //add default list of haircuts
 
@@ -14,7 +11,7 @@ import java.util.List;
 public class Barber extends User {
 
     private Double rate;
-    List<HairCut> haircuts = new ArrayList<HairCut>();
+    List<HairCut> haircuts = new ArrayList<>();
     
 
 
@@ -26,17 +23,10 @@ public class Barber extends User {
         super(uid, name, email, phone, password);
         this.rate = 5.0;
         this.availableAppointments = new HashMap<>();
-        //add some appointments
-        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 10:00:00"), true));
-        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 11:00:00"), true));
-        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-05-01 12:00:00"), true));
-        addAvailableAppointment(new Appointment( Timestamp.valueOf("2024-02-16 12:00:00"), true));
         this.occupiedAppointments = new HashMap<>();
         //add default list of haircuts
-        this.haircuts = new ArrayList<HairCut>();
-        haircuts.add(new HairCut(10.0, HairCut.HaircutStyle.BUZZ_CUT));
-        haircuts.add(new HairCut(15.0, HairCut.HaircutStyle.PIXIE_CUT));
-        haircuts.add(new HairCut(20.0, HairCut.HaircutStyle.MOHAWK));
+        this.haircuts = new ArrayList<>();
+
     }
     //constructor for barber that have a list haircuts to upload
 
