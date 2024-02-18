@@ -54,6 +54,14 @@ public class Barber extends User {
         }
     }
 
+    public void setAvailableAppointments(HashMap<String, Appointment> availableAppointments) {
+        this.availableAppointments = availableAppointments;
+    }
+
+    public void setOccupiedAppointments(HashMap<String, Appointment> occupiedAppointments) {
+        this.occupiedAppointments = occupiedAppointments;
+    }
+
     public void removeAvailableAppointment(Appointment appointment) {
         availableAppointments.remove(appointment.getAppointmentUid());
     }
