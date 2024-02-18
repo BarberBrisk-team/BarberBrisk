@@ -22,6 +22,7 @@ public class clientProfilePage extends AppCompatActivity {
     public clientProfilePage() {
         db = FirebaseFirestore.getInstance();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,20 +47,19 @@ public class clientProfilePage extends AppCompatActivity {
             myClient = new Client(ClientUid, name, email, phone, password);
             Log.d("ClientSuccess", "Success2" + myClient.getName());
 
-
-//        set data on the activity
-        Button b1 = findViewById(R.id.buttonName);
-        Button b2 = findViewById(R.id.buttonEmail);
-        Button b3 = findViewById(R.id.buttonPhone);
-//        Button b4 = (Button)findViewById(R.id.buttonAppointHist);
-        b1.setText(myClient.getName());
-        b2.setText(myClient.getEmail());
-        b3.setText(myClient.getPhone());
+            //  set data on the activity
+            Button b1 = findViewById(R.id.buttonName);
+            Button b2 = findViewById(R.id.buttonEmail);
+            Button b3 = findViewById(R.id.buttonPhone);
+//          Button b4 = (Button)findViewById(R.id.buttonAppointHist);
+            b1.setText(myClient.getName());
+            b2.setText(myClient.getEmail());
+            b3.setText(myClient.getPhone());
 //        b4.setText(myClient.getAppointments().toString());
         });
     }
 
-    public void arrowBackButton(View v){
+    public void arrowBackButton(View v) {
         Intent i = new Intent(this, clientHomePage.class);
         startActivity(i);
     }
