@@ -4,17 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
+import com.example.barberbrisk.objects.HairCut;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class barBerProfilePage extends AppCompatActivity {
@@ -50,20 +52,24 @@ public class barBerProfilePage extends AppCompatActivity {
                 barber.setAvailableAppointments((HashMap<String, Appointment>) documentSnapshot.get("availableAppointments"));
             if (documentSnapshot.get("occupiedAppointments") != null)
                 barber.setOccupiedAppointments((HashMap<String, Appointment>) documentSnapshot.get("occupiedAppointments"));
-            
+            if (documentSnapshot.get("haircuts") != null)
+                barber.setHaircuts((List<HairCut>) documentSnapshot.get("haircuts"));
+
             //set data on the activity
-            Button b1 = findViewById(R.id.buttonNameBarber);
-            Button b2 = findViewById(R.id.buttonEmailBarber);
-            Button b3 = findViewById(R.id.buttonPhoneBarber);
-//            Button b4 = findViewById(R.id.buttonRatingBarber);
-//            Button b5 = findViewById(R.id.available_appointments);
-//            Button b6 = findViewById(R.id.occupied_appointments);
+            TextView b1 = findViewById(R.id.buttonNameBarber);
+            TextView b2 = findViewById(R.id.buttonEmailBarber);
+            TextView b3 = findViewById(R.id.buttonPhoneBarber);
+            TextView b4 = findViewById(R.id.buttonHairCutsBarber);
+            TextView b5 = findViewById(R.id.buttonBarberRating);
+            TextView b6 = findViewById(R.id.buttonAvailableAppointments);
+            TextView b7 = findViewById(R.id.buttonOccupiedAppointments);
             b1.setText(barber.getName());
             b2.setText(barber.getEmail());
             b3.setText(barber.getPhone());
-//            b4.setText(barber.getPhone());
-//            b5.setText(barber.getAvailableAppointments().toString());
-//            b6.setText(barber.getOccupiedAppointments());
+            b4.setText(barber.getPhone());
+            b5.setText(barber.getAvailableAppointments().toString());
+            b6.setText(barber.getOccupiedAppointments().toString());
+            b7.setText(barber.getHaircuts().toString());
 
         });
     }

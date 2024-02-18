@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".viewModel.clientProfilePage">
 
     <ImageView
         android:id="@+id/gentleman_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="423dp"
+        android:layout_height="280dp"
         android:src="@drawable/gentlemen_home_logo"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/under_logo"
@@ -22,63 +22,78 @@
         android:layout_height="408dp"
         android:src="@drawable/under_logo_home_page"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gentleman_image" />
 
-    <Button
+    <TextView
         android:id="@+id/buttonAppointHist"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
         android:layout_width="215dp"
         android:layout_height="52dp"
         android:layout_marginTop="80dp"
+        android:background="@drawable/rounded_corners"
         android:clickable="false"
-        android:text="Appointments History"
+        android:text="My Appointments"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonPhone"
-        tools:ignore="NotSibling" />
+        tools:ignore="HardcodedText,NotSibling" />
 
-    <Button
+    <TextView
         android:id="@+id/buttonName"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
         android:layout_width="215dp"
         android:layout_height="52dp"
         android:layout_marginTop="268dp"
         android:layout_marginBottom="8dp"
         android:allowUndo="false"
         android:autoText="false"
+        android:background="@drawable/rounded_corners"
         android:clickable="false"
         android:text="Name"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintVertical_bias="0.776"
+        tools:ignore="Deprecated,TextViewEdits" />
 
-    <Button
+    <TextView
         android:id="@+id/buttonEmail"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
         android:layout_width="215dp"
         android:layout_height="52dp"
+        android:background="@drawable/rounded_corners"
         android:clickable="false"
         android:text="Email"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
+        app:layout_constraintVertical_bias="0.659" />
 
-    <Button
+    <TextView
         android:id="@+id/buttonPhone"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
         android:layout_width="215dp"
         android:layout_height="52dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_corners"
         android:clickable="false"
         android:text="Phone"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonEmail" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
