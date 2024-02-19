@@ -84,7 +84,7 @@ public class barberHomePage extends AppCompatActivity {
     }
 
     public void handelButtonAddAppointment(View v){
-        myIntent = new Intent(barberHomePage.this, addAppointmentBarber.class);
+        myIntent = new Intent(barberHomePage.this, AddAppointmentBarber.class);
         myIntent.putExtra("Uid", myObj.getUid());
         startActivity(myIntent);
     }
