@@ -56,6 +56,7 @@ public class Client extends User {
      */
     public void addAppointment(Appointment appointment) {
         appointment.setAvailable(false);
+        appointment.setClientName(this.getName());
         appointments.put(appointment.getAppointmentUid(), appointment);
     }
 }

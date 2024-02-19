@@ -37,15 +37,13 @@ public class AddAppointmentBarber extends AppCompatActivity {
         Button buttonSelectTime = findViewById(R.id.buttonSelectTime);
         Intent myIntent = getIntent();
         String barberUid = myIntent.getStringExtra("Uid");
-        //        we need to fill all the object fields by the DB
+
         if (barberUid != null) {
             model.getBarber(barberUid); // get the barber from the DB
         }
         // show the date picker
         buttonSelectDate.setOnClickListener(this::showDatePicker);
-
         buttonSelectTime.setOnClickListener(this::showTimePicker);
-
         Button submitButton = findViewById(R.id.submitButtonAppointmentBarber);
         submitButton.setOnClickListener(view -> {
             Date selectedDateTime = createSelectedDateTime();
@@ -71,17 +69,14 @@ public class AddAppointmentBarber extends AppCompatActivity {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        // Store the selected date
-                        selectedYear = year;
-                        selectedMonth = monthOfYear;
-                        selectedDay = dayOfMonth;
+                (view1, year1, monthOfYear, dayOfMonth) -> {
+                    // Store the selected date
+                    selectedYear = year1;
+                    selectedMonth = monthOfYear;
+                    selectedDay = dayOfMonth;
 
-                        String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                        Toast.makeText(AddAppointmentBarber.this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
-                    }
+                    String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1;
+                    Toast.makeText(AddAppointmentBarber.this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
                 }, year, month, day);
         datePickerDialog.show();
     }
@@ -97,16 +92,13 @@ public class AddAppointmentBarber extends AppCompatActivity {
         int minute = calendar.get(Calendar.MINUTE);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        // Store the selected time
-                        selectedHour = hourOfDay;
-                        selectedMinute = minute;
+                (view1, hourOfDay, minute1) -> {
+                    // Store the selected time
+                    selectedHour = hourOfDay;
+                    selectedMinute = minute1;
 
-                        String selectedTime = hourOfDay + ":" + minute;
-                        Toast.makeText(AddAppointmentBarber.this, "Selected Time: " + selectedTime, Toast.LENGTH_SHORT).show();
-                    }
+                    String selectedTime = hourOfDay + ":" + minute1;
+                    Toast.makeText(AddAppointmentBarber.this, "Selected Time: " + selectedTime, Toast.LENGTH_SHORT).show();
                 }, hour, minute, true);
         timePickerDialog.show();
     }

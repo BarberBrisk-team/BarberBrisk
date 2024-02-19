@@ -55,15 +55,3 @@ public class AddApoBarberModel {
 
     }
 }
-//            String email = (String) documentSnapshot.get("email");
-//            String name = (String) documentSnapshot.get("name");
-//            String password = (String) documentSnapshot.get("password");
-//            String phone = (String) documentSnapshot.get("phone");
-//            Double rate = (Double) documentSnapshot.get("rate");
-//            List<HairCut> haircuts = (List<HairCut>) documentSnapshot.get("haircuts");
-//            HashMap<String, Appointment> availableAppointments = (HashMap<String, Appointment>) documentSnapshot.get("availableAppointments");
-//            HashMap<String, Appointment> occupiedAppointments = (HashMap<String, Appointment>) documentSnapshot.get("occupiedAppointments");
-//            barber = new Barber(barberUid, name, email, phone, password, rate, haircuts);
-//            barber.setAvailableAppointments(availableAppointments);
-//            barber.setOccupiedAppointments(occupiedAppointments);
-//            Log.d("BarberSuccess", "Success2");
