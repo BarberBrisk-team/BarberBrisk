@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,9 +49,9 @@ public class clientProfilePage extends AppCompatActivity {
             Log.d("ClientSuccess", "Success2" + myClient.getName());
 
             //  set data on the activity
-            Button b1 = findViewById(R.id.buttonName);
-            Button b2 = findViewById(R.id.buttonEmail);
-            Button b3 = findViewById(R.id.buttonPhone);
+            TextView b1 = findViewById(R.id.buttonName);
+            TextView b2 = findViewById(R.id.buttonEmail);
+            TextView b3 = findViewById(R.id.buttonPhone);
 //          Button b4 = (Button)findViewById(R.id.buttonAppointHist);
             b1.setText(myClient.getName());
             b2.setText(myClient.getEmail());

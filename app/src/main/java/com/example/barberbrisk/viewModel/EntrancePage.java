@@ -2,7 +2,6 @@ package com.example.barberbrisk.viewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,30 +24,24 @@ public class EntrancePage extends AppCompatActivity {
         DataBase.DownloadBarberList();
         DataBase.DownloadListAppoinment();
         // Set a click listener on the "Sign in" button
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Create an Intent to start the Login activity
-                Intent intent = new Intent(EntrancePage.this, LogInPage.class);
+        signInButton.setOnClickListener(view -> {
+            // Create an Intent to start the Login activity
+            Intent intent = new Intent(EntrancePage.this, LogInPage.class);
 
-                // Start the Login activity
-                startActivity(intent);
-            }
+            // Start the Login activity
+            startActivity(intent);
         });
 
         // Find the "Sign up" button by its ID
         Button signUpButton = findViewById(R.id.Sign_up_button);
 
         // Set a click listener on the "Sign up" button
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Create an Intent to start the SignUp activity
-                Intent intent = new Intent(EntrancePage.this, signup.class);
+        signUpButton.setOnClickListener(view -> {
+            // Create an Intent to start the SignUp activity
+            Intent intent = new Intent(EntrancePage.this, signup.class);
 
-                // Start the SignUp activity
-                 startActivity(intent);
-            }
+            // Start the SignUp activity
+             startActivity(intent);
         });
     }
 }

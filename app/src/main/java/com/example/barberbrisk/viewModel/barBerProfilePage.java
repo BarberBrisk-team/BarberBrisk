@@ -29,7 +29,7 @@ public class barBerProfilePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bar_ber_profile_page);
+        setContentView(R.layout.activity_barber_profile_page);
 
         //write a message on the screen that the activity start
         Log.d("barberProfile", "start Barber profile activity");
