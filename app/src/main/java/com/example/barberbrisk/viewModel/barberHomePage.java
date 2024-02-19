@@ -64,7 +64,7 @@ public class barberHomePage extends AppCompatActivity {
                 String oldFormat = "EEE MMM dd HH:mm:ss zzz yyyy";
                 for (int i = 0; i < num_of_occupied_appointments; i++) {
                     @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat(oldFormat);
-                    items[i] = df.format(OccApp[i].getTimeAndDate());
+                    items[i] = OccApp[i].getClientName() + "    " + df.format(OccApp[i].getTimeAndDate());
                 }
                 // Get reference to the ListView
                 ListView listView = findViewById(R.id.OccupiedAppointmentsView);

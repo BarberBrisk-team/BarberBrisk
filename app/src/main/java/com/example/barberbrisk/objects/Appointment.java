@@ -1,14 +1,13 @@
 package com.example.barberbrisk.objects;
 
-import java.util.Date;
-import java.util.UUID;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
 import java.sql.Timestamp;
+import java.util.Date;
+import java.util.UUID;
 
 public class Appointment {
     final private String appointmentUid = UUID.randomUUID().toString(); // unique id for each appointment
@@ -27,9 +26,9 @@ public class Appointment {
     }
 
     /**
-     * Constructor for the appointment
      *
-     * @return the appointment
+     * @param timeAndDate the time of the appointment
+     * @param available indicates if the appointment is available or not
      */
     public Appointment(Timestamp timeAndDate, boolean available) {
         TimeAndDate = timeAndDate; // the time and date of the appointment
@@ -61,18 +60,16 @@ public class Appointment {
     }
 
     /**
-     * setter for the TimeAndDate
      *
-     * @param timeAndDate
+     * @param timeAndDate the time of the appointment
      */
     public void setTimeAndDate(Date timeAndDate) {
         TimeAndDate = timeAndDate;
     }
 
     /**
-     * getter for the available
      *
-     * @return
+     * @return the availability of the appointment
      */
     public boolean isAvailable() {
         return available;
@@ -81,7 +78,7 @@ public class Appointment {
     /**
      * setter for the available
      *
-     * @param available
+     * @param available to set the new availability of the appointment
      */
     public void setAvailable(boolean available) {
         this.available = available;
@@ -99,7 +96,7 @@ public class Appointment {
     /**
      * setter for the hair Cut
      *
-     * @param hairCut
+     * @param hairCut the new haircut
      */
     public void setHairCut(HairCut hairCut) {
         this.hairCut = hairCut;
@@ -108,7 +105,6 @@ public class Appointment {
     /**
      * toString method for the appointment
      *
-     * @return
      */
     @NonNull
     @Override
@@ -124,7 +120,6 @@ public class Appointment {
     /**
      * Describe the kinds of special objects contained in this Parcelable instance's marshaled representation.
      *
-     * @param in
      */
     public Appointment(Parcel in) {
         TimeAndDate = new Timestamp(in.readLong());
@@ -141,8 +136,7 @@ public class Appointment {
 
     /**
      * Describe the kinds of special objects contained in this Parcelable instance's marshaled representation.
-     *
-     * @return a bitmask indicating the set of special object types marshaled by this Parcelable object instance.
+     * a bitmask indicating the set of special object types marshaled by this Parcelable object instance.
      */
     public static final Parcelable.Creator<Appointment> CREATOR = new Parcelable.Creator<Appointment>() {
         public Appointment createFromParcel(Parcel in) {
@@ -152,7 +146,7 @@ public class Appointment {
         /**
          * Create a new array of the Parcelable class.
          * @param size Size of the array.
-         * @return
+         * @return the size of the appointments array
          */
         public Appointment[] newArray(int size) {
             return new Appointment[size];

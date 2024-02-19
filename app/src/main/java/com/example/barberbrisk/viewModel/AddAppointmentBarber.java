@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +17,7 @@ import com.example.barberbrisk.model.AddApoBarberModel;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -59,7 +57,6 @@ public class AddAppointmentBarber extends AppCompatActivity {
     /**
      * Show the date picker
      *
-     * @param view
      */
 
     public void showDatePicker(View view) {
@@ -84,7 +81,6 @@ public class AddAppointmentBarber extends AppCompatActivity {
     /**
      * Show the time picker
      *
-     * @param view
      */
     public void showTimePicker(View view) {
         Calendar calendar = Calendar.getInstance();
@@ -104,9 +100,8 @@ public class AddAppointmentBarber extends AppCompatActivity {
     }
 
     /**
-     * Create a timestamp from the selected date and time
      *
-     * @return
+     * @return a new timestamp from the selected date and time
      */
     private Timestamp createSelectedDateTime() {
         try {

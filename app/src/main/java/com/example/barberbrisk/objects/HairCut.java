@@ -9,7 +9,7 @@ public class HairCut implements Parcelable {
 
 
     enum HaircutStyle {
-        BUZZ_CUT, PIXIE_CUT, MOHAWK, BOB, FADE, UNDERCUT, POMPADOUR;
+        BUZZ_CUT, PIXIE_CUT, MOHAWK, BOB, FADE, UNDERCUT, POMPADOUR
     }
 
     private Double price;

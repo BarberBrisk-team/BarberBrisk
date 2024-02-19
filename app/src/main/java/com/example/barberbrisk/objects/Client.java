@@ -36,7 +36,7 @@ public class Client extends User {
 
     /**
      * Get appointments of the client
-     * @return
+     * @return the appointments hashmap
      */
     public HashMap<String, Appointment> getAppointments() {
         return appointments;
@@ -44,7 +44,7 @@ public class Client extends User {
 
     /**
      * Set appointments of the client
-     * @param appointments
+     * @param appointments the appointments hashmap
      */
     public void setAppointments(HashMap<String, Appointment> appointments) {
         this.appointments = appointments;
@@ -52,7 +52,7 @@ public class Client extends User {
 
     /**
      * Add appointment to the client
-     * @param appointment
+     * @param appointment indicates the new appointment
      */
     public void addAppointment(Appointment appointment) {
         appointment.setAvailable(false);

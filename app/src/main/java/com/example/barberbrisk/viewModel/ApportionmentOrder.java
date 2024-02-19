@@ -33,9 +33,6 @@ public class ApportionmentOrder extends AppCompatActivity {
     private Spinner barbersSpinner;
     private Spinner appointmentsSpinner;
     private Spinner haircutsSpinner;  // Add a spinner for haircuts
-    private Button selectBarberButton;
-    private Button selectAppointmentButton;
-    private Button haircutButton;
 
     public Barber selectedBarber;
     private Appointment selectedAppointment;
@@ -52,9 +49,9 @@ public class ApportionmentOrder extends AppCompatActivity {
         barbersSpinner = findViewById(R.id.barbersSpinner);
         appointmentsSpinner = findViewById(R.id.appointmentsSpinner);
         haircutsSpinner = findViewById(R.id.haircutsSpinner);  // Initialize the haircuts spinner
-        selectBarberButton = findViewById(R.id.barbersButton);
-        selectAppointmentButton = findViewById(R.id.button6);
-        haircutButton = findViewById(R.id.haircutButton);
+        Button selectBarberButton = findViewById(R.id.barbersButton);
+        Button selectAppointmentButton = findViewById(R.id.button6);
+        Button haircutButton = findViewById(R.id.haircutButton);
         // Hide the spinners initially
         barbersSpinner.setVisibility(View.GONE);
         appointmentsSpinner.setVisibility(View.GONE);
@@ -83,47 +80,36 @@ public class ApportionmentOrder extends AppCompatActivity {
         model.loadClient(ClientUid);
 
 
-        selectBarberButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                barbersSpinner.setVisibility(View.VISIBLE);
-                loadBarbersIntoSpinner();
-            }
+        selectBarberButton.setOnClickListener(view -> {
+            barbersSpinner.setVisibility(View.VISIBLE);
+            loadBarbersIntoSpinner();
         });
 
-        selectAppointmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (selectedBarber != null) {
-                    loadAppointmentsIntoSpinner();
+        selectAppointmentButton.setOnClickListener(view -> {
+            if (selectedBarber != null) {
+                loadAppointmentsIntoSpinner();
 //                    appointmentsSpinner.setVisibility(View.VISIBLE);
-                    selectedAppointment = (Appointment) appointmentsSpinner.getSelectedItem();
-                }
+                selectedAppointment = (Appointment) appointmentsSpinner.getSelectedItem();
             }
         });
 
-        haircutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (selectedBarber != null && selectedBarber.getAvailableAppointments() != null && !selectedBarber.getAvailableAppointments().isEmpty()) {
-                    loadHaircutsIntoSpinner();
-                    // Get the selected haircut from the adapter instead of directly from the spinner
-                    haircutsSpinner.setVisibility(View.VISIBLE);
-                    int selectedHaircutPosition = haircutsSpinner.getSelectedItemPosition();
-                    if (selectedHaircutPosition != AdapterView.INVALID_POSITION) {
-                        selectedHaircutStyle = (HairCut) haircutsSpinner.getAdapter().getItem(selectedHaircutPosition);
-                    }
+        haircutButton.setOnClickListener(view -> {
+            if (selectedBarber != null && selectedBarber.getAvailableAppointments() != null && !selectedBarber.getAvailableAppointments().isEmpty()) {
+                loadHaircutsIntoSpinner();
+                // Get the selected haircut from the adapter instead of directly from the spinner
+                haircutsSpinner.setVisibility(View.VISIBLE);
+                int selectedHaircutPosition = haircutsSpinner.getSelectedItemPosition();
+                if (selectedHaircutPosition != AdapterView.INVALID_POSITION) {
+                    selectedHaircutStyle = (HairCut) haircutsSpinner.getAdapter().getItem(selectedHaircutPosition);
                 }
             }
         });
 
         //handle the submit button
         Button submitButton = findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (selectedBarber != null && selectedAppointment != null && selectedHaircutStyle != null) {
-                    // Create an appointment object and save it to the client's appointments
+        submitButton.setOnClickListener(view -> {
+            if (selectedBarber != null && selectedAppointment != null && selectedHaircutStyle != null) {
+                // Create an appointment object and save it to the client's appointments
 //                    Appointment_combined_version appointment = selectedAppointment;
 //                    appointment.setHairCut(selectedHaircutStyle);
 //                    appointment.setAvailable(false);
@@ -133,9 +119,8 @@ public class ApportionmentOrder extends AppCompatActivity {
 //                    // Save the updated client object to Firebase
 //                    UpdateClientDB(client);
 //                    UpdateBarberDB(selectedBarber);
-                    model.UpdateDbAndObjects(selectedAppointment);
-                    goBackHome(view);
-                }
+                model.UpdateDbAndObjects(selectedAppointment);
+                goBackHome(view);
             }
         });
     }
@@ -148,6 +133,7 @@ public class ApportionmentOrder extends AppCompatActivity {
                     List<Barber> barberList = result.toObjects(Barber.class);
 
                     ArrayAdapter<Barber> adapter = new ArrayAdapter<Barber>(this, android.R.layout.simple_spinner_item, barberList) {
+                        @NonNull
                         @Override
                         public View getView(int position, View convertView, ViewGroup parent) {
                             View view = super.getView(position, convertView, parent);
@@ -156,6 +142,7 @@ public class ApportionmentOrder extends AppCompatActivity {
                             return view;
                         }
 
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public View getDropDownView(int position, View convertView, ViewGroup parent) {
                             View view = super.getDropDownView(position, convertView, parent);

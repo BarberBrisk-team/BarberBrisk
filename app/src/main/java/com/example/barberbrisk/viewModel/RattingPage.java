@@ -3,16 +3,12 @@ package com.example.barberbrisk.viewModel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
@@ -39,23 +35,17 @@ public class RattingPage extends AppCompatActivity {
 
 
         // Set a listener that gets called when the rating changes
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float r, boolean fromUser) {
-                Log.d("Rating", "Rating changed to: " + r);
-                rating[0] = ratingBar.getRating();
-            }
+        ratingBar.setOnRatingBarChangeListener((ratingBar1, r, fromUser) -> {
+            Log.d("Rating", "Rating changed to: " + r);
+            rating[0] = ratingBar1.getRating();
         });
 
 
-        sendRatingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        sendRatingButton.setOnClickListener(v -> {
 
-                Log.d("Rating", "Rating sent: " + rating[0]);
-                DataBase.setCustomerRatingDB(rating[0], barberID, clientID);
-                finish();
-            }
+            Log.d("Rating", "Rating sent: " + rating[0]);
+            DataBase.setCustomerRatingDB(rating[0], barberID, clientID);
+            finish();
         });
     }
 
