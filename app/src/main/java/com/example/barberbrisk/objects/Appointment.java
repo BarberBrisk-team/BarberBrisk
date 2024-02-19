@@ -16,6 +16,16 @@ public class Appointment {
     private boolean available; // is the appointment available
     HairCut hairCut; // the kind of haircut that the appointment is for
 
+    private String clientName;
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
     /**
      * Constructor for the appointment
      *
@@ -25,6 +35,7 @@ public class Appointment {
         TimeAndDate = timeAndDate; // the time and date of the appointment
         this.available = available; // is the appointment available
         this.hairCut = null; // the kind of haircut that the appointment is for
+        this.clientName = null;
     }
 
     public Appointment() {
