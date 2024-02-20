@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,13 @@ public class barberHomePage extends AppCompatActivity {
         myIntent = getIntent();
 //      we need to fill all the object fields by the DB
         String BarberUid = myIntent.getStringExtra("Uid");
+        Button addHair_btn = findViewById(R.id.addHaircut_btn);
+
+        addHair_btn.setOnClickListener(v -> {
+            myIntent = new Intent(barberHomePage.this, AddHaircutPage.class);
+            myIntent.putExtra("barber", BarberUid);
+            startActivity(myIntent);
+        });
         if(BarberUid != null){
             DocumentReference docRef = db.collection("Barbers").document(Objects.requireNonNull(BarberUid));
             docRef.get().addOnSuccessListener(documentSnapshot -> {
@@ -57,14 +65,14 @@ public class barberHomePage extends AppCompatActivity {
                     myObj.setHaircuts((List<HairCut>) documentSnapshot.get("haircuts"));
 
                 int num_of_occupied_appointments = myObj.getOccupiedAppointments().size();
-                Appointment[] OccApp = myObj.getOccupiedAppointments().values().toArray(new Appointment[num_of_occupied_appointments]);
+//                Appointment[] OccApp = myObj.getOccupiedAppointments().values().toArray(new Appointment[num_of_occupied_appointments]);
                 // Initialize the array
-                String [] items = new String[num_of_occupied_appointments];
+                String [] items = {"item 1", "item 2"};//new String[num_of_occupied_appointments];
 
                 String oldFormat = "EEE MMM dd HH:mm:ss zzz yyyy";
                 for (int i = 0; i < num_of_occupied_appointments; i++) {
                     @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat(oldFormat);
-                    items[i] = OccApp[i].getClientName() + "    " + df.format(OccApp[i].getTimeAndDate());
+//                    items[i] = OccApp[i].getClientName() + "    " + df.format(OccApp[i].getTimeAndDate());
                 }
                 // Get reference to the ListView
                 ListView listView = findViewById(R.id.OccupiedAppointmentsView);

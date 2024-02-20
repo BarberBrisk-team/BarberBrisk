@@ -12,8 +12,6 @@ public class Barber extends User {
 
     private Double rate;
     List<HairCut> haircuts = new ArrayList<>();
-    
-
 
     private HashMap<String, Appointment> availableAppointments = new HashMap<>();
     private HashMap<String, Appointment> occupiedAppointments = new HashMap<>();

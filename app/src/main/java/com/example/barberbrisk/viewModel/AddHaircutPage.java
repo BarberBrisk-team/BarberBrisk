@@ -1,11 +1,15 @@
 package com.example.barberbrisk.viewModel;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -13,9 +17,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
+import com.example.barberbrisk.model.AddHaircutModel;
+import com.example.barberbrisk.objects.Barber;
 
 public class AddHaircutPage extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +31,13 @@ public class AddHaircutPage extends AppCompatActivity {
         Button submitButton = findViewById(R.id.add_haircut_Submit_btn);
         EditText priceEditText = findViewById(R.id.Price_editText);
         EditText HaircutNameEditText = findViewById(R.id.name_editText);
+        Intent intent = getIntent();
+        Barber barber = intent.getParcelableExtra("barber", Barber.class);
+        String barberUid = intent.getStringExtra("barber");
+
+        Log.d("AddHaircutPage", "onCreate: " + barberUid);
+//        Log.d("AddHaircutPage", "onCreate: " + barber.getUid());
+
         submitButton.setOnClickListener(view -> {
             String price = priceEditText.getText().toString();
             String haircutName = HaircutNameEditText.getText().toString();
@@ -32,7 +46,9 @@ public class AddHaircutPage extends AppCompatActivity {
                 return;
             }
             //Todo: Add the haircut to the DB
+            AddHaircutModel addHaircutModel = new AddHaircutModel();
 
+                  addHaircutModel.addHaircut(haircutName, Double.parseDouble(price), barberUid);
 
             finish();
         });

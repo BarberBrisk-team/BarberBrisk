@@ -12,7 +12,9 @@ import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 import com.example.barberbrisk.objects.ClientAppointment;
+import com.example.barberbrisk.objects.HairCut;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -22,6 +24,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DataBase {
@@ -116,8 +119,10 @@ public class DataBase {
         public static void UpdateBarberAppointments(String appointmentID, Appointment appointment) {
             db.collection("Apointments").document(appointmentID).set(appointment);
         }
-    public static void NewHairStyle(String HairStyleName, double Price, File ImageFile, String BarberPhoneNumber) {
-        //Todo: @elon ezra
+    public static void AddNewHairStyle(HairCut hairCuts, String barber) {
+            Log.d("AddNewHairStyle", "AddNewHairStyle for " + barber);
+        db.collection("Barbers").document(barber).update("hairCuts", FieldValue.arrayUnion(hairCuts)).addOnSuccessListener(aVoid -> Log.d("AddNewHairStyle", "DocumentSnapshot successfully updated!"))
+                .addOnFailureListener(e -> Log.w("AddNewHairStyle", "Error updating document", e));
     }
 
     /**

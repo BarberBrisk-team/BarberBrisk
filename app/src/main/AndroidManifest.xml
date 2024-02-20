@@ -15,6 +15,9 @@
         android:theme="@style/Theme.BarberBrisk"
         tools:targetApi="31">
         <activity
+            android:name=".viewModel.AddHaircutPage"
+            android:exported="false" />
+        <activity
             android:name=".viewModel.AddAppointmentBarber"
             android:exported="false" />
         <activity
