@@ -14,6 +14,7 @@ public class HairCut implements Parcelable {
 
     private Double price;
     private HaircutStyle hairCutStyle;
+    private String hairsytle_name = "";
 
     public HairCut() {
     }
@@ -23,6 +24,11 @@ public class HairCut implements Parcelable {
         this.hairCutStyle = haircutStyle;
     }
 
+
+    public HairCut(Double price, String haircutStyleName) {
+        this.price = price;
+        this.hairsytle_name = haircutStyleName;
+    }
     public HaircutStyle getHairCutStyle() {
         return hairCutStyle;
     }
@@ -36,7 +42,7 @@ public class HairCut implements Parcelable {
     public String toString() {
         return "HairCut{" +
                 "price=" + price +
-                ", hairCutStyle=" + hairCutStyle +
+                ", hairCutStyle=" + hairsytle_name +
                 '}';
     }
 

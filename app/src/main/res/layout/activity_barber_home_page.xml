@@ -22,9 +22,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonBarbeerAddAppointment"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865" />
+        app:layout_constraintVertical_bias="0.715" />
 
     <Button
         android:id="@+id/buttonBarbeerAddAppointment"
@@ -85,5 +86,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonBarbeerAddAppointment" />
+
+    <Button
+        android:id="@+id/addHaircut_btn"
+        android:layout_width="124dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="62dp"
+        android:text="Add Haircut"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBarbeerAddAppointment"
+        app:layout_constraintEnd_toStartOf="@+id/buttonProfileBarber"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
