@@ -119,7 +119,7 @@ public class ApportionmentOrder extends AppCompatActivity {
                         public View getDropDownView(int position, View convertView, ViewGroup parent) {
                             View view = super.getDropDownView(position, convertView, parent);
                             // Show both name and rate in the dropdown items
-                            ((TextView) view.findViewById(android.R.id.text1)).setText(barberList.get(position).getName() + " - Rate: " + barberList.get(position).getRate());
+                            ((TextView) view.findViewById(android.R.id.text1)).setText(barberList.get(position).getName() + " - Rate: " + barberList.get(position).getRating());
                             return view;
                         }
                     };

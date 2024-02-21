@@ -47,7 +47,7 @@ public class barBerProfilePage extends AppCompatActivity {
             barber = new Barber(BarberUid, name, email, phone, password);
 
             if(documentSnapshot.get("rate") != null)
-                barber.setRate((Double) documentSnapshot.get("rate"));
+                barber.setRating((Double) documentSnapshot.get("rate"));
             if (documentSnapshot.get("availableAppointments") != null)
                 barber.setAvailableAppointments((HashMap<String, Appointment>) documentSnapshot.get("availableAppointments"));
             if (documentSnapshot.get("occupiedAppointments") != null)

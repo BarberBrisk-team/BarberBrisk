@@ -10,8 +10,12 @@ import java.util.List;
 
 public class Barber extends User {
 
-    private Double rate;
+    private Double rating;
     List<HairCut> haircuts = new ArrayList<>();
+
+
+
+    private int numOfRaters = 1;
 
     private HashMap<String, Appointment> availableAppointments = new HashMap<>();
     private HashMap<String, Appointment> occupiedAppointments = new HashMap<>();
@@ -19,7 +23,7 @@ public class Barber extends User {
     //    Constructor for barber don't have a list haircuts to upload
     public Barber(String uid, String name, String email, String phone, String password) {
         super(uid, name, email, phone, password);
-        this.rate = 5.0;
+        this.rating = 5.0;
         this.availableAppointments = new HashMap<>();
         this.occupiedAppointments = new HashMap<>();
         //add default list of haircuts
@@ -28,10 +32,22 @@ public class Barber extends User {
     }
     //constructor for barber that have a list haircuts to upload
 
-    public Barber(String uid, String name, String email, String phone, Double rate, List<HairCut> haircuts ) {
+    public Barber(String uid, String name, String email, String phone, Double rating, List<HairCut> haircuts) {
         super(name, email, phone);
-        this.rate = rate;
+        this.rating = rating;
         this.haircuts = haircuts;
+    }
+    public int getNumOfRaters() {
+        return numOfRaters;
+    }
+
+    public void setNumOfRaters(int numOfRaters) {
+        this.numOfRaters = numOfRaters;
+    }
+
+    public void addRating(Double rating) {
+        this.rating = (this.rating * numOfRaters + rating) / (numOfRaters + 1);
+        numOfRaters++;
     }
 
 
@@ -39,9 +55,9 @@ public class Barber extends User {
 
     }
 
-    public Barber(String barberUid, String name, String email, String phone, String password, Double rate, List<HairCut> haircuts ) {
+    public Barber(String barberUid, String name, String email, String phone, String password, Double rating, List<HairCut> haircuts) {
         super(barberUid, name, email, phone, password);
-        this.rate = rate;
+        this.rating = rating;
         this.haircuts = haircuts;
 
     }
@@ -91,16 +107,16 @@ public class Barber extends User {
     }
 
 
-    public void setRate(Double rate) {
-        this.rate = rate;
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
     public void setHaircuts(List<HairCut> haircuts) {
         this.haircuts = haircuts;
     }
 
-    public Double getRate() {
-        return rate;
+    public Double getRating() {
+        return rating;
     }
 
     public List<HairCut> getHaircuts() {
@@ -119,7 +135,7 @@ public class Barber extends User {
     protected Barber(Parcel in) {
         super(in);
         this.haircuts = in.readArrayList(null);
-        this.rate = in.readDouble();
+        this.rating = in.readDouble();
     }
 
     @Override
