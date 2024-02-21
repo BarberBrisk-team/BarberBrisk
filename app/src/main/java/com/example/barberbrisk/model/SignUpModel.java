@@ -11,7 +11,7 @@ import com.example.barberbrisk.viewModel.signup;
 
 public class SignUpModel {
     signup activity;
-    AuthenticationDB authdb = new AuthenticationDB();
+    AuthenticationDB authDb = new AuthenticationDB();
 
     public SignUpModel(signup activity) {
         this.activity = activity;
@@ -25,16 +25,16 @@ public class SignUpModel {
 
     public void registerNewUser(String email, String password, String name, String phone) {
 
-        authdb.registerNewUser(email, password, task -> {
+        authDb.registerNewUser(email, password, task -> {
             if (task.isSuccessful()) {
                 Log.d("RegisterUser", "User registration successful");
                 if (activity.barberCheckBox.isChecked()) {
                     if (validatePassword(activity.additionalPasswordEditText.getText().toString())) {
                         // Log statements for debugging
                         Log.d("RegisterUser", "Barber registration successful");
-                        Barber barber = new Barber(authdb.getUID(), name, email, phone, password);
+                        Barber barber = new Barber(authDb.getUID(), name, email, phone, password);
                         DataBase.NewBarberDB(barber);
-                        activity.goHomeBarber(authdb.getUID());
+                        activity.goHomeBarber(authDb.getUID());
                     } else {
                         // Log statements for debugging
                         Log.e("RegisterUser", "Invalid additional password for barber");
@@ -43,9 +43,9 @@ public class SignUpModel {
                 } else {
                     // Log statements for debugging
                     Log.d("RegisterUser", "Client registration successful");
-                    Client client = new Client(authdb.getUID(), email, password, name, phone);
+                    Client client = new Client(authDb.getUID(), name, email, phone, password);
                     DataBase.NewClientDB(client);
-                    activity.goHomeClient(authdb.getUID());
+                    activity.goHomeClient(authDb.getUID());
                 }
             } else {
                 // Log statements for debugging

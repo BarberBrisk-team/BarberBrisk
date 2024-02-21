@@ -89,10 +89,8 @@ public class AddAppointmentBarber extends AppCompatActivity {
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                 (view1, hourOfDay, minute1) -> {
-                    // Store the selected time
                     selectedHour = hourOfDay;
                     selectedMinute = minute1;
-
                     String selectedTime = hourOfDay + ":" + minute1;
                     Toast.makeText(AddAppointmentBarber.this, "Selected Time: " + selectedTime, Toast.LENGTH_SHORT).show();
                 }, hour, minute, true);

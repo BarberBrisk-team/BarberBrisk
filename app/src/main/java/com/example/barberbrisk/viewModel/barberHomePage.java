@@ -59,7 +59,7 @@ public class barberHomePage extends AppCompatActivity {
                     .get()
                     .addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
-                            myObj = documentSnapshot.toObject(Barber.class);
+                            myObj = documentSnapshot.toObject(Barber.class); // get the barber object from the DB
 
                             ListView occupiedAppointmentsView = findViewById(R.id.OccupiedAppointmentsView);
 
@@ -83,7 +83,7 @@ public class barberHomePage extends AppCompatActivity {
 
                                     // Display the date, time, and client name
                                     textViewDate.setText("Time and Date: " + appointment.getTimeAndDate());
-//                        textViewClientName.setText("Client: " + appointment.getClientName());
+                                    textViewClientName.setText("Client: " + appointment.getClientName());
 
                                     return convertView;
                                 }
