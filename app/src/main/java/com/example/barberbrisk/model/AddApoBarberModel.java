@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class AddApoBarberModel {
-    public FirebaseFirestore db = FirebaseFirestore.getInstance();
+   public FirebaseFirestore db = FirebaseFirestore.getInstance();
     public Barber barber;
     private AddAppointmentBarber activity;
 
@@ -43,6 +43,7 @@ public class AddApoBarberModel {
             if (documentSnapshot.get("occupiedAppointments") != null)
                 barber.setOccupiedAppointments((HashMap<String, Appointment>) documentSnapshot.get("occupiedAppointments"));
         });
+
 
 
     }

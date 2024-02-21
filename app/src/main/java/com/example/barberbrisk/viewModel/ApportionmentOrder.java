@@ -59,24 +59,6 @@ public class ApportionmentOrder extends AppCompatActivity {
         //get the uid that was pass from the last activity and use it to get the client object
         Intent myIntent = getIntent();
         String ClientUid = myIntent.getStringExtra("Uid");
-//        assert ClientUid != null;
-//        DocumentReference docRef = db.collection("Clients").document(ClientUid);
-////
-//        // Create a client object from the docRef
-//        docRef.get().addOnSuccessListener(documentSnapshot -> {
-//            Log.d("ClientSuccess", "Success");
-//            String email = (String) documentSnapshot.get("email");
-//            String name = (String) documentSnapshot.get("name");
-//            String password = (String) documentSnapshot.get("password");
-//            String phone = (String) documentSnapshot.get("phone");
-//            HashMap<String, Appointment_combined_version> appointments = (HashMap<String, Appointment_combined_version>) documentSnapshot.get("appointments");
-//            client = new Client(ClientUid, name, email, phone, password);
-//            //if appointments is not null, set the appointments of the client
-//            if (appointments != null) {
-//                client.setAppointments(appointments);
-//            }
-//            Log.d("ClientSuccess", "Success2");
-//        });
         model.loadClient(ClientUid);
 
 
@@ -109,16 +91,6 @@ public class ApportionmentOrder extends AppCompatActivity {
         Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(view -> {
             if (selectedBarber != null && selectedAppointment != null && selectedHaircutStyle != null) {
-                // Create an appointment object and save it to the client's appointments
-//                    Appointment_combined_version appointment = selectedAppointment;
-//                    appointment.setHairCut(selectedHaircutStyle);
-//                    appointment.setAvailable(false);
-//                    client.addAppointment(appointment);
-//                    selectedBarber.removeAvailableAppointment(appointment);
-//                    selectedBarber.addOccupiedAppointment(appointment);
-//                    // Save the updated client object to Firebase
-//                    UpdateClientDB(client);
-//                    UpdateBarberDB(selectedBarber);
                 model.UpdateDbAndObjects(selectedAppointment);
                 goBackHome(view);
             }
