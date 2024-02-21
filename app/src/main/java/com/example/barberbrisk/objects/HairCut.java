@@ -13,7 +13,7 @@ public class HairCut implements Parcelable {
     }
 
     private Double price;
-    private HaircutStyle hairCutStyle;
+    private HaircutStyle hairCutStyle;//Todo: erase this line
     private String hairsytle_name = "";
 
     public HairCut() {
@@ -44,6 +44,14 @@ public class HairCut implements Parcelable {
                 "price=" + price +
                 ", hairCutStyle=" + hairsytle_name +
                 '}';
+    }
+
+    public String getHairsytle_name() {
+        return hairsytle_name;
+    }
+
+    public void setHairsytle_name(String hairsytle_name) {
+        this.hairsytle_name = hairsytle_name;
     }
 
     public void setPrice(Double price) {
