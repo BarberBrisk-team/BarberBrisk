@@ -22,7 +22,11 @@ public class clientHomePage extends AppCompatActivity {
     public clientHomePage() {
         db = FirebaseFirestore.getInstance();
     }
-
+    /**
+     * This function is called when the activity is created.
+     * It gets the client details from the DB and sets the data on the activity.
+     * @param savedInstanceState - the saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +46,21 @@ public class clientHomePage extends AppCompatActivity {
         });
 
     }
+    /**
+     * This function is called when the user clicks on the " Profile" button.
+     * It opens the clientProfilePage activity.
+     * @param v - the view
+     */
     public void handelButtonProfile(View v){
         myIntent = new Intent(clientHomePage.this, clientProfilePage.class);
         myIntent.putExtra("Uid", myObj.getUid());
         startActivity(myIntent);
     }
-
+    /**
+     * This function is called when the user clicks on the " Appointment Order" button.
+     * It opens the ApportionmentOrder activity.
+     * @param n - the view
+     */
     public void handelButtonOrder(View n){
         myIntent = new Intent(clientHomePage.this, ApportionmentOrder.class);
         myIntent.putExtra("Uid", myObj.getUid());
