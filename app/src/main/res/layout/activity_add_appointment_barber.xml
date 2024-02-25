@@ -9,18 +9,18 @@
 
     <ImageView
         android:id="@+id/gentleman_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="449dp"
+        android:layout_height="280dp"
         android:src="@drawable/gentlemen_home_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/under_logo"
-        android:layout_width="480dp"
-        android:layout_height="408dp"
+        android:layout_width="455dp"
+        android:layout_height="464dp"
         android:src="@drawable/under_logo_home_page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,12 +31,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="268dp"
         android:onClick="showDatePicker"
         android:text="Select Date"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSelectTime"
+        app:layout_constraintBottom_toTopOf="@+id/submitButtonAppointmentBarber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="136dp" />
+        app:layout_constraintVertical_bias="0.706" />
 
     <Button
         android:id="@+id/buttonSelectTime"
@@ -44,27 +46,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonSelectDate"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
         android:layout_marginBottom="48dp"
         android:onClick="showTimePicker"
         android:text="Select Time"
         app:layout_constraintBottom_toTopOf="@+id/submitButtonAppointmentBarber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSelectDate" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSelectDate"
+        app:layout_constraintVertical_bias="0.796" />
 
     <Button
         android:id="@+id/submitButtonAppointmentBarber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
+        android:layout_width="124dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="116dp"
         android:clickable="true"
         android:focusable="true"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

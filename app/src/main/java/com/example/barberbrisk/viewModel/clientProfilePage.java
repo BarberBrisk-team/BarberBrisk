@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,24 +56,15 @@ public class clientProfilePage extends AppCompatActivity {
             myClient = new Client(ClientUid, name, email, phone, password);
             Log.d("ClientSuccess", "Success2" + myClient.getName());
 
-            // checking of the list of appointments of the client is empty if so, we initialize the
-            // list to be "empty"
-//            HashMap<String, Appointment> appointmentHashMap = (HashMap<String, Appointment>) documentSnapshot.get("appointments");
-//            String appointments = "";
-//            if (appointmentHashMap == null)
-//                appointments = "empty";
-//            else
-//                appointments = appointmentHashMap.toString();
-
             //  set data on the activity
             TextView b1 = findViewById(R.id.buttonName);
             TextView b2 = findViewById(R.id.buttonEmail);
             TextView b3 = findViewById(R.id.buttonPhone);
-//            Button b4 = findViewById(R.id.buttonAppointHist);
+            Button b4 = findViewById(R.id.buttonAppointHist);
             b1.setText(myClient.getName());
             b2.setText(myClient.getEmail());
             b3.setText(myClient.getPhone());
-//            b4.setText("My Appointments");
+            b4.setText("My Appointments");
         });
     }
     /**

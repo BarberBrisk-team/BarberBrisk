@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#9CFF2E"
     tools:context=".viewModel.barberHomePage">
 
     <Button
@@ -22,45 +22,45 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonBarbeerAddAppointment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintTop_toBottomOf="@+id/DateTextView"
+        app:layout_constraintVertical_bias="0.638" />
 
     <Button
         android:id="@+id/buttonBarbeerAddAppointment"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="380dp"
+        android:layout_width="184dp"
+        android:layout_height="97dp"
+        android:layout_marginBottom="384dp"
         android:fontFamily="casual"
         android:onClick="handelButtonAddAppointment"
         android:text="Add Appointment"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/addHaircut_btn"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="136dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="52dp"
+        android:layout_width="155dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="44dp"
         android:fontFamily="casual"
         android:text="Add Haircut"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonBarbeerAddAppointment"
-        app:layout_constraintEnd_toStartOf="@+id/buttonProfileBarber"
-        app:layout_constraintHorizontal_bias="0.618"
+        app:layout_constraintBottom_toTopOf="@+id/OccupiedAppointmentsView"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBarbeerAddAppointment"
+        app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -113,7 +113,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonBarbeerAddAppointment" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
