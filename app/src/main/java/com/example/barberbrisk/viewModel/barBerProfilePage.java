@@ -53,7 +53,7 @@ public class barBerProfilePage extends AppCompatActivity {
             if (documentSnapshot.get("occupiedAppointments") != null)
                 barber.setOccupiedAppointments((HashMap<String, Appointment>) documentSnapshot.get("occupiedAppointments"));
             if (documentSnapshot.get("haircuts") != null)
-                barber.setHaircuts((List<HairCut>) documentSnapshot.get("haircuts"));
+                barber.setHairCuts((List<HairCut>) documentSnapshot.get("haircuts"));
 
             //set data on the activity
             TextView b1 = findViewById(R.id.buttonNameBarber);
@@ -69,7 +69,7 @@ public class barBerProfilePage extends AppCompatActivity {
             b4.setText(barber.getPhone());
             b5.setText(barber.getAvailableAppointments().toString());
             b6.setText(barber.getOccupiedAppointments().toString());
-            b7.setText(barber.getHaircuts().toString());
+            b7.setText(barber.getHairCuts().toString());
 
         });
     }

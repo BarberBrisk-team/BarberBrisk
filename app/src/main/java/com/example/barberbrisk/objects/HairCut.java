@@ -8,32 +8,31 @@ import androidx.annotation.NonNull;
 public class HairCut implements Parcelable {
 
 
-    enum HaircutStyle {
-        BUZZ_CUT, PIXIE_CUT, MOHAWK, BOB, FADE, UNDERCUT, POMPADOUR
-    }
+//    enum HaircutStyle {
+//        BUZZ_CUT, PIXIE_CUT, MOHAWK, BOB, FADE, UNDERCUT, POMPADOUR
+//    }
 
     private Double price;
-    private HaircutStyle hairCutStyle;//Todo: erase this line
-    private String hairsytle_name = "";
+    private String hairCutStyle = "";
 
     public HairCut() {
     }
 
-    public HairCut(Double price, HaircutStyle haircutStyle) {
+    public HairCut(Double price, String haircutStyle) {
         this.price = price;
         this.hairCutStyle = haircutStyle;
     }
 
 
-    public HairCut(Double price, String haircutStyleName) {
-        this.price = price;
-        this.hairsytle_name = haircutStyleName;
-    }
-    public HaircutStyle getHairCutStyle() {
+//    public HairCut(Double price, String haircutStyleName) {
+//        this.price = price;
+//        this.hairsytle_name = haircutStyleName;
+//    }
+    public String getHairCutStyle() {
         return hairCutStyle;
     }
 
-    public void setHairCutStyle(HaircutStyle hairCutStyle) {
+    public void setHairCutStyle(String hairCutStyle) {
         this.hairCutStyle = hairCutStyle;
     }
 
@@ -42,17 +41,11 @@ public class HairCut implements Parcelable {
     public String toString() {
         return "HairCut{" +
                 "price=" + price +
-                ", hairCutStyle=" + hairsytle_name +
+                ", hairCutStyle=" + hairCutStyle +
                 '}';
     }
 
-    public String getHairsytle_name() {
-        return hairsytle_name;
-    }
 
-    public void setHairsytle_name(String hairsytle_name) {
-        this.hairsytle_name = hairsytle_name;
-    }
 
     public void setPrice(Double price) {
         this.price = price;

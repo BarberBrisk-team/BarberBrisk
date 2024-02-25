@@ -10,8 +10,8 @@
     <Button
         android:id="@+id/buttonProfileBarber"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="179dp"
-        android:layout_height="69dp"
+        android:layout_width="365dp"
+        android:layout_height="61dp"
         android:fontFamily="casual"
         android:onClick="handelButtonProfile"
         android:text="Profile"
@@ -22,16 +22,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonBarbeerAddAppointment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873" />
+        app:layout_constraintVertical_bias="0.89" />
 
     <Button
         android:id="@+id/buttonBarbeerAddAppointment"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="209dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="428dp"
         android:fontFamily="casual"
         android:onClick="handelButtonAddAppointment"
@@ -49,9 +49,9 @@
     <Button
         android:id="@+id/addHaircut_btn"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="136dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="185dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="44dp"
         android:fontFamily="casual"
         android:text="Add Haircut"
         android:textAlignment="center"
@@ -61,7 +61,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/OccupiedAppointmentsView"
         app:layout_constraintEnd_toStartOf="@+id/buttonBarbeerAddAppointment"
-        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -123,7 +123,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="2dp"
         android:fontFamily="casual"
-        android:text="Close appointments"
+        android:text="Upcoming appointments"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/OccupiedAppointmentsView"

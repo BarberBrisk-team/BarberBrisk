@@ -11,7 +11,7 @@ import java.util.List;
 public class Barber extends User {
 
     private Double rating;
-    List<HairCut> haircuts = new ArrayList<>();
+    List<HairCut> hairCuts = new ArrayList<>();
 
 
 
@@ -27,16 +27,16 @@ public class Barber extends User {
         this.availableAppointments = new HashMap<>();
         this.occupiedAppointments = new HashMap<>();
         //add default list of haircuts
-        this.haircuts = new ArrayList<>();
+        this.hairCuts = new ArrayList<>();
 
 
     }
     //constructor for barber that have a list haircuts to upload
 
-    public Barber(String uid, String name, String email, String phone, Double rating, List<HairCut> haircuts) {
+    public Barber(String uid, String name, String email, String phone, Double rating, List<HairCut> hairCuts) {
         super(name, email, phone);
         this.rating = rating;
-        this.haircuts = haircuts;
+        this.hairCuts = hairCuts;
     }
     public int getNumOfRaters() {
         return numOfRaters;
@@ -56,10 +56,10 @@ public class Barber extends User {
 
     }
 
-    public Barber(String barberUid, String name, String email, String phone, String password, Double rating, List<HairCut> haircuts) {
+    public Barber(String barberUid, String name, String email, String phone, String password, Double rating, List<HairCut> hairCuts) {
         super(barberUid, name, email, phone, password);
         this.rating = rating;
-        this.haircuts = haircuts;
+        this.hairCuts = hairCuts;
 
     }
 
@@ -112,30 +112,30 @@ public class Barber extends User {
         this.rating = rating;
     }
 
-    public void setHaircuts(List<HairCut> haircuts) {
-        this.haircuts = haircuts;
+    public void setHairCuts(List<HairCut> hairCuts) {
+        this.hairCuts = hairCuts;
     }
 
     public Double getRating() {
         return rating;
     }
 
-    public List<HairCut> getHaircuts() {
-        return haircuts;
+    public List<HairCut> getHairCuts() {
+        return hairCuts;
     }
 
     public void addHaircut(HairCut haircut) {
-        haircuts.add(haircut);
+        hairCuts.add(haircut);
     }
 
     public void removeHaircut(HairCut haircut) {
-        haircuts.remove(haircut);
+        hairCuts.remove(haircut);
     }
 
     // Constructor for Parcelable
     protected Barber(Parcel in) {
         super(in);
-        this.haircuts = in.readArrayList(null);
+        this.hairCuts = in.readArrayList(null);
         this.rating = in.readDouble();
     }
 

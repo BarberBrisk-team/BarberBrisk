@@ -10,9 +10,11 @@
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:clickable="true"
         android:focusable="true"
         android:text="Submit"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/barbersButton" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/select_time_appointment_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -45,6 +47,7 @@
         android:layout_marginEnd="110dp"
         android:layout_marginBottom="14dp"
         android:text="Select Appointment"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/haircutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +60,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/select_time_appointment_button" />
 
     <!-- Add the new Spinner for haircuts -->
 
@@ -67,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
         android:text="Select Haircut Style"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

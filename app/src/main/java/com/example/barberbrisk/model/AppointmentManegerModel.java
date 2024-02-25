@@ -38,7 +38,7 @@ public class AppointmentManegerModel {
      * This method is used to filter the hairstyle for the Barber hairstyle list.
      */
     public static List<HairCut> filterHairstyleByBarberID(String barberID) {
-        return Objects.requireNonNull(DataBase.getBaraberlist().get(barberID)).getHaircuts();
+        return Objects.requireNonNull(DataBase.getBaraberlist().get(barberID)).getHairCuts();
     }
 
     /*

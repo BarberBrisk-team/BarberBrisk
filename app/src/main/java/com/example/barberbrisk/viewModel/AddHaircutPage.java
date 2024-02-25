@@ -49,7 +49,7 @@ public class AddHaircutPage extends AppCompatActivity {
             //Todo: Add the haircut to the DB
             AddHaircutModel addHaircutModel = new AddHaircutModel();
 
-                  addHaircutModel.addHaircut(haircutName, Double.parseDouble(price), barberUid);
+            addHaircutModel.addHaircut(haircutName, Double.parseDouble(price), barberUid);
 
             finish();
         });
