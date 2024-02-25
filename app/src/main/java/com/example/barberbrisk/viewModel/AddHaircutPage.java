@@ -15,13 +15,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.AddHaircutModel;
-import com.example.barberbrisk.objects.Barber;
 
 public class AddHaircutPage extends AppCompatActivity {
-
+    /**
+     * This function is called when the activity is created.
+     * It gets the barber details from the DB and sets the data on the activity.
+     * @param savedInstanceState - the saved instance state
+     */
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,6 @@ public class AddHaircutPage extends AppCompatActivity {
         EditText priceEditText = findViewById(R.id.Price_editText);
         EditText HaircutNameEditText = findViewById(R.id.name_editText);
         Intent intent = getIntent();
-        Barber barber = intent.getParcelableExtra("barber", Barber.class);
         String barberUid = intent.getStringExtra("barber");
 
         Log.d("AddHaircutPage", "onCreate: " + barberUid);
