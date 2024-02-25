@@ -32,7 +32,6 @@ public class AddHaircutPage extends AppCompatActivity {
         EditText priceEditText = findViewById(R.id.Price_editText);
         EditText HaircutNameEditText = findViewById(R.id.name_editText);
         Intent intent = getIntent();
-        Barber barber = intent.getParcelableExtra("barber", Barber.class);
         String barberUid = intent.getStringExtra("barber");
 
         Log.d("AddHaircutPage", "onCreate: " + barberUid);
@@ -48,7 +47,7 @@ public class AddHaircutPage extends AppCompatActivity {
             //Todo: Add the haircut to the DB
             AddHaircutModel addHaircutModel = new AddHaircutModel();
 
-                  addHaircutModel.addHaircut(haircutName, Double.parseDouble(price), barberUid);
+            addHaircutModel.addHaircut(haircutName, Double.parseDouble(price), barberUid);
 
             finish();
         });

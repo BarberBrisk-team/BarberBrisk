@@ -119,9 +119,9 @@ public class DataBase {
         public static void UpdateBarberAppointments(String appointmentID, Appointment appointment) {
             db.collection("Apointments").document(appointmentID).set(appointment);
         }
-    public static void AddNewHairStyle(HairCut hairCuts, String barber) {
+    public static void AddNewHairStyle(HairCut haircuts, String barber) {
             Log.d("AddNewHairStyle", "AddNewHairStyle for " + barber);
-        db.collection("Barbers").document(barber).update("hairCuts", FieldValue.arrayUnion(hairCuts)).addOnSuccessListener(aVoid -> Log.d("AddNewHairStyle", "DocumentSnapshot successfully updated!"))
+        db.collection("Barbers").document(barber).update("hairCuts", FieldValue.arrayUnion(haircuts)).addOnSuccessListener(aVoid -> Log.d("AddNewHairStyle", "DocumentSnapshot successfully updated!"))
                 .addOnFailureListener(e -> Log.w("AddNewHairStyle", "Error updating document", e));
     }
 

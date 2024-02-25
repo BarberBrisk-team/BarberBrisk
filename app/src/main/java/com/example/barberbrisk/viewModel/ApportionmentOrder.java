@@ -215,7 +215,8 @@ public class ApportionmentOrder extends AppCompatActivity {
 
     private void loadHaircutsIntoSpinner() {
         if (selectedBarber != null) {
-            List<HairCut> haircuts = selectedBarber.getHaircuts();
+            Log.d("SelectedBarber", "gethaircuts: " + selectedBarber.getHairCuts());
+            List<HairCut> haircuts = selectedBarber.getHairCuts();
 
             if (haircuts != null && !haircuts.isEmpty()) {
                 ArrayAdapter<HairCut> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, haircuts);
