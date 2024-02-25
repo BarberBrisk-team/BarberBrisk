@@ -39,7 +39,9 @@ public class ApportionmentOrder extends AppCompatActivity {
     public HairCut selectedHaircutStyle;
     private AppointmentModel model;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    Button haircutButton;
+    Button selectAppointmentButton;
+    Button submitButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +51,10 @@ public class ApportionmentOrder extends AppCompatActivity {
         barbersSpinner = findViewById(R.id.barbersSpinner);
         appointmentsSpinner = findViewById(R.id.appointmentsSpinner);
         haircutsSpinner = findViewById(R.id.haircutsSpinner);  // Initialize the haircuts spinner
+        submitButton = findViewById(R.id.submitButton);
         Button selectBarberButton = findViewById(R.id.barbersButton);
-        Button selectAppointmentButton = findViewById(R.id.button6);
-        Button haircutButton = findViewById(R.id.haircutButton);
+        selectAppointmentButton = findViewById(R.id.select_time_appointment_button);
+        haircutButton = findViewById(R.id.haircutButton);
         // Hide the spinners initially
         barbersSpinner.setVisibility(View.GONE);
         appointmentsSpinner.setVisibility(View.GONE);
@@ -82,7 +85,8 @@ public class ApportionmentOrder extends AppCompatActivity {
                 haircutsSpinner.setVisibility(View.VISIBLE);
                 int selectedHaircutPosition = haircutsSpinner.getSelectedItemPosition();
                 if (selectedHaircutPosition != AdapterView.INVALID_POSITION) {
-                    selectedHaircutStyle = (HairCut) haircutsSpinner.getAdapter().getItem(selectedHaircutPosition);
+//                    haircutsSpinner.getAdapter().getItem(selectedHaircutPosition);
+                    selectedHaircutStyle = selectedBarber.getHairCuts().get(selectedHaircutPosition) ;
                 }
             }
         });
@@ -134,8 +138,7 @@ public class ApportionmentOrder extends AppCompatActivity {
                             selectedBarber = (Barber) barbersSpinner.getSelectedItem();
                             appointmentsSpinner.setVisibility(View.GONE);
                             haircutsSpinner.setVisibility(View.GONE);
-
-
+                            selectAppointmentButton.setVisibility(View.VISIBLE);
                         }
 
                         @Override
@@ -189,6 +192,7 @@ public class ApportionmentOrder extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                         // Handle when an appointment is selected
                         selectedAppointment = (Appointment) appointmentsSpinner.getSelectedItem();
+                        haircutButton.setVisibility(View.VISIBLE);
                     }
 
                     @Override
@@ -217,15 +221,15 @@ public class ApportionmentOrder extends AppCompatActivity {
         if (selectedBarber != null) {
             Log.d("SelectedBarber", "gethaircuts: " + selectedBarber.getHairCuts());
             List<HairCut> haircuts = selectedBarber.getHairCuts();
-
             if (haircuts != null && !haircuts.isEmpty()) {
-                ArrayAdapter<HairCut> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, haircuts);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, haircuts.stream().map(HairCut::getHairCutStyle).toArray(String[]::new));
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 haircutsSpinner.setAdapter(adapter);
             } else {
                 // Handle the case where there are no haircuts for the selected barber
                 Log.e("NoHaircuts", "No haircuts found for the selected barber.");
             }
+            submitButton.setVisibility(View.VISIBLE);
         }
     }
 
