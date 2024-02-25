@@ -28,9 +28,9 @@ import java.util.List;
 import java.util.Map;
 
 public class DataBase {
-    static Map<String , Appointment> AppointmentList  = new HashMap<>();
+    static Map<String, Appointment> AppointmentList = new HashMap<>();
 
-    static Map<String ,Barber> Baraberlist  = new HashMap<>();
+    static Map<String, Barber> Baraberlist = new HashMap<>();
 
     public static Map<String, Barber> getBaraberlist() {
 //        if(Baraberlist.isEmpty())
@@ -41,14 +41,14 @@ public class DataBase {
     }
 
 
-
     @SuppressLint("StaticFieldLeak")
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public static void NewBarberDB(Barber barber) {
         UpdateBarberDB(barber);
     }
-    public static void NewClientDB(Client client){
+
+    public static void NewClientDB(Client client) {
         UpdateClientDB(client);
     }
 
@@ -59,20 +59,21 @@ public class DataBase {
     public static void UpdateClientDB(Client client) {
         db.collection("Clients").document(client.getUid()).set(client);
     }
-   public static void DownloadBarberList(){
+
+    public static void DownloadBarberList() {
         db.collection("Barbers").get().addOnCompleteListener(
                 task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
                         QuerySnapshot doc = task.getResult();
-                        for (DocumentSnapshot documentSnapshot: doc.getDocuments()) {
-                            Baraberlist.put(documentSnapshot.getId(),documentSnapshot.toObject(Barber.class));
+                        for (DocumentSnapshot documentSnapshot : doc.getDocuments()) {
+                            Baraberlist.put(documentSnapshot.getId(), documentSnapshot.toObject(Barber.class));
                         }
                         Log.d("DownloadListAppoinment", Baraberlist.toString());
                     } else
                         Log.d(TAG, "Error getting documents: ", task.getException());
                 }
         );
-   }
+    }
 
     public static Map<String, Appointment> getAppointmentList() {
         return AppointmentList;
@@ -83,16 +84,15 @@ public class DataBase {
     }
 
 
-    public static void DownloadListAppoinment()
-    {
+    public static void DownloadListAppoinment() {
         db.collection("Apointments").get().addOnCompleteListener(
                 task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
                         QuerySnapshot doc = task.getResult();
-                        for (DocumentSnapshot documentSnapshot: doc.getDocuments()) {
-                            AppointmentList.put(documentSnapshot.getId(),documentSnapshot.toObject(Appointment.class));
+                        for (DocumentSnapshot documentSnapshot : doc.getDocuments()) {
+                            AppointmentList.put(documentSnapshot.getId(), documentSnapshot.toObject(Appointment.class));
                         }
-                        Log.d("DownloadListAppoinment", "download "+AppointmentList.size() + " appointments");
+                        Log.d("DownloadListAppoinment", "download " + AppointmentList.size() + " appointments");
                     } else
                         Log.d(TAG, "Error getting documents: ", task.getException());
                 }
@@ -101,33 +101,35 @@ public class DataBase {
 
     /**
      * This method is used to add a new appointment to the database.
+     *
      * @param appointment is the appointment to be added to the database.
      */
     public static void BarberNewAppointment(Appointment appointment) {
         db.collection("Apointments").document().set(appointment);
-        Log.d("BarberNewAppointments","BarberNewAppointments");
+        Log.d("BarberNewAppointments", "BarberNewAppointments");
     }
 
-    public static void SetClientAppointment(ClientAppointment clientAppointment)
-    {
+    public static void SetClientAppointment(ClientAppointment clientAppointment) {
         db.collection("ClientAppointment").document().set(clientAppointment);
     }
-        /*
+    /*
 
-         */
+     */
 
-        public static void UpdateBarberAppointments(String appointmentID, Appointment appointment) {
-            db.collection("Apointments").document(appointmentID).set(appointment);
-        }
-    public static void AddNewHairStyle(HairCut haircuts, String barber) {
-            Log.d("AddNewHairStyle", "AddNewHairStyle for " + barber);
-        db.collection("Barbers").document(barber).update("hairCuts", FieldValue.arrayUnion(haircuts)).addOnSuccessListener(aVoid -> Log.d("AddNewHairStyle", "DocumentSnapshot successfully updated!"))
+    public static void UpdateBarberAppointments(String appointmentID, Appointment appointment) {
+        db.collection("Apointments").document(appointmentID).set(appointment);
+    }
+
+    public static void AddNewHairStyle(HairCut hairCuts, String barber) {
+        Log.d("AddNewHairStyle", "AddNewHairStyle for " + barber);
+        db.collection("Barbers").document(barber).update("hairCuts", FieldValue.arrayUnion(hairCuts)).addOnSuccessListener(aVoid -> Log.d("AddNewHairStyle", "DocumentSnapshot successfully updated!"))
                 .addOnFailureListener(e -> Log.w("AddNewHairStyle", "Error updating document", e));
     }
 
     /**
      * This method is used for a customer to rate a barber.
-     * @param Rating is the rating given by the customer.
+     *
+     * @param Rating   is the rating given by the customer.
      * @param BarberID is the phone number of the barber.
      * @param ClientID is the phone number of the customer.
      */
@@ -146,7 +148,8 @@ public class DataBase {
 
     /**
      * This method is used to update the rating of a barber.
-     * @param NewRating is the new rating of the barber.
+     *
+     * @param NewRating   is the new rating of the barber.
      * @param BarberPhone is the phone number of the barber.
      */
     private static void UpdateRating(double NewRating, String BarberPhone) {  // to prove the mean problem
@@ -157,7 +160,7 @@ public class DataBase {
      * This interface is used as a callback mechanism to handle the asynchronous retrieval of data from the database.
      * It provides a method that will be invoked when the data (in this case, a list of Barber objects) is successfully fetched.
      */
-    public interface OnDataFetchedListenerBarbers{
+    public interface OnDataFetchedListenerBarbers {
 
         /**
          * This method is called when the data fetching process is completed.
@@ -176,7 +179,7 @@ public class DataBase {
      *
      * @param callback An instance of OnDataFetchedListenerBarbers. Its onDataFetchedBarbers method will be called with the list of barbers when the data has been completely fetched.
      */
-    public static void ListOfBarbers(OnDataFetchedListenerBarbers callback){
+    public static void ListOfBarbers(OnDataFetchedListenerBarbers callback) {
         Log.d("Running", "Hello dear");
         ArrayList<Barber> barbers = new ArrayList<>();
         db.collection("Barbers").get().addOnCompleteListener(task -> {
@@ -205,6 +208,7 @@ public class DataBase {
 
         //db.collection("Clients").addSnapshotListener();
     }
-
 }
+
+
 

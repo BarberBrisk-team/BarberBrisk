@@ -29,6 +29,7 @@ public class Barber extends User {
         //add default list of haircuts
         this.hairCuts = new ArrayList<>();
 
+
     }
     //constructor for barber that have a list haircuts to upload
 
