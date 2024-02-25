@@ -24,7 +24,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -70,13 +69,10 @@ public class barberHomePage extends AppCompatActivity {
 
                             // Create a list of occupied appointments
                             List<Appointment> occupiedAppointmentsList = new ArrayList<>(myObj.getOccupiedAppointments().values());
-                            Collections.sort(occupiedAppointmentsList, new Comparator<Appointment>() {
-                                public int compare(Appointment a1, Appointment a2) {
-                                    return a1.getTimeAndDate().compareTo(a2.getTimeAndDate());
-                                }
-                            });
+                            occupiedAppointmentsList.sort(Comparator.comparing(Appointment::getTimeAndDate));
                             // Create an ArrayAdapter with a custom getView method
                             ArrayAdapter<Appointment> adapter = new ArrayAdapter<Appointment>(barberHomePage.this, android.R.layout.simple_list_item_2, android.R.id.text1, occupiedAppointmentsList) {
+                                @SuppressLint("SetTextI18n")
                                 @NonNull
                                 @Override
                                 public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -94,7 +90,7 @@ public class barberHomePage extends AppCompatActivity {
                                     @SuppressLint("SimpleDateFormat")
                                     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                                     String formattedDate = dateFormat.format(appointment.getTimeAndDate());
-                                    textViewDate.setText("" + formattedDate);
+                                    textViewDate.setText(formattedDate);
                                     textViewClientName.setText("Client: " + appointment.getClientName());
 
                                     return convertView;
