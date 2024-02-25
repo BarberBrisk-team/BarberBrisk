@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.AddApoBarberModel;
+
+import org.w3c.dom.Text;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -24,8 +27,8 @@ import java.util.Locale;
 public class AddAppointmentBarber extends AppCompatActivity {
     private AddApoBarberModel model;
     private int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
-
-
+    TextView selectedDateTextView;
+    TextView selectedTimeTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,8 @@ public class AddAppointmentBarber extends AppCompatActivity {
         setContentView(R.layout.activity_add_appointment_barber);
         Button buttonSelectDate = findViewById(R.id.buttonSelectDate);
         Button buttonSelectTime = findViewById(R.id.buttonSelectTime);
+        selectedDateTextView = findViewById(R.id.selected_date_textView);
+        selectedTimeTextView = findViewById(R.id.selected_time_textView);
         Intent myIntent = getIntent();
         String barberUid = myIntent.getStringExtra("Uid");
 
@@ -74,6 +79,8 @@ public class AddAppointmentBarber extends AppCompatActivity {
 
                     String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1;
                     Toast.makeText(AddAppointmentBarber.this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
+                    selectedDateTextView.setText(selectedDate);
+                    selectedDateTextView.setVisibility(View.VISIBLE);
                 }, year, month, day);
         datePickerDialog.show();
     }
@@ -93,7 +100,9 @@ public class AddAppointmentBarber extends AppCompatActivity {
                     selectedMinute = minute1;
                     String selectedTime = hourOfDay + ":" + minute1;
                     Toast.makeText(AddAppointmentBarber.this, "Selected Time: " + selectedTime, Toast.LENGTH_SHORT).show();
-                }, hour, minute, true);
+                    selectedTimeTextView.setText(selectedTime);
+                    selectedTimeTextView.setVisibility(View.VISIBLE);
+                    }, hour, minute, true);
         timePickerDialog.show();
     }
 

@@ -8,6 +8,15 @@
     tools:context=".viewModel.AddAppointmentBarber">
 
     <ImageView
+        android:id="@+id/under_logo"
+        android:layout_width="480dp"
+        android:layout_height="408dp"
+        android:src="@drawable/under_logo_home_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gentleman_image" />
+
+    <ImageView
         android:id="@+id/gentleman_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,26 +26,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/under_logo"
-        android:layout_width="480dp"
-        android:layout_height="408dp"
-        android:src="@drawable/under_logo_home_page"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gentleman_image" />
-
     <Button
         android:id="@+id/buttonSelectDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="268dp"
+        android:layout_marginBottom="60dp"
         android:onClick="showDatePicker"
         android:text="Select Date"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSelectTime"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="136dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/under_logo"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonSelectTime"
@@ -44,27 +48,52 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonSelectDate"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="52dp"
         android:onClick="showTimePicker"
         android:text="Select Time"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/submitButtonAppointmentBarber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSelectDate" />
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/submitButtonAppointmentBarber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="112dp"
         android:clickable="true"
         android:focusable="true"
         android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/under_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/selected_date_textView"
+        android:layout_width="92dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="4dp"
+        android:background="#C29FFF"
+        android:text=" "
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSelectDate" />
+
+    <TextView
+        android:id="@+id/selected_time_textView"
+        android:layout_width="96dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="4dp"
+        android:background="#C29FFF"
+        android:text=" "
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSelectTime" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
