@@ -1,9 +1,11 @@
 package com.example.barberbrisk.viewModel;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +25,12 @@ public class clientProfilePage extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
     }
 
+    /**
+     * This function is called when the activity is created.
+     * It gets the client details from the DB and sets the data on the activity.
+     * @param savedInstanceState - the saved instance state
+     */
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,7 @@ public class clientProfilePage extends AppCompatActivity {
         Intent clientIntent = getIntent();
         String ClientUid = clientIntent.getStringExtra("Uid");
 
+        // get the client details from the DB
         DocumentReference docRef = db.collection("Clients").document(Objects.requireNonNull(ClientUid));
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("ClientSuccess", "Success");
@@ -51,16 +60,26 @@ public class clientProfilePage extends AppCompatActivity {
             TextView b1 = findViewById(R.id.buttonName);
             TextView b2 = findViewById(R.id.buttonEmail);
             TextView b3 = findViewById(R.id.buttonPhone);
-//          Button b4 = (Button)findViewById(R.id.buttonAppointHist);
+            Button b4 = findViewById(R.id.buttonAppointHist);
             b1.setText(myClient.getName());
             b2.setText(myClient.getEmail());
             b3.setText(myClient.getPhone());
-//        b4.setText(myClient.getAppointments().toString());
+            b4.setText("My Appointments");
         });
     }
-
+    /**
+     * This function is called when the user clicks on the "back" button.
+     * It returns the user to the previous activity.
+     * @param v - the view
+     */
     public void arrowBackButton(View v) {
         Intent i = new Intent(this, clientHomePage.class);
+        startActivity(i);
+    }
+
+    public void handelButtonAppointments(View v) {
+        Intent i = new Intent(this, clientAppointmentsPage.class);
+        i.putExtra("Uid", myClient.getUid());
         startActivity(i);
     }
 }

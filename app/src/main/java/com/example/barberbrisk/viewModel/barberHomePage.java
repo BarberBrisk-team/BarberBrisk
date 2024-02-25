@@ -19,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.barberbrisk.R;
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
-import com.example.barberbrisk.objects.HairCut;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
@@ -30,7 +28,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class barberHomePage extends AppCompatActivity {
     private Barber myObj;
