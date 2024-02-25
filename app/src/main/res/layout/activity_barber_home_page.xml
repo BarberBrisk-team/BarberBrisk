@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A6FFA7"
+    android:background="#FFFFFF"
     tools:context=".viewModel.barberHomePage">
 
     <Button
         android:id="@+id/buttonProfileBarber"
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="179dp"
+        android:layout_height="69dp"
         android:fontFamily="casual"
         android:onClick="handelButtonProfile"
         android:text="Profile"
@@ -25,7 +25,7 @@
         app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.715" />
+        app:layout_constraintVertical_bias="0.76" />
 
     <Button
         android:id="@+id/buttonBarbeerAddAppointment"
@@ -45,35 +45,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/addHaircut_btn"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="136dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="52dp"
+        android:fontFamily="casual"
+        android:text="Add Haircut"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBarbeerAddAppointment"
+        app:layout_constraintEnd_toStartOf="@+id/buttonProfileBarber"
+        app:layout_constraintHorizontal_bias="0.618"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Wellcome_textView"
         android:layout_width="178dp"
         android:layout_height="46dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="cursive"
         android:text="Welcome back "
         android:textSize="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/DateTextView"
         app:layout_constraintEnd_toStartOf="@+id/NameTextView"
-        tools:layout_editor_absoluteY="32dp" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/NameTextView"
         android:layout_width="172dp"
         android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="44dp"
         android:fontFamily="cursive"
         android:text="TextView"
         android:textSize="28dp"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="32dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/DateTextView"
         android:layout_width="376dp"
         android:layout_height="64dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="cursive"
         android:text="TextView"
         android:textSize="28dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NameTextView"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:ignore="MissingConstraints" />
 
     <ListView
         android:id="@+id/OccupiedAppointmentsView"
@@ -87,14 +114,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonBarbeerAddAppointment" />
 
-    <Button
-        android:id="@+id/addHaircut_btn"
-        android:layout_width="124dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="62dp"
-        android:text="Add Haircut"
-        app:layout_constraintBottom_toTopOf="@+id/buttonBarbeerAddAppointment"
-        app:layout_constraintEnd_toStartOf="@+id/buttonProfileBarber"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
