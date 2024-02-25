@@ -5,141 +5,73 @@
     android:id="@+id/textBarberProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".viewModel.barBerProfilePage">
+    tools:context=".viewModel.BarberProfilePage">
 
-    <ImageView
-        android:id="@+id/gentleman_image"
-        android:layout_width="415dp"
-        android:layout_height="276dp"
-        android:src="@drawable/gentlemen_home_logo"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/Barber_profile_edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="16dp"
+        android:text="Edit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/under_logo"
-        android:layout_width="482dp"
-        android:layout_height="476dp"
-        android:src="@drawable/under_logo_home_page"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gentleman_image" />
-
-    <TextView
-        android:id="@+id/buttonBarberRating"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginBottom="44dp"
-        android:background="@drawable/rounded_corners"
-        android:text="Barber Rating"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/under_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/buttonAvailableAppointments"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="196dp"
-        android:background="@drawable/rounded_corners"
-        android:text="Rate Barber"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBarberRating" />
-
-    <TextView
-        android:id="@+id/buttonOccupiedAppointments"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:background="@drawable/rounded_corners"
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="248dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="24dp"
+        android:editable="false"
+        android:ems="10"
+        android:hapticFeedbackEnabled="false"
+        android:inputType="none"
+        android:nestedScrollingEnabled="false"
+        android:outlineProvider="none"
+        android:singleLine="false"
         android:text="Name"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonHairCutsBarber"
+        app:guidelineUseRtl="false"
+        app:layout_constraintBottom_toTopOf="@+id/Barber_Rate_editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAvailableAppointments" />
+        app:layout_constraintTop_toBottomOf="@+id/Barber_profile_edit_button" />
 
-    <TextView
-        android:id="@+id/buttonHairCutsBarber"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="216dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rounded_corners"
-        android:text="Name"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEmailBarber"
+    <EditText
+        android:id="@+id/Barber_Rate_editText"
+        android:layout_width="246dp"
+        android:layout_height="79dp"
+        android:layout_marginBottom="33dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="6.6"
+        app:layout_constraintBottom_toTopOf="@+id/Phone_editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPhoneBarber" />
-
-    <TextView
-        android:id="@+id/buttonNameBarber"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:background="@drawable/rounded_corners"
-        android:text="Name"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonBarberRating"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/buttonPhoneBarber"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="160dp"
-        android:background="@drawable/rounded_corners"
-        android:text="Phone"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAvailableAppointments"
+    <EditText
+        android:id="@+id/Phone_editText"
+        android:layout_width="249dp"
+        android:layout_height="87dp"
+        android:layout_marginBottom="86dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/edit_save_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNameBarber" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/buttonEmailBarber"
-        android:layout_width="207dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="288dp"
-        android:background="@drawable/rounded_corners"
-        android:text="Button"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        android:textStyle="bold"
+    <Button
+        android:id="@+id/edit_save_button"
+        android:layout_width="117dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="164dp"
+        android:text="Save"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPhoneBarber" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

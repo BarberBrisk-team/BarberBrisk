@@ -26,7 +26,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 
 public class barberHomePage extends AppCompatActivity {
@@ -111,7 +110,7 @@ public class barberHomePage extends AppCompatActivity {
 
 
     public void handelButtonProfile(View v) {
-        myIntent = new Intent(barberHomePage.this, barBerProfilePage.class);
+        myIntent = new Intent(barberHomePage.this, BarberProfilePage.class);
         myIntent.putExtra("Uid", myObj.getUid());
         startActivity(myIntent);
     }
