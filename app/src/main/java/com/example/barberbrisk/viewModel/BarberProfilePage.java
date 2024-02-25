@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -83,13 +84,18 @@ public class BarberProfilePage extends AppCompatActivity {
             BarberRate.setInputType(InputType.TYPE_NULL);
             BarberRate.setBackground(null);
 
-            phonenumber.setText(barber.getName());
-            BarberRate.setText(barber.getPhone());
+            phonenumber.setText(barber.getPhone());
+            Name.setText(barber.getName());
+            BarberRate.setText(String.valueOf(barber.getRating()));
             editprofile.setOnClickListener(v -> onEditMod());
+            saveEdit.setOnClickListener(v -> saveEdit());
 
         });
     }
+   public void updateRate()
+    {
 
+    }
     public void onEditMod()
     {
         if(editMode)
@@ -99,8 +105,8 @@ public class BarberProfilePage extends AppCompatActivity {
             Name.setBackground(null);
             phonenumber.setInputType(InputType.TYPE_NULL);
             phonenumber.setBackground(null);
-            BarberRate.setInputType(InputType.TYPE_NULL);
-            BarberRate.setBackground(null);
+//            BarberRate.setInputType(InputType.TYPE_NULL);
+//            BarberRate.setBackground(null);
             saveEdit.setVisibility(View.INVISIBLE);
         }
         else
@@ -110,11 +116,25 @@ public class BarberProfilePage extends AppCompatActivity {
             Name.setBackground(ResourcesCompat.getDrawable(getResources(), android.R.drawable.editbox_background_normal, null));
             phonenumber.setInputType(InputType.TYPE_CLASS_TEXT);
             phonenumber.setBackground(ResourcesCompat.getDrawable(getResources(), android.R.drawable.editbox_background_normal, null));
-            BarberRate.setInputType(InputType.TYPE_CLASS_TEXT);
-            BarberRate.setBackground(ResourcesCompat.getDrawable(getResources(), android.R.drawable.editbox_background_normal, null));
+//            BarberRate.setInputType(InputType.TYPE_CLASS_TEXT);
+//            BarberRate.setBackground(ResourcesCompat.getDrawable(getResources(), android.R.drawable.editbox_background_normal, null));
             saveEdit.setVisibility(View.VISIBLE);
         }
    }
+   public void saveEdit()
+   {
+         String name = Name.getText().toString();
+         String phone = phonenumber.getText().toString();
+         String rate = BarberRate.getText().toString();
+         DocumentReference docRef = db.collection("Barbers").document(Objects.requireNonNull(barber.getUid()));
+         docRef.update("name", name);
+         docRef.update("phone", phone);
+         docRef.update("rate", Double.parseDouble(rate));
+         onEditMod();
+       Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show();
+    }
+
+
     public void arrowBackButton(View v){
         Intent i = new Intent(BarberProfilePage.this, barberHomePage.class);
         startActivity(i);

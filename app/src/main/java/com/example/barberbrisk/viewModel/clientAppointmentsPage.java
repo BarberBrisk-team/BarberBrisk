@@ -51,7 +51,7 @@ public class clientAppointmentsPage extends AppCompatActivity {
                 HashMap<String, Appointment> appointmentHashMap = (HashMap<String, Appointment>) documentSnapshot.get("appointments");
                 // Create a list of occupied appointments
                 List<Appointment> AppointmentsList = new ArrayList<>(appointmentHashMap.values());
-                AppointmentsList.sort(Comparator.comparing(Appointment::getTimeAndDate));
+                //AppointmentsList.sort(Comparator.comparing(Appointment::getTimeAndDate));
                 // Create an ArrayAdapter with a custom getView method
                 ArrayAdapter<Appointment> adapter = new ArrayAdapter<Appointment>(this, android.R.layout.simple_list_item_2, android.R.id.text1, AppointmentsList) {
                     @SuppressLint("SetTextI18n")
