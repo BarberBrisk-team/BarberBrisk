@@ -7,30 +7,11 @@
     android:background="#FFFFFF"
     tools:context=".viewModel.clientProfilePage">
 
-    <ImageView
-        android:id="@+id/gentleman_image"
-        android:layout_width="423dp"
-        android:layout_height="280dp"
-        android:src="@drawable/gentlemen_home_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/under_logo"
-        android:layout_width="480dp"
-        android:layout_height="408dp"
-        android:src="@drawable/under_logo_home_page"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gentleman_image" />
-
     <Button
         android:id="@+id/buttonAppointHist"
-        android:layout_width="215dp"
+        android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="221dp"
         android:background="@drawable/rounded_corners"
         android:clickable="false"
         android:onClick="handelButtonAppointments"
@@ -41,62 +22,74 @@
         android:textColorLink="#111897"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonPhone"
-        tools:ignore="HardcodedText,NotSibling" />
-
-    <TextView
-        android:id="@+id/buttonName"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="268dp"
-        android:layout_marginBottom="8dp"
-        android:allowUndo="false"
-        android:autoText="false"
-        android:background="@drawable/rounded_corners"
-        android:clickable="false"
-        android:text="Name"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776"
-        tools:ignore="Deprecated,TextViewEdits" />
-
-    <TextView
-        android:id="@+id/buttonEmail"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:background="@drawable/rounded_corners"
-        android:clickable="false"
-        android:text="Email"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.659" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_editText"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText,NotSibling" />
 
-    <TextView
-        android:id="@+id/buttonPhone"
-        android:layout_width="215dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/rounded_corners"
-        android:clickable="false"
-        android:text="Phone"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
+    <EditText
+        android:id="@+id/Name_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="103dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_button" />
+
+    <EditText
+        android:id="@+id/Email_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name_editText" />
+
+    <EditText
+        android:id="@+id/phone_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="phone"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Email_editText" />
+
+    <Button
+        android:id="@+id/edit_profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/black"
+        android:text="Edit"
+        android:textColorLink="@color/green"
+        app:icon="@android:drawable/ic_dialog_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/save_client_edit_profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="155dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_editText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

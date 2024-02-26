@@ -3,22 +3,15 @@ package com.example.barberbrisk.tests;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.barberbrisk.DB.DataBase;
 import com.example.barberbrisk.R;
-import com.example.barberbrisk.model.AppointmentManegerModel;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TestActivity extends AppCompatActivity {
     ArrayList<Client> clients = new ArrayList<>();

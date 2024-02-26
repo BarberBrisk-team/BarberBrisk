@@ -3,15 +3,11 @@ package com.example.barberbrisk.DB;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.Client;
-import com.example.barberbrisk.objects.ClientAppointment;
 import com.example.barberbrisk.objects.HairCut;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -19,12 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.File;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DataBase {
@@ -33,10 +25,6 @@ public class DataBase {
     static Map<String, Barber> Baraberlist = new HashMap<>();
 
     public static Map<String, Barber> getBaraberlist() {
-//        if(Baraberlist.isEmpty())
-//        {
-////            throw new Exception("The list is empty. Call the method DownladBarberList() first.");
-//        }
         return Baraberlist;
     }
 
@@ -109,12 +97,8 @@ public class DataBase {
         Log.d("BarberNewAppointments", "BarberNewAppointments");
     }
 
-    public static void SetClientAppointment(ClientAppointment clientAppointment) {
-        db.collection("ClientAppointment").document().set(clientAppointment);
-    }
-    /*
 
-     */
+
 
     public static void UpdateBarberAppointments(String appointmentID, Appointment appointment) {
         db.collection("Apointments").document(appointmentID).set(appointment);
