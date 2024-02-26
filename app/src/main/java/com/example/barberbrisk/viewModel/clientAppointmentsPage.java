@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,25 +44,30 @@ public class clientAppointmentsPage extends AppCompatActivity {
         Intent myIntent = getIntent();
         String ClientUid = myIntent.getStringExtra("Uid");
 
-        if(ClientUid != null){
+        if (ClientUid != null){
             DocumentReference docRef = db.collection("Clients").document(Objects.requireNonNull(ClientUid));
             docRef.get().addOnSuccessListener(documentSnapshot -> {
+                myObj = documentSnapshot.toObject(Client.class);
                 ListView AppointmentsView = findViewById(R.id.AppointmentsView);
-                HashMap<String, Appointment> appointmentHashMap = (HashMap<String, Appointment>) documentSnapshot.get("appointments");
+                Log.d("ClientSuccess", "SuccessAppointmentView" + AppointmentsView);
+//                Map<String, Appointment> appointmentHashMap = (HashMap<String, Appointment>) documentSnapshot.get("appointments");
+                Log.d("ClientSuccess", "Success2" + myObj.getAppointments());
                 // Create a list of occupied appointments
-                List<Appointment> AppointmentsList = new ArrayList<>(appointmentHashMap.values());
-                //AppointmentsList.sort(Comparator.comparing(Appointment::getTimeAndDate));
+                List<Appointment> AppointmentsList = new ArrayList<>(myObj.getAppointments().values());
+                Log.d("ClientSuccess", "SuccessList" + AppointmentsList);
+                AppointmentsList.sort(Comparator.comparing(Appointment::getTimeAndDate));
                 // Create an ArrayAdapter with a custom getView method
-                ArrayAdapter<Appointment> adapter = new ArrayAdapter<Appointment>(this, android.R.layout.simple_list_item_2, android.R.id.text1, AppointmentsList) {
+                ArrayAdapter<Appointment> adapter = new ArrayAdapter<Appointment>(clientAppointmentsPage.this, android.R.layout.simple_list_item_2, android.R.id.text1, AppointmentsList) {
                     @SuppressLint("SetTextI18n")
                     @NonNull
                     @Override
                     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        Log.d("ClientSuccess", "SuccessViewFunction" + convertView);
                         if (convertView == null) {
                             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                             convertView = inflater.inflate(android.R.layout.simple_list_item_2, parent, false);
                         }
-
+                        Log.d("ClientSuccess", "SuccessConvertView" + convertView);
                         TextView textViewDate = convertView.findViewById(android.R.id.text1);
                         TextView textViewClientName = convertView.findViewById(android.R.id.text2);
 
@@ -73,7 +78,7 @@ public class clientAppointmentsPage extends AppCompatActivity {
                         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                         String formattedDate = dateFormat.format(appointment.getTimeAndDate());
                         textViewDate.setText(formattedDate);
-                        textViewClientName.setText("Client: " + appointment.getClientName());
+                        textViewClientName.setText("Barber: " + appointment.getBarberName());
 
                         return convertView;
                     }

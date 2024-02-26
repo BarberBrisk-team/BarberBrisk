@@ -11,6 +11,9 @@ public class Client extends User {
         super(in);
     }
 
+    public Client() {
+
+    }
     public Client(String uid, String name, String email, String phone, String password) {
         super(uid, name, email, phone, password);
         this.appointments = new HashMap<>();
