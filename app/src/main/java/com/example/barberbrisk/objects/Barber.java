@@ -65,6 +65,7 @@ public class Barber extends User {
 
     public void addAvailableAppointment(Appointment appointment) {
         if (appointment.isAvailable()) {
+            appointment.setBarberName(this.getName());
             availableAppointments.put(appointment.getAppointmentUid(), appointment);
         }
     }

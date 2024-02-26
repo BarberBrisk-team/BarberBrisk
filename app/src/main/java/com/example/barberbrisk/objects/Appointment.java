@@ -16,7 +16,13 @@ public class Appointment {
     HairCut hairCut; // the kind of haircut that the appointment is for
 
     private String clientName;
-
+    private String barberName;
+    public String getBarberName() {
+        return barberName;
+    }
+    public void setBarberName(String barberName) {
+        this.barberName = barberName;
+    }
     public String getClientName() {
         return clientName;
     }
