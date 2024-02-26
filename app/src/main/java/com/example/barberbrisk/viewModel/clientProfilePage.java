@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -73,12 +74,7 @@ public class clientProfilePage extends AppCompatActivity {
             Appointment_button = findViewById(R.id.buttonAppointHist);
             Edit_button = findViewById(R.id.edit_profile_button);
             Save_button = findViewById(R.id.save_client_edit_profile_button);
-
-            Name_editText.setText(myClient.getName());
-            Email_editText.setText(myClient.getEmail());
-            Phone_editText.setText(myClient.getPhone());
-            Appointment_button.setText("My Appointments");
-
+            
             Name_editText.setInputType(InputType.TYPE_NULL);
             Name_editText.setBackground(null);
             Email_editText.setInputType(InputType.TYPE_NULL);
@@ -88,6 +84,13 @@ public class clientProfilePage extends AppCompatActivity {
 
             Appointment_button.setVisibility(View.VISIBLE);
             Save_button.setVisibility(View.INVISIBLE);
+
+            Name_editText.setText(myClient.getName());
+            Email_editText.setText(myClient.getEmail());
+            Phone_editText.setText(myClient.getPhone());
+            Appointment_button.setText("My Appointments");
+
+
 
             Edit_button.setOnClickListener(v -> onEditMod());
             Save_button.setOnClickListener(v -> saveEdit());
@@ -130,6 +133,7 @@ public class clientProfilePage extends AppCompatActivity {
         myClient.setPhone(Phone_editText.getText().toString());
         db.collection("Clients").document(myClient.getUid()).update("name", myClient.getName(), "phone", myClient.getPhone());
         onEditMod();
+        Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show();
     }
     /**
      * This function is called when the user clicks on the "back" button.
