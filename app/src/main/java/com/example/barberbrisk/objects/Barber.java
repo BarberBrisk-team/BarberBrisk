@@ -31,7 +31,7 @@ public class Barber extends User {
 
 
     }
-    //constructor for barber that have a list haircuts to upload
+
 
     public Barber(String uid, String name, String email, String phone, Double rating, List<HairCut> hairCuts) {
         super(name, email, phone);
