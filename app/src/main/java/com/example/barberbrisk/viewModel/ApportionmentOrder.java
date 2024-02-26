@@ -96,6 +96,7 @@ public class ApportionmentOrder extends AppCompatActivity {
         submitButton.setOnClickListener(view -> {
             if (selectedBarber != null && selectedAppointment != null && selectedHaircutStyle != null) {
                 model.UpdateDbAndObjects(selectedAppointment);
+                Toast.makeText(this, "Appointment has been scheduled successfully", Toast.LENGTH_SHORT).show();
                 goBackHome(view);
             }
         });
