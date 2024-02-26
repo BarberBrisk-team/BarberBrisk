@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="green">#FFa4FFa4</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#4BF0FC</color> <!-- Neon Cyan -->
+    <color name="secondary">#212121</color> <!-- Dark Grey -->
+    <color name="accent">#FF69B4</color> <!-- Neon Pink -->
+    <color name="text">#FFFFFF</color> <!-- White -->
+    <color name="sub_text">#BDBDBD</color> <!-- Light Grey -->
 </resources>
