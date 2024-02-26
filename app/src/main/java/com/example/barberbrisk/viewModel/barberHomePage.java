@@ -71,7 +71,7 @@ public class barberHomePage extends AppCompatActivity {
                             List<Appointment> occupiedAppointmentsList = new ArrayList<>(myObj.getOccupiedAppointments().values());
                             occupiedAppointmentsList.sort(Comparator.comparing(Appointment::getTimeAndDate));
                             // Create an ArrayAdapter with a custom getView method
-                            ArrayAdapter<Appointment> adapter = new ArrayAdapter<Appointment>(barberHomePage.this, android.R.layout.simple_list_item_2, android.R.id.text1, occupiedAppointmentsList) {
+                            ArrayAdapter<Appointment> adapter = new ArrayAdapter<Appointment>(getApplicationContext(), android.R.layout.simple_list_item_2, android.R.id.text1, occupiedAppointmentsList) {
                                 @SuppressLint("SetTextI18n")
                                 @NonNull
                                 @Override
@@ -106,7 +106,7 @@ public class barberHomePage extends AppCompatActivity {
 
 
     public void handelButtonProfile(View v) {
-        myIntent = new Intent(barberHomePage.this, barBerProfilePage.class);
+        myIntent = new Intent(barberHomePage.this, BarberProfilePage.class);
         myIntent.putExtra("Uid", myObj.getUid());
         startActivity(myIntent);
     }

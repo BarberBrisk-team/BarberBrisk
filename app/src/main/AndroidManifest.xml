@@ -31,7 +31,7 @@
             android:name=".viewModel.clientProfilePage"
             android:exported="true" />
         <activity
-            android:name=".viewModel.barBerProfilePage"
+            android:name=".viewModel.BarberProfilePage"
             android:exported="true" />
         <activity
             android:name=".viewModel.ApportionmentOrder"
