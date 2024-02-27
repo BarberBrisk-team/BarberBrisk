@@ -16,7 +16,6 @@ import com.example.barberbrisk.R;
 import com.example.barberbrisk.model.SignUpModel;
 
 public class signup extends AppCompatActivity {
-
     public CheckBox barberCheckBox;
     private LinearLayout linearPasswordContainer;
     public EditText additionalPasswordEditText;

@@ -5,26 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/barber_add_appointment"
     tools:context=".viewModel.AddAppointmentBarber">
-
-    <ImageView
-        android:id="@+id/under_logo"
-        android:layout_width="480dp"
-        android:layout_height="408dp"
-        android:src="@drawable/under_logo_home_page"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gentleman_image" />
-
-    <ImageView
-        android:id="@+id/gentleman_image"
-        android:layout_width="449dp"
-        android:layout_height="280dp"
-        android:src="@drawable/gentlemen_home_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonSelectDate"
@@ -34,7 +16,10 @@
         android:layout_marginBottom="60dp"
         android:onClick="showDatePicker"
         android:text="Select Date"
-        android:textSize="24sp"
+        android:backgroundTint="@color/accent"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="casual"
         app:layout_constraintBottom_toTopOf="@+id/buttonSelectTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,7 +33,10 @@
         android:layout_marginBottom="52dp"
         android:onClick="showTimePicker"
         android:text="Select Time"
-        android:textSize="24sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/accent"
+        android:textColor="@color/black"
+        android:fontFamily="casual"
         app:layout_constraintBottom_toTopOf="@+id/submitButtonAppointmentBarber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -57,15 +45,18 @@
         android:id="@+id/submitButtonAppointmentBarber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="112dp"
+        android:layout_marginBottom="268dp"
+        android:backgroundTint="@color/accent"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="casual"
         android:text="Submit"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/under_logo"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/selected_date_textView"
