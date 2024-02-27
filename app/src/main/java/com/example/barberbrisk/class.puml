@@ -1,0 +1,269 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class AddApoBarberModel {
+  + AddApoBarberModel(AddAppointmentBarber):
+  + getBarber(String): void
+  + addAppointment(Date): void
+}
+class AddAppointmentBarber {
+  + AddAppointmentBarber():
+  - createSelectedDateTime(): Timestamp?
+  + showDatePicker(View): void
+  # onCreate(Bundle): void
+  + showTimePicker(View): void
+}
+class AddHaircutModel {
+  + AddHaircutModel():
+  + addHaircut(String, double, String): void
+}
+class AddHaircutPage {
+  + AddHaircutPage():
+  # onCreate(Bundle): void
+}
+class Appointment {
+  + Appointment(Timestamp, boolean):
+  + Appointment(Parcel):
+  + Appointment():
+  - appointmentUid: String
+  - available: boolean
+  - clientName: String
+  ~ hairCut: HairCut
+  ~ TimeAndDate: Date
+  - barberName: String
+  + writeToParcel(Parcel, int): void
+  + toString(): String
+   TimeAndDate: Date
+   appointmentUid: String
+   clientName: String
+   hairCut: HairCut
+   available: boolean
+   barberName: String
+}
+class AppointmentModel {
+  + AppointmentModel(ApportionmentOrder):
+  + loadClient(String): void
+  + UpdateDbAndObjects(Appointment): void
+  + SetNotificationTimer(Appointment): void
+}
+class ApportionmentOrder {
+  + ApportionmentOrder():
+  - loadHaircutsIntoSpinner(): void
+  - formatDateTime(Date): String
+  - loadBarbersIntoSpinner(): void
+  # onCreate(Bundle): void
+  - loadAppointmentsIntoSpinner(): void
+  + goBackHome(View): void
+}
+class AuthenticationDB {
+  + AuthenticationDB():
+  + registerNewUser(String, String, OnCompleteListener<AuthResult>): void
+   UID: String
+}
+class Barber {
+  # Barber(Parcel):
+  + Barber(String, String, String, String, String, Double, List<HairCut>):
+  + Barber():
+  + Barber(String, String, String, String, Double, List<HairCut>):
+  + Barber(String, String, String, String, String):
+  - numOfRaters: int
+  - availableAppointments: HashMap<String, Appointment>
+  - occupiedAppointments: HashMap<String, Appointment>
+  - rating: Double
+  ~ hairCuts: List<HairCut>
+  + removeAvailableAppointment(String): void
+  + removeAvailableAppointment(Appointment): void
+  + addOccupiedAppointment(Appointment): void
+  + removeOccupiedAppointment(String): void
+  + addAvailableAppointment(Appointment): void
+  + writeToParcel(Parcel, int): void
+  + addRating(Double): void
+  + removeHaircut(HairCut): void
+  + addHaircut(HairCut): void
+  + removeOccupiedAppointment(Appointment): void
+   rating: Double
+   availableAppointments: HashMap<String, Appointment>
+   hairCuts: List<HairCut>
+   numOfRaters: int
+   occupiedAppointments: HashMap<String, Appointment>
+}
+class BarberProfilePage {
+  + BarberProfilePage():
+  + updateRate(): void
+  + saveEdit(): void
+  # onCreate(Bundle): void
+  + onEditMod(): void
+  + arrowBackButton(View): void
+}
+class Client {
+  + Client(String, String, String, String, String):
+  + Client(Parcel):
+  + Client():
+  ~ appointments: HashMap<String, Appointment>
+  + writeToParcel(Parcel, int): void
+  + addAppointment(Appointment): void
+   appointments: HashMap<String, Appointment>
+}
+class DataBase {
+  + DataBase():
+  ~ Baraberlist: Map<String, Barber>
+  ~ AppointmentList: Map<String, Appointment>
+  + UpdateClientDB(Client): void
+  + NewBarberDB(Barber): void
+  + DownloadListAppoinment(): void
+  + setCustomerRatingDB(double, String, String): void
+  - UpdateRating(double, String): void
+  + UpdateBarberAppointments(String, Appointment): void
+  + AddNewHairStyle(HairCut, String): void
+  + UpdateBarberDB(Barber): void
+  + NewClientDB(Client): void
+  + DownloadBarberList(): void
+  + ListOfBarbers(OnDataFetchedListenerBarbers): void
+  + ListOfClient(OnDataFetchedListenerClients): void
+  + BarberNewAppointment(Appointment): void
+   AppointmentList: Map<String, Appointment>
+   Baraberlist: Map<String, Barber>
+}
+class EntrancePage {
+  + EntrancePage():
+  # onCreate(Bundle): void
+}
+class HairCut {
+  # HairCut(Parcel):
+  + HairCut():
+  + HairCut(Double, String):
+  - price: Double
+  - hairCutStyle: String
+  + describeContents(): int
+  + toString(): String
+  + writeToParcel(Parcel, int): void
+   hairCutStyle: String
+   price: Double
+}
+class LogInPage {
+  + LogInPage():
+  + goHomeCustomer(String): void
+  + goHomeBarber(String): void
+  # onCreate(Bundle): void
+}
+class LoginModel {
+  + LoginModel():
+  - Uid: String
+  + loginUser(String, String, OnUserLoggedInListener): void
+   Uid: String
+}
+interface OnDataFetchedListenerBarbers << interface >> {
+  + onDataFetchedBarbers(ArrayList<Barber>): void
+}
+interface OnDataFetchedListenerClients << interface >> {
+  + onDataFetchedClients(ArrayList<Client>): void
+}
+interface OnUserLoggedInListener << interface >> {
+  + onFailure(String): void
+  + onUserLoggedIn(String): void
+}
+class RateNotificationManager {
+  + RateNotificationManager():
+  - sendRateNotification(Context, String, String): void
+  + createNotificationChannel(Context): void
+  + scheduleNotification(Context, String, String, Appointment): void
+  - getNotificationBuilder(Context, PendingIntent): Builder
+  - getPendingIntent(Context, String, String): PendingIntent
+}
+class RattingPage {
+  + RattingPage():
+  # onCreate(Bundle): void
+}
+class SignUpModel {
+  + SignUpModel(signup):
+  + validatePassword(String): boolean
+  + registerNewUser(String, String, String, String): void
+}
+class User {
+  + User(String, String, String):
+  + User(String, String, String, String, String):
+  + User():
+  # User(Parcel):
+  - name: String
+  - phone: String
+  - password: String
+  - email: String
+  - uid: String
+  + writeToParcel(Parcel, int): void
+  + describeContents(): int
+   uid: String
+   name: String
+   password: String
+   email: String
+   phone: String
+}
+class barberHomePage {
+  + barberHomePage():
+  + handelButtonProfile(View): void
+  + handelButtonAddAppointment(View): void
+  # onCreate(Bundle): void
+}
+class clientAppointmentsPage {
+  + clientAppointmentsPage():
+  # onCreate(Bundle): void
+}
+class clientHomePage {
+  + clientHomePage():
+  + handelButtonProfile(View): void
+  + handelButtonOrder(View): void
+  # onCreate(Bundle): void
+}
+class clientProfilePage {
+  + clientProfilePage():
+  + saveEdit(): void
+  + arrowBackButton(View): void
+  + handelButtonAppointments(View): void
+  # onCreate(Bundle): void
+  + onEditMod(): void
+}
+class signup {
+  + signup():
+  # onCreate(Bundle): void
+  + goHomeClient(String): void
+  + goHomeBarber(String): void
+}
+Appointment --> HairCut : has
+Appointment --> Date : uses
+AuthenticationDB --> AuthResult : uses
+Barber --> HairCut : has
+Barber --> Appointment : has
+Client --> Appointment : has
+DataBase --> Barber : manages
+DataBase --> Client : manages
+DataBase --> Appointment : manages
+LogInPage --> LoginModel : uses
+LoginModel --> OnUserLoggedInListener : has
+SignUpModel --> signup : manages
+barberHomePage --> Barber : uses
+barberHomePage --> Appointment : uses
+clientHomePage --> Client : uses
+clientHomePage --> Appointment : uses
+clientProfilePage --> Client : uses
+clientProfilePage --> Appointment : uses
+clientAppointmentsPage --> Client : has
+signup --> SignUpModel : uses
+User <|-- Barber : inherits
+User <|-- Client : inherits
+AppointmentModel --> ApportionmentOrder : manages
+AppointmentModel --> Client: has
+LoginModel --> LogInPage : manages
+AddApoBarberModel --> AddAppointmentBarber : manages
+AddApoBarberModel  --> Barber: has
+AddHaircutModel --> AddHaircutPage : manages
+SignUpModel --> AuthenticationDB : has
+RateNotificationManager --> RattingPage : manages
+BarberProfilePage --> Barber : has
+
+
+OnDataFetchedListenerBarbers  +-[#820000,plain]-  DataBase
+OnDataFetchedListenerClients  +-[#820000,plain]-  DataBase
+OnUserLoggedInListener        +-[#820000,plain]-  LoginModel
+@enduml

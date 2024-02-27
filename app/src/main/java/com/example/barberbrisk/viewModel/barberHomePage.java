@@ -41,12 +41,10 @@ public class barberHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barber_home_page);
         myIntent = getIntent();
-//      we need to fill all the object fields by the DB
         String BarberUid = myIntent.getStringExtra("Uid");
         Button addHair_btn = findViewById(R.id.addHaircut_btn);
         TextView barberName = findViewById(R.id.NameTextView);
         TextView DateTextView = findViewById(R.id.DateTextView);
-
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = dateFormat.format(new java.util.Date());
