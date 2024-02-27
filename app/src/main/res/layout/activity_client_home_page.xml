@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A6FFA7"
+    android:background="@drawable/client_home_screen"
+    android:backgroundTint="#69000000"
+    android:backgroundTintMode="src_over"
     tools:context=".viewModel.clientHomePage">
 
     <Button
@@ -14,6 +16,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:onClick="handelButtonProfile"
+        android:backgroundTint="@color/accent"
         android:text="Profile"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -32,6 +35,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:onClick="handelButtonOrder"
+        android:backgroundTint="@color/primary"
         android:text="Appointment Order"
         android:textAlignment="center"
         android:textAllCaps="true"

@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/client_profile_screen"
+    android:backgroundTint="#69000000"
+    android:backgroundTintMode="src_over">
 
 
     <ListView
         android:id="@+id/AppointmentsView"
         android:layout_width="412dp"
         android:layout_height="488dp"
-        android:background="#A7FFEA"
+        android:background="@color/sub_text"
+        android:backgroundTint="#B0FFFFFF"
         android:scrollbarSize="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +26,8 @@
         android:id="@+id/textView6"
         android:layout_width="411dp"
         android:layout_height="253dp"
-        android:background="#9CFF2E"
         android:text="You can see your all appointments history below:"
+        android:textColor="@color/primary"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold|italic"

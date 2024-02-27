@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/Barber_room"
+    android:background="@drawable/barber_room"
     android:backgroundTint="#69000000"
     android:backgroundTintMode="src_over"
     tools:context=".viewModel.barberHomePage">

@@ -5,6 +5,9 @@
     android:id="@+id/textBarberProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/barber_profile_screen"
+    android:backgroundTint="#69000000"
+    android:backgroundTintMode="src_over"
     tools:context=".viewModel.BarberProfilePage">
 
     <Button
@@ -13,7 +16,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="312dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/accent"
         android:text="Edit"
+        android:fontFamily="casual"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +29,10 @@
         android:layout_height="92dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="24dp"
+        android:background="@color/primary"
         android:editable="false"
         android:ems="10"
+        android:fontFamily="casual"
         android:hapticFeedbackEnabled="false"
         android:inputType="none"
         android:nestedScrollingEnabled="false"
@@ -46,6 +54,8 @@
         android:ems="10"
         android:inputType="text"
         android:text="6.6"
+        android:fontFamily="casual"
+        android:background="@color/primary"
         app:layout_constraintBottom_toTopOf="@+id/Phone_editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -58,6 +68,8 @@
         android:ems="10"
         android:inputType="text"
         android:text="Name"
+        android:fontFamily="casual"
+        android:background="@color/primary"
         app:layout_constraintBottom_toTopOf="@+id/edit_save_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -68,6 +80,7 @@
         android:layout_height="72dp"
         android:layout_marginBottom="164dp"
         android:text="Save"
+        android:fontFamily="casual"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
