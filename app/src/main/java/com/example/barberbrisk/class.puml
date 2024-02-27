@@ -250,8 +250,8 @@ clientProfilePage --> Client : uses
 clientProfilePage --> Appointment : uses
 clientAppointmentsPage --> Client : has
 signup --> SignUpModel : uses
-User <|-- Barber
-User <|-- Client
+User <|-- Barber : inherits
+User <|-- Client : inherits
 AppointmentModel --> ApportionmentOrder : manages
 AppointmentModel --> Client: has
 LoginModel --> LogInPage : manages
