@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/log_in_page2"
+    android:backgroundTint="#65FFFFFF"
+    android:backgroundTintMode="src_over"
     tools:context=".viewModel.LogInPage">
 
     <TextView
@@ -22,12 +25,13 @@
 
     <EditText
         android:id="@+id/editTextTextEmailAddress2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="221dp"
+        android:layout_height="65dp"
         android:layout_marginStart="106dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="102dp"
         android:layout_marginBottom="584dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="insret Email"
         android:inputType="textEmailAddress"
@@ -38,21 +42,21 @@
 
     <EditText
         android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="218dp"
+        android:layout_height="71dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="101dp"
         android:layout_marginBottom="502dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="insret password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button"
@@ -63,6 +67,8 @@
         android:layout_marginEnd="166dp"
         android:layout_marginBottom="328dp"
         android:text="Log-in"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
