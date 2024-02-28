@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/barber_profile_page"
-    android:backgroundTint="#69000000"
+    android:backgroundTint="#85CACACA"
     android:backgroundTintMode="src_over"
     tools:context=".viewModel.BarberProfilePage">
 
@@ -17,8 +17,8 @@
         android:layout_marginStart="312dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/accent"
-        android:text="Edit"
         android:fontFamily="casual"
+        android:text="Edit"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,11 +52,11 @@
         android:layout_width="246dp"
         android:layout_height="79dp"
         android:layout_marginBottom="33dp"
+        android:background="@color/accent"
         android:ems="10"
+        android:fontFamily="casual"
         android:inputType="text"
         android:text="6.6"
-        android:fontFamily="casual"
-        android:background="@color/accent"
         app:layout_constraintBottom_toTopOf="@+id/Phone_editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

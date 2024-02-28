@@ -117,11 +117,11 @@ public class clientProfilePage extends AppCompatActivity {
         {
             editMode = true;
             Name_editText.setInputType(InputType.TYPE_CLASS_TEXT);
-            Name_editText.setBackground(ResourcesCompat.getDrawable(getResources(), android.R.drawable.editbox_background_normal, null));
+            Name_editText.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.accent, null));
             Email_editText.setInputType(InputType.TYPE_CLASS_TEXT);
-            Email_editText.setBackground(null);
+            Email_editText.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.accent, null));
             Phone_editText.setInputType(InputType.TYPE_CLASS_TEXT);
-            Phone_editText.setBackground(ResourcesCompat.getDrawable(getResources(), android.R.drawable.editbox_background_normal, null));
+            Phone_editText.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.accent, null));
 
             Appointment_button.setVisibility(View.INVISIBLE);
             Save_button.setVisibility(View.VISIBLE);
