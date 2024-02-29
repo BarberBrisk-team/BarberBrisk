@@ -46,6 +46,7 @@ public class AppointmentModel {
     }
 
 //    @RequiresApi(api = Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void UpdateDbAndObjects(Appointment appointment) {
         appointment.setHairCut(activity.selectedHaircutStyle); // set the haircut of the appointment
         client.addAppointment(appointment); // add the appointment to the client
@@ -61,7 +62,7 @@ public class AppointmentModel {
 //        db.collection("Appointments").document(appointment.getAppointmentUid()).set(appointment);
         DataBase.UpdateClientDB(client);
         DataBase.UpdateBarberDB(activity.selectedBarber);
-//        SetNotificationTimer(appointment);
+        SetNotificationTimer(appointment);
 
     }
 
