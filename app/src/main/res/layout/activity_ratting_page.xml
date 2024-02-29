@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/rating_page"
-    android:backgroundTint="#69000000"
+    android:background="@drawable/rating_screen"
+    android:backgroundTint="#89000000"
     android:backgroundTintMode="src_over"
     tools:context=".viewModel.RattingPage">
 
@@ -42,6 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
+        android:background="@color/sub_text"
+        android:backgroundTint="#7EFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/how_was_const" />
