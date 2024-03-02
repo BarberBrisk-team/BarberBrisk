@@ -19,7 +19,9 @@ import com.example.barberbrisk.R;
 import com.example.barberbrisk.objects.Appointment;
 import com.example.barberbrisk.objects.Barber;
 import com.example.barberbrisk.objects.HairCut;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -30,6 +32,7 @@ public class BarberProfilePage extends AppCompatActivity {
     private Barber barber;
     private final FirebaseFirestore db;
     boolean editMode = false;
+
     public BarberProfilePage() {
         db = FirebaseFirestore.getInstance();
     }
@@ -44,10 +47,10 @@ public class BarberProfilePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barber_profile_page);
 
-         phonenumber = findViewById(R.id.Phone_editText);
-         BarberRate = findViewById(R.id.Barber_Rate_editText);
-         Name = findViewById(R.id.editTextText);
-         saveEdit = findViewById(R.id.edit_save_button);
+        phonenumber = findViewById(R.id.Phone_editText);
+        BarberRate = findViewById(R.id.Barber_Rate_editText);
+        Name = findViewById(R.id.editTextText);
+        saveEdit = findViewById(R.id.edit_save_button);
         Button editprofile = findViewById(R.id.Barber_profile_edit_button);
         //write a message on the screen that the activity start
         Log.d("barberProfile", "start Barber profile activity");
@@ -56,50 +59,44 @@ public class BarberProfilePage extends AppCompatActivity {
         Intent barberIntent = getIntent();
         String BarberUid = barberIntent.getStringExtra("Uid");
 
-        DocumentReference docRef = db.collection("Barbers").document(Objects.requireNonNull(BarberUid));
-        docRef.get().addOnSuccessListener(documentSnapshot -> {
-            String email = (String) documentSnapshot.get("email");
-            String name = (String) documentSnapshot.get("name");
-            String password = (String) documentSnapshot.get("password");
-            String phone = (String) documentSnapshot.get("phone");
-            barber = new Barber(BarberUid, name, email, phone, password);
-
-            if(documentSnapshot.get("rate") != null)
-                barber.setRating((Double) documentSnapshot.get("rate"));
-            if (documentSnapshot.get("availableAppointments") != null)
-                barber.setAvailableAppointments((HashMap<String, Appointment>) documentSnapshot.get("availableAppointments"));
-            if (documentSnapshot.get("occupiedAppointments") != null)
-                barber.setOccupiedAppointments((HashMap<String, Appointment>) documentSnapshot.get("occupiedAppointments"));
-            if (documentSnapshot.get("haircuts") != null)
-                barber.setHairCuts((List<HairCut>) documentSnapshot.get("haircuts"));
-
-            //set data on the activity
+        assert BarberUid != null;
+        Task<DocumentSnapshot> docRef = db.collection("Barbers")
+                .document(BarberUid)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        barber = documentSnapshot.toObject(Barber.class);
+                    } else {
+                        Log.d("BarberSuccess", "Failed");
+                    }
 
 
-            ///// prevent the user to edit
-            Name.setInputType(InputType.TYPE_NULL);
-            Name.setBackground(null);
-            phonenumber.setInputType(InputType.TYPE_NULL);
-            phonenumber.setBackground(null);
-            BarberRate.setInputType(InputType.TYPE_NULL);
-            BarberRate.setBackground(null);
+                    //set data on the activity
 
-            phonenumber.setText(barber.getPhone());
-            Name.setText(barber.getName());
-            BarberRate.setText(String.valueOf(barber.getRating()));
-            editprofile.setOnClickListener(v -> onEditMod());
-            saveEdit.setOnClickListener(v -> saveEdit());
 
-        });
+                    ///// prevent the user to edit
+                    Name.setInputType(InputType.TYPE_NULL);
+                    Name.setBackground(null);
+                    phonenumber.setInputType(InputType.TYPE_NULL);
+                    phonenumber.setBackground(null);
+                    BarberRate.setInputType(InputType.TYPE_NULL);
+                    BarberRate.setBackground(null);
+
+                    phonenumber.setText(barber.getPhone());
+                    Name.setText(barber.getName());
+                    BarberRate.setText(String.valueOf(barber.getRating()));
+                    editprofile.setOnClickListener(v -> onEditMod());
+                    saveEdit.setOnClickListener(v -> saveEdit());
+
+                });
     }
-   public void updateRate()
-    {
+
+    public void updateRate() {
 
     }
-    public void onEditMod()
-    {
-        if(editMode)
-        {
+
+    public void onEditMod() {
+        if (editMode) {
             editMode = false;
             Name.setInputType(InputType.TYPE_NULL);
             Name.setBackground(null);
@@ -108,9 +105,7 @@ public class BarberProfilePage extends AppCompatActivity {
 //            BarberRate.setInputType(InputType.TYPE_NULL);
 //            BarberRate.setBackground(null);
             saveEdit.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
+        } else {
             editMode = true;
             Name.setInputType(InputType.TYPE_CLASS_TEXT);
             Name.setBackground(ResourcesCompat.getDrawable(getResources(), android.R.drawable.editbox_background_normal, null));
@@ -120,22 +115,22 @@ public class BarberProfilePage extends AppCompatActivity {
 //            BarberRate.setBackground(ResourcesCompat.getDrawable(getResources(), android.R.drawable.editbox_background_normal, null));
             saveEdit.setVisibility(View.VISIBLE);
         }
-   }
-   public void saveEdit()
-   {
-         String name = Name.getText().toString();
-         String phone = phonenumber.getText().toString();
-         String rate = BarberRate.getText().toString();
-         DocumentReference docRef = db.collection("Barbers").document(Objects.requireNonNull(barber.getUid()));
-         docRef.update("name", name);
-         docRef.update("phone", phone);
-         docRef.update("rate", Double.parseDouble(rate));
-         onEditMod();
-       Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show();
+    }
+
+    public void saveEdit() {
+        String name = Name.getText().toString();
+        String phone = phonenumber.getText().toString();
+        String rate = BarberRate.getText().toString();
+        DocumentReference docRef = db.collection("Barbers").document(Objects.requireNonNull(barber.getUid()));
+        docRef.update("name", name);
+        docRef.update("phone", phone);
+        docRef.update("rate", Double.parseDouble(rate));
+        onEditMod();
+        Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show();
     }
 
 
-    public void arrowBackButton(View v){
+    public void arrowBackButton(View v) {
         Intent i = new Intent(BarberProfilePage.this, barberHomePage.class);
         startActivity(i);
     }

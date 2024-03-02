@@ -2,6 +2,7 @@ package com.example.barberbrisk.viewModel;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -63,8 +64,6 @@ public class ApportionmentOrder extends AppCompatActivity {
         Intent myIntent = getIntent();
         String ClientUid = myIntent.getStringExtra("Uid");
         model.loadClient(ClientUid);
-
-
         selectBarberButton.setOnClickListener(view -> {
             barbersSpinner.setVisibility(View.VISIBLE);
             loadBarbersIntoSpinner();
@@ -95,7 +94,9 @@ public class ApportionmentOrder extends AppCompatActivity {
         Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(view -> {
             if (selectedBarber != null && selectedAppointment != null && selectedHaircutStyle != null) {
-                model.UpdateDbAndObjects(selectedAppointment);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    model.UpdateDbAndObjects(selectedAppointment);
+                }
                 Toast.makeText(this, "Appointment has been scheduled successfully", Toast.LENGTH_SHORT).show();
                 goBackHome(view);
             }

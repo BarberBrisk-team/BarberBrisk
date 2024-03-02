@@ -115,6 +115,7 @@ public class AddAppointmentBarber extends AppCompatActivity {
             String selectedDateTimeString = selectedYear + "-" + (selectedMonth + 1) + "-" + selectedDay + " " + selectedHour + ":" + selectedMinute;
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
             Date parsedDate = dateFormat.parse(selectedDateTimeString);
+            assert parsedDate != null;
             return new Timestamp(parsedDate.getTime());
         } catch (ParseException e) {
             e.printStackTrace();

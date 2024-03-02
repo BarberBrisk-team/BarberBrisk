@@ -52,16 +52,14 @@ public class AppointmentModel {
         client.addAppointment(appointment); // add the appointment to the client
         activity.selectedBarber.removeAvailableAppointment(appointment);
         activity.selectedBarber.addOccupiedAppointment(appointment);
-//        db.collection("Clients").document(client.getUid()).
-//                update("appointments", client.getAppointments()); // update the client's appointments in the database
-//        db.collection("Barbers").document(activity.selectedBarber.getUid()).
-//                update("availableAppointments", activity.selectedBarber.getAvailableAppointments()); // update the barber's available appointments in the database
-//        db.collection("Barbers").document(activity.selectedBarber.getUid()).
-//                update("occupiedAppointments", activity.selectedBarber.getOccupiedAppointments()); // update the barber's occupied appointments in the database
-//        //update the appointment in the database
-//        db.collection("Appointments").document(appointment.getAppointmentUid()).set(appointment);
-        DataBase.UpdateClientDB(client);
-        DataBase.UpdateBarberDB(activity.selectedBarber);
+        db.collection("Clients").document(client.getUid()).
+                update("appointments", client.getAppointments()); // update the client's appointments in the database
+        db.collection("Barbers").document(activity.selectedBarber.getUid()).
+                update("availableAppointments", activity.selectedBarber.getAvailableAppointments()); // update the barber's available appointments in the database
+        db.collection("Barbers").document(activity.selectedBarber.getUid()).
+                update("occupiedAppointments", activity.selectedBarber.getOccupiedAppointments()); // update the barber's occupied appointments in the database
+        //update the appointment in the database
+        db.collection("Appointments").document(appointment.getAppointmentUid()).set(appointment);
         SetNotificationTimer(appointment);
 
     }

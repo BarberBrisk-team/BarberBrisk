@@ -35,7 +35,6 @@ public class AddHaircutPage extends AppCompatActivity {
         EditText HaircutNameEditText = findViewById(R.id.name_editText);
         Intent intent = getIntent();
         String barberUid = intent.getStringExtra("barber");
-
         Log.d("AddHaircutPage", "onCreate: " + barberUid);
 //        Log.d("AddHaircutPage", "onCreate: " + barber.getUid());
 
