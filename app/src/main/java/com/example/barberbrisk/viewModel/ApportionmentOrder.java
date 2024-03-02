@@ -145,6 +145,7 @@ public class ApportionmentOrder extends AppCompatActivity {
 
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView) {
+                            Toast.makeText(ApportionmentOrder.this, "No barber selected.", Toast.LENGTH_SHORT).show();
                             // Handle when nothing is selected
                         }
                     });
