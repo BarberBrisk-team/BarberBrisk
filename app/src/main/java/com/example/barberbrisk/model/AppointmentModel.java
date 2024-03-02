@@ -13,6 +13,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class AppointmentModel {
     private ApportionmentOrder activity;
@@ -25,21 +26,9 @@ public class AppointmentModel {
     }
 
     public void loadClient(String uid) {
-        DocumentReference docRef = db.collection("Clients").document(uid); // Create a reference to the client's document
-        // Create a client object from the docRef
-        docRef.get().addOnSuccessListener(documentSnapshot -> { // Get the document from the database
-            Log.d("ClientSuccess", "Success"); // Log statement for debugging
-            String email = (String) documentSnapshot.get("email"); // Get the email from the document
-            String name = (String) documentSnapshot.get("name"); // Get the name from the document
-            String password = (String) documentSnapshot.get("password"); // Get the password from the document
-            String phone = (String) documentSnapshot.get("phone"); // Get the phone from the document
-            HashMap<String, Appointment> appointments =
-                    (HashMap<String, Appointment>) documentSnapshot.get("appointments");// Get the appointments from the document as a hashmap if it exists
-            client = new Client(uid, name, email, phone, password); // Create a new client object
-            //if appointments is not null, set the appointments of the client
-            if (appointments != null) { // If the appointments hashmap is not null
-                client.setAppointments(appointments); // Set the appointments of the client
-            }
+        DocumentReference docRef = db.collection("Clients").document(Objects.requireNonNull(uid));
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            client = documentSnapshot.toObject(Client.class);
         });
 
 

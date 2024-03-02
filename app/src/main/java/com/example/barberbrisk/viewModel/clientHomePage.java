@@ -15,16 +15,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Objects;
 
 public class clientHomePage extends AppCompatActivity {
-    private Client myObj;
+    private Client myClient;
     private Intent myIntent;
     private final FirebaseFirestore db;
 
     public clientHomePage() {
         db = FirebaseFirestore.getInstance();
     }
+
     /**
      * This function is called when the activity is created.
      * It gets the client details from the DB and sets the data on the activity.
+     *
      * @param savedInstanceState - the saved instance state
      */
     @Override
@@ -36,34 +38,33 @@ public class clientHomePage extends AppCompatActivity {
         String ClientUid = myIntent.getStringExtra("Uid");
         DocumentReference docRef = db.collection("Clients").document(Objects.requireNonNull(ClientUid));
         docRef.get().addOnSuccessListener(documentSnapshot -> {
-            Log.d("ClientSuccess", "Success");
-            String email = (String) documentSnapshot.get("email");
-            String name = (String) documentSnapshot.get("name");
-            String password = (String) documentSnapshot.get("password");
-            String phone = (String) documentSnapshot.get("phone");
-            myObj = new Client(ClientUid, name, email, phone, password);
-            Log.d("ClientSuccess", "Success2");
+            myClient = documentSnapshot.toObject(Client.class);
+
         });
 
     }
+
     /**
      * This function is called when the user clicks on the " Profile" button.
      * It opens the clientProfilePage activity.
+     *
      * @param v - the view
      */
-    public void handelButtonProfile(View v){
+    public void handelButtonProfile(View v) {
         myIntent = new Intent(clientHomePage.this, clientProfilePage.class);
-        myIntent.putExtra("Uid", myObj.getUid());
+        myIntent.putExtra("Uid", myClient.getUid());
         startActivity(myIntent);
     }
+
     /**
      * This function is called when the user clicks on the " Appointment Order" button.
      * It opens the ApportionmentOrder activity.
+     *
      * @param n - the view
      */
-    public void handelButtonOrder(View n){
+    public void handelButtonOrder(View n) {
         myIntent = new Intent(clientHomePage.this, ApportionmentOrder.class);
-        myIntent.putExtra("Uid", myObj.getUid());
+        myIntent.putExtra("Uid", myClient.getUid());
         startActivity(myIntent);
     }
 }

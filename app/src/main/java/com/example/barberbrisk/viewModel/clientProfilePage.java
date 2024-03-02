@@ -58,13 +58,8 @@ public class clientProfilePage extends AppCompatActivity {
         // get the client details from the DB
         DocumentReference docRef = db.collection("Clients").document(Objects.requireNonNull(ClientUid));
         docRef.get().addOnSuccessListener(documentSnapshot -> {
-            Log.d("ClientSuccess", "Success");
-            String email = (String) documentSnapshot.get("email");
-            String name = (String) documentSnapshot.get("name");
-            String password = (String) documentSnapshot.get("password");
-            String phone = (String) documentSnapshot.get("phone");
-            Log.d("Client details", "name: " + name + "email: " + email + " ");
-            myClient = new Client(ClientUid, name, email, phone, password);
+            myClient = documentSnapshot.toObject(Client.class);
+            assert myClient != null;
             Log.d("ClientSuccess", "Success2" + myClient.getName());
 
             //  set data on the activity
