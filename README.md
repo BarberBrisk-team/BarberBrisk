@@ -1,4 +1,4 @@
-# BarberBrisk
+
 # BarberBrisk
 
 BarberBrisk is an Android application designed to streamline the process of booking appointments with barbers. It provides a user-friendly interface where users can browse through a list of barbers, view their available slots, and book an appointment at a convenient time.
