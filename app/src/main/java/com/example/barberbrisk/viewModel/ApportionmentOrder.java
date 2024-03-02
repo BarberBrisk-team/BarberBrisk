@@ -225,7 +225,9 @@ public class ApportionmentOrder extends AppCompatActivity {
             Log.d("SelectedBarber", "gethaircuts: " + selectedBarber.getHairCuts());
             List<HairCut> haircuts = selectedBarber.getHairCuts();
             if (haircuts != null && !haircuts.isEmpty()) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, haircuts.stream().map(HairCut::getHairCutStyle).toArray(String[]::new));
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                        haircuts.stream().map(haircut -> haircut.getHairCutStyle() + " - $" + haircut.getPrice()).toArray(String[]::new));
+
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 haircutsSpinner.setAdapter(adapter);
             } else {
