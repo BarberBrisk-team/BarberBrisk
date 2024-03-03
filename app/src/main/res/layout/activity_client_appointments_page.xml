@@ -27,7 +27,7 @@
         android:id="@+id/textView6"
         android:layout_width="411dp"
         android:layout_height="253dp"
-        android:text="You can see your all appointments below:"
+        android:text="You can see all your appointments below:"
         android:textColor="@color/primary"
         android:textAlignment="center"
         android:textSize="34sp"
